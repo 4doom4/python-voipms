@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from voipms.baseapi import BaseApi
-from voipms.helpers import validate_date
+from voipms.helpers import validate_date, convert_bool
 
 
 class General(BaseApi):
@@ -29,7 +29,7 @@ class General(BaseApi):
             if not isinstance(advanced, bool):
                 raise ValueError("To retrieve Balance and Calls Statistics use True")
             else:
-                parameters["advanced"] = "True"
+                parameters["advanced"] = convert_bool(advanced)
         return self._voipms_client._get(method, parameters)
 
     def get_countries(self, country=None):
@@ -115,12 +115,18 @@ class General(BaseApi):
         """
         method = "getTransactionHistory"
 
+        if not isinstance(date_from, str):
+            raise ValueError("Start Date for Filtering Transactions needs to be str (Example: '2016-06-03')")
+
+        if not isinstance(date_to, str):
+            raise ValueError("End Date for Filtering Transactions needs to be str (Example: '2016-06-04')")
+
         date_from_object = validate_date(date_from)
         date_to_object = validate_date(date_to)
         if date_from_object > date_to_object:
             raise ValueError("The start date needs to be ealier or the same as the end date.")
         if date_to_object > datetime.now():
-            raise ValueError("The end date needs can't be in the future.")
+            raise ValueError("The end date can't be in the future.")
 
         parameters = {
             "date_from": date_from,

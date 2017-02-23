@@ -9,6 +9,15 @@ def validate_date(date_text):
     return date_object
 
 
+def convert_bool(boolean):
+    if not isinstance(boolean, bool):
+        raise ValueError("Needs to be a bool")
+    if boolean:
+        return "1"
+    else:
+        return "0"
+
+
 ERROR_CODES = {
     "account_with_dids": "The Account has DIDs assigned to it.",
     "api_not_enabled": "API has not been enabled or has been disabled",

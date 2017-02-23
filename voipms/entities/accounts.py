@@ -1,7 +1,7 @@
 import socket
 
 from voipms.baseapi import BaseApi
-from voipms.helpers import validate_date
+from voipms.helpers import validate_date, convert_bool
 
 
 class Accounts(BaseApi):
@@ -19,53 +19,53 @@ class Accounts(BaseApi):
         Adds a new Sub Account entry to your Account
 
         :param username: [Required] Username for the Sub Account (Example: 'VoIP')
-        :type username: All :py:class:`str`
+        :type username: :py:class:`str`
         :param password: [Required] Sub Account Password (For Password Authentication)
-        :type password: All :py:class:`str`
+        :type password: :py:class:`str`
         :param protocol: [Required] Protocol used for the Sub Account (Values from accounts.get_protocols)
-        :type protocol: All :py:class:`int`
+        :type protocol: :py:class:`int`
         :param auth_type: [Required] Authorization Type Code (Values from accounts.get_auth_types)
-        :type auth_type: All :py:class:`int`
+        :type auth_type: :py:class:`int`
         :param device_type: [Required] Device Type Code (Values from accounts.get_device_types)
-        :type device_type: All :py:class:`int`
+        :type device_type: :py:class:`int`
         :param lock_international: [Required] Lock International Code (Values from accounts.get_lock_international)
-        :type lock_international: All :py:class:`int`
+        :type lock_international: :py:class:`int`
         :param international_route: [Required] Route Code (Values from accounts.get_routes)
-        :type international_route: All :py:class:`int`
+        :type international_route: :py:class:`int`
         :param music_on_hold: [Required] Music on Hold Code (Values from accounts.get_music_on_hold)
-        :type music_on_hold: All :py:class:`str`
+        :type music_on_hold: :py:class:`str`
         :param allowed_codecs: [Required] List of Allowed Codecs (Values from accounts.get_allowed_codecs)
                                Codecs separated by semicolon (Example: ulaw;g729;gsm)
-        :type allowed_codecs: All :py:class:`str`
+        :type allowed_codecs: :py:class:`str`
         :param dtmf_mode: [Required] DTMF Mode Code (Values from accounts.get_dtmf_modes)
-        :type dtmf_mode: All :py:class:`str`
+        :type dtmf_mode: :py:class:`str`
         :param nat: [Required] NAT Mode Code (Values from accounts.get_nat)
-        :type nat: All :py:class:`str`
+        :type nat: :py:class:`str`
         :param **kwargs: All optional parameters
-        :type **kwargs: All :py:class:`str`
+        :type **kwargs: :py:class:`dict`
 
         :param description:  Sub Account Description (Example: 'VoIP Account')
-        :type description: All :py:class:`str`
+        :type description: :py:class:`str`
         :param ip: Sub Account IP  (For IP Authentication)
-        :type ip: All :py:class:`str`
+        :type ip: :py:class:`str`
         :param callerid_number: Caller ID Override
-        :type callerid_number: All :py:class:`str`
+        :type callerid_number: :py:class:`str`
         :param canada_routing: Route Code (Values from accounts.get_routes)
-        :type canada_routing: All :py:class:`int`
+        :type canada_routing: :py:class:`int`
         :param internal_extension: Sub Account Internal Extension (Example: 1 -> Creates 101)
-        :type internal_extension: All :py:class:`int`
+        :type internal_extension: :py:class:`int`
         :param internal_voicemail: Sub Account Internal Voicemail (Example: 101)
-        :type internal_voicemail: All :py:class:`str`
+        :type internal_voicemail: :py:class:`str`
         :param internal_dialtime: Sub Account Internal Dialtime (Example: 60 -> seconds)
-        :type internal_dialtime: All :py:class:`int`
+        :type internal_dialtime: :py:class:`int`
         :param reseller_client: Reseller Account ID (Example: 561115)
-        :type reseller_client: All :py:class:`int`
+        :type reseller_client: :py:class:`int`
         :param reseller_package: Reseller Package (Example: 92364)
-        :type reseller_package: All :py:class:`int`
+        :type reseller_package: :py:class:`int`
         :param reseller_nextbilling: Reseller Next Billing Date (Example: '2012-12-31')
-        :type reseller_nextbilling: All :py:class:`str`
+        :type reseller_nextbilling: :py:class:`str`
         :param reseller_chargesetup: True if you want to charge Package Setup Fee after Save
-        :type reseller_chargesetup: All :py:class:`bool`
+        :type reseller_chargesetup: :py:class:`bool`
 
         :returns: :py:class:`dict`
         """
@@ -178,15 +178,13 @@ class Accounts(BaseApi):
         if "reseller_chargesetup" in kwargs:
             if not isinstance(kwargs["reseller_chargesetup"], bool):
                 raise ValueError("True if you want to charge Package Setup Fee after Save")
-            parameters["reseller_chargesetup"] = kwargs.pop("reseller_chargesetup")
+            parameters["reseller_chargesetup"] = convert_bool(kwargs.pop("reseller_chargesetup"))
 
         if len(kwargs) > 0:
             not_allowed_parameters = ""
             for key, value in kwargs.items():
                 not_allowed_parameters += key + " "
             raise ValueError("Parameters not allowed: {}".format(not_allowed_parameters))
-
-        parameters.update(kwargs)
 
         return self._voipms_client._get(method, parameters)
 
@@ -461,51 +459,51 @@ class Accounts(BaseApi):
         Updates Sub Account information
 
         :param account_id: [Required] Sub Account ID (Example: 10236)
-        :type account_id: All :py:class:`int`
+        :type account_id: :py:class:`int`
         :param password:  [Required] Sub Account Password (For Password Authentication)
-        :type password: All :py:class:`str`
+        :type password: :py:class:`str`
         :param auth_type: [Required] Authorization Type Code (Values from accounts.get_auth_types)
-        :type auth_type: All :py:class:`int`
+        :type auth_type: :py:class:`int`
         :param device_type: [Required] Device Type Code (Values from accounts.get_device_types)
-        :type device_type: All :py:class:`int`
+        :type device_type: :py:class:`int`
         :param lock_international: [Required] Lock International Code (Values from accounts.get_lock_international)
-        :type lock_international: All :py:class:`int`
+        :type lock_international: :py:class:`int`
         :param international_route: [Required] Route Code (Values from accounts.get_routes)
-        :type international_route: All :py:class:`int`
+        :type international_route: :py:class:`int`
         :param music_on_hold: [Required] Music on Hold Code (Values from accounts.get_music_on_hold)
-        :type music_on_hold: All :py:class:`str`
+        :type music_on_hold: :py:class:`str`
         :param allowed_codecs: [Required] List of Allowed Codecs (Values from accounts.get_allowed_codecs)
                                Codecs separated by semicolon (Example: ulaw;g729;gsm)
-        :type allowed_codecs: All :py:class:`str`
+        :type allowed_codecs: :py:class:`str`
         :param dtmf_mode: [Required] DTMF Mode Code (Values from accounts.get_dtmf_modes)
-        :type dtmf_mode: All :py:class:`str`
+        :type dtmf_mode: :py:class:`str`
         :param nat: [Required] NAT Mode Code (Values from accounts.get_nat)
-        :type nat: All :py:class:`str`
+        :type nat: :py:class:`str`
         :param **kwargs: All optional parameters
-        :type **kwargs: All :py:class:`str`
+        :type **kwargs: :py:class:`dict`
 
         :param description:  Sub Account Description (Example: 'VoIP Account')
-        :type description: All :py:class:`str`
+        :type description: :py:class:`str`
         :param ip: Sub Account IP  (For IP Authentication)
-        :type ip: All :py:class:`str`
+        :type ip: :py:class:`str`
         :param callerid_number: Caller ID Override
-        :type callerid_number: All :py:class:`str`
+        :type callerid_number: :py:class:`str`
         :param canada_routing: Route Code (Values from accounts.get_routes)
-        :type canada_routing: All :py:class:`int`
+        :type canada_routing: :py:class:`int`
         :param internal_extension: Sub Account Internal Extension (Example: 1 -> Creates 101)
-        :type internal_extension: All :py:class:`int`
+        :type internal_extension: :py:class:`int`
         :param internal_voicemail: Sub Account Internal Voicemail (Example: 101)
-        :type internal_voicemail: All :py:class:`str`
+        :type internal_voicemail: :py:class:`str`
         :param internal_dialtime: Sub Account Internal Dialtime (Example: 60 -> seconds)
-        :type internal_dialtime: All :py:class:`int`
+        :type internal_dialtime: :py:class:`int`
         :param reseller_client: Reseller Account ID (Example: 561115)
-        :type reseller_client: All :py:class:`int`
+        :type reseller_client: :py:class:`int`
         :param reseller_package: Reseller Package (Example: 92364)
-        :type reseller_package: All :py:class:`int`
+        :type reseller_package: :py:class:`int`
         :param reseller_nextbilling: Reseller Next Billing Date (Example: '2012-12-31')
-        :type reseller_nextbilling: All :py:class:`str`
+        :type reseller_nextbilling: :py:class:`str`
         :param reseller_chargesetup: True if you want to charge Package Setup Fee after Save
-        :type reseller_chargesetup: All :py:class:`bool`
+        :type reseller_chargesetup: :py:class:`bool`
 
         :returns: :py:class:`dict`
         """
@@ -621,7 +619,5 @@ class Accounts(BaseApi):
             for key, value in kwargs.items():
                 not_allowed_parameters += key + " "
             raise ValueError("Parameters not allowed: {}".format(not_allowed_parameters))
-
-        parameters.update(kwargs)
 
         return self._voipms_client._get(method, parameters)

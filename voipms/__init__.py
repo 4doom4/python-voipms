@@ -10,6 +10,8 @@ from voipms.voipmsclient import VoipMsClient
 from voipms.entities.general import General
 # Accounts
 from voipms.entities.accounts import Accounts
+# Call Detail Records
+from voipms.entities.calls import Calls
 
 
 class VoipMs(VoipMsClient):
@@ -24,3 +26,4 @@ class VoipMs(VoipMsClient):
         super(VoipMs, self).__init__(*args, **kwargs)
         self.general = General(self)
         self.accounts = Accounts(self)
+        self.calls = Calls(self)
