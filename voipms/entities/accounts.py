@@ -204,8 +204,7 @@ class Accounts(BaseApi):
         if account_id:
             if not isinstance(account_id, int):
                 raise ValueError("ID for a specific Sub Account as int (Example: 99785) ")
-            else:
-                parameters["id"] = account_id
+            parameters["id"] = account_id
         return self._voipms_client._get(method, parameters)
 
     def get_allowed_codecs(self, codec=None):
@@ -224,8 +223,7 @@ class Accounts(BaseApi):
         if codec:
             if not isinstance(codec, str):
                 raise ValueError("Code for a specific Codec as str (Example: 'ulaw')")
-            else:
-                parameters["codec"] = codec
+            parameters["codec"] = codec
         return self._voipms_client._get(method, parameters)
 
     def get_auth_types(self, auth_type=None):
@@ -244,8 +242,7 @@ class Accounts(BaseApi):
         if auth_type:
             if not isinstance(auth_type, int):
                 raise ValueError("Code for a specific Authorization Type as int (Example: 2)")
-            else:
-                parameters["type"] = auth_type
+            parameters["type"] = auth_type
         return self._voipms_client._get(method, parameters)
 
     def get_device_types(self, device_type=None):
@@ -264,8 +261,7 @@ class Accounts(BaseApi):
         if device_type:
             if not isinstance(device_type, int):
                 raise ValueError("Code for a specific Device Type as int (Example: 1)")
-            else:
-                parameters["device_type"] = device_type
+            parameters["device_type"] = device_type
         return self._voipms_client._get(method, parameters)
 
     def get_dtmf_modes(self, dtmf_mode=None):
@@ -284,8 +280,7 @@ class Accounts(BaseApi):
         if dtmf_mode:
             if not isinstance(dtmf_mode, str):
                 raise ValueError("Code for a specific DTMF Mode as str (Example: 'inband')")
-            else:
-                parameters["dtmf_mode"] = dtmf_mode
+            parameters["dtmf_mode"] = dtmf_mode
         return self._voipms_client._get(method, parameters)
 
     def get_lock_international(self, lock_international=None):
@@ -304,8 +299,7 @@ class Accounts(BaseApi):
         if lock_international:
             if not isinstance(lock_international, int):
                 raise ValueError("Code for a specific Lock International Mode as int (Example: 1)")
-            else:
-                parameters["lock_international"] = lock_international
+            parameters["lock_international"] = lock_international
         return self._voipms_client._get(method, parameters)
 
     def get_music_on_hold(self, music_on_hold=None):
@@ -324,8 +318,7 @@ class Accounts(BaseApi):
         if music_on_hold:
             if not isinstance(music_on_hold, str):
                 raise ValueError("Code for a specific Music on Hold as str (Example: 'jazz')")
-            else:
-                parameters["music_on_hold"] = music_on_hold
+            parameters["music_on_hold"] = music_on_hold
         return self._voipms_client._get(method, parameters)
 
     def get_nat(self, nat=None):
@@ -344,8 +337,7 @@ class Accounts(BaseApi):
         if nat:
             if not isinstance(nat, str):
                 raise ValueError("Code for a specific NAT Option as str (Example: 'route')")
-            else:
-                parameters["nat"] = nat
+            parameters["nat"] = nat
         return self._voipms_client._get(method, parameters)
 
     def get_protocols(self, protocol=None):
@@ -364,8 +356,7 @@ class Accounts(BaseApi):
         if protocol:
             if not isinstance(protocol, int):
                 raise ValueError("Code for a specific Protocol as int (Example: 3)")
-            else:
-                parameters["protocol"] = protocol
+            parameters["protocol"] = protocol
         return self._voipms_client._get(method, parameters)
 
     def get_registration_status(self, account):
@@ -382,8 +373,7 @@ class Accounts(BaseApi):
         if account:
             if not isinstance(account, str):
                 raise ValueError("Specific Account as str (Example: '100001_VoIP')")
-            else:
-                parameters["account"] = account
+            parameters["account"] = account
         else:
             raise ValueError("Specific Account (Example: '100001_VoIP')")
         return self._voipms_client._get(method, parameters)
@@ -404,8 +394,7 @@ class Accounts(BaseApi):
         if time_type:
             if not isinstance(time_type, str):
                 raise ValueError("Code for a specific ReportEstimatedHoldTime Type as str (Example: 'yes')")
-            else:
-                parameters["type"] = time_type
+            parameters["type"] = time_type
         return self._voipms_client._get(method, parameters)
 
     def get_routes(self, route=None):
@@ -424,8 +413,7 @@ class Accounts(BaseApi):
         if route:
             if not isinstance(route, int):
                 raise ValueError("Code for a specific Route as int (Example: 2)")
-            else:
-                parameters["route"] = route
+            parameters["route"] = route
         return self._voipms_client._get(method, parameters)
 
     def get_sub_accounts(self, account=None):
@@ -448,8 +436,7 @@ class Accounts(BaseApi):
         if account:
             if not isinstance(account, str):
                 raise ValueError("Parameter could have the following values: Empty Value, Specific Sub Account (Example: '100000_VoIP'), Specific Reseller Client ID (Example: 561115)")
-            else:
-                parameters["account"] = account
+            parameters["account"] = account
         return self._voipms_client._get(method, parameters)
 
     def set_sub_account(self, account_id, password, auth_type, device_type,

@@ -28,8 +28,7 @@ class General(BaseApi):
         if advanced:
             if not isinstance(advanced, bool):
                 raise ValueError("To retrieve Balance and Calls Statistics use True")
-            else:
-                parameters["advanced"] = convert_bool(advanced)
+            parameters["advanced"] = convert_bool(advanced)
         return self._voipms_client._get(method, parameters)
 
     def get_countries(self, country=None):
@@ -48,8 +47,7 @@ class General(BaseApi):
         if country:
             if not isinstance(country, str):
                 raise ValueError("Code for a specific Country as string (Example: CA)")
-            else:
-                parameters["country"] = country
+            parameters["country"] = country
         return self._voipms_client._get(method, parameters)
 
     def get_ip(self):
@@ -80,8 +78,7 @@ class General(BaseApi):
         if language:
             if not isinstance(language, str):
                 raise ValueError("Code for a specific Language as string (Example: 'en')")
-            else:
-                parameters["language"] = language
+            parameters["language"] = language
         return self._voipms_client._get(method, parameters)
 
     def get_servers_info(self, server_pop=None):
@@ -99,8 +96,7 @@ class General(BaseApi):
         if server_pop:
             if not isinstance(server_pop, int):
                 raise ValueError("To select a specific server use an integer (Example: 1)")
-            else:
-                parameters["server_pop"] = server_pop
+            parameters["server_pop"] = server_pop
         return self._voipms_client._get(method, parameters)
 
     def get_transaction_history(self, date_from, date_to):

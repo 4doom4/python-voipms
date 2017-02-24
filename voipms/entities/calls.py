@@ -15,35 +15,6 @@ class Calls(BaseApi):
     def _cdr(self, method, date_from, date_to, timezone,
              answered=False, noanswer=False, busy=False,
              failed=False, client=False, **kwargs):
-        """
-        Retrieves the Call Detail Records of all your calls
-
-        :param date_from: [Required] Start Date for Filtering CDR (Example: '2010-11-30')
-        :type date_from: :py:class:`str`
-        :param date_to: [Required] End Date for Filtering CDR (Example: '2010-11-30')
-        :type date_to: :py:class:`str`
-        :param timezone: [Required] Adjust time of calls according to Timezome (Numeric: -12 to 13)
-        :type timezone: :py:class:`int`
-        :param answered:  Include Answered Calls to CDR (Default: False, Boolean: True/False)
-        :type answered: :py:class:`bool`
-        :param noanswer:  Include NoAnswered calls to CDR (Default: False, Boolean: True/False)
-        :type noanswer: :py:class:`bool`
-        :param busy:  Include Busy Calls to CDR (Default: False, Boolean: True/False)
-        :type busy: :py:class:`bool`
-        :param failed:  Include Failed Calls to CDR (Default: False, Boolean: True/False)
-        :type failed: :py:class:`bool`
-        :param **kwargs: All optional parameters
-        :type **kwargs: :py:class:`dict`
-
-        :param calltype:  Filters CDR by Call Type (Values from calls.get_call_types)
-        :type calltype: :py:class:`str`
-        :param callbilling:  Filter CDR by Call Billing (Values from calls.get_call_billing)
-        :type callbilling: :py:class:`str`
-        :param account:  Filter CDR by Account (Values from calls.get_call_accounts)
-        :type account: :py:class:`int`
-
-        :returns: :py:class:`dict`
-        """
 
         if not isinstance(date_from, str):
             raise ValueError("Start Date for Filtering CDR needs to be str (Example: '2010-11-30')")
@@ -131,8 +102,7 @@ class Calls(BaseApi):
         if client:
             if not isinstance(client, int):
                 raise ValueError("ID for a specific Reseller Client as int (Example: 561115)")
-            else:
-                parameters["client"] = client
+            parameters["client"] = client
         return self._voipms_client._get(method, parameters)
 
     def get_call_billing(self):
@@ -161,8 +131,7 @@ class Calls(BaseApi):
         if client:
             if not isinstance(client, int):
                 raise ValueError("ID for a specific Reseller Client as int (Example: 561115)")
-            else:
-                parameters["client"] = client
+            parameters["client"] = client
         return self._voipms_client._get(method, parameters)
 
     def get_cdr(self, date_from, date_to, timezone,

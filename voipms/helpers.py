@@ -1,4 +1,14 @@
 import datetime
+import re
+
+
+def convert_bool(boolean):
+    if not isinstance(boolean, bool):
+        raise ValueError("Needs to be a bool")
+    if boolean:
+        return "1"
+    else:
+        return "0"
 
 
 def validate_date(date_text):
@@ -9,13 +19,12 @@ def validate_date(date_text):
     return date_object
 
 
-def convert_bool(boolean):
-    if not isinstance(boolean, bool):
-        raise ValueError("Needs to be a bool")
-    if boolean:
-        return "1"
+def validate_email(email):
+    match = re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', email)
+    if match:
+        return True
     else:
-        return "0"
+        return False
 
 
 ERROR_CODES = {
