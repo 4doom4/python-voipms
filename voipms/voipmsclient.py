@@ -53,7 +53,6 @@ class VoipMsClient(object):
         if parameters:
             query_set.update(parameters)
         url = self.base_url + urlencode(query_set)
-        print(url)
 
         try:
             r = requests.get(url)
