@@ -169,11 +169,11 @@ class Accounts(BaseApi):
             parameters["reseller_package"] = kwargs.pop("reseller_package")
 
         if "reseller_nextbilling" in kwargs:
-            reseller_nextbilling = kwargs["reseller_nextbilling"]
+            reseller_nextbilling = kwargs.pop("reseller_nextbilling")
             if not isinstance(reseller_nextbilling, int):
                 raise ValueError("Reseller Next Billing Date needs to be a string (Example: '2012-12-31')")
             validate_date(reseller_nextbilling)
-            parameters["reseller_nextbilling"] = kwargs.pop("reseller_nextbilling")
+            parameters["reseller_nextbilling"] = reseller_nextbilling
 
         if "reseller_chargesetup" in kwargs:
             if not isinstance(kwargs["reseller_chargesetup"], bool):

@@ -14,6 +14,8 @@ from voipms.entities.accounts import Accounts
 from voipms.entities.calls import Calls
 # Clients
 from voipms.entities.clients import Clients
+# DIDs
+from voipms.entities.dids import Dids
 
 
 class VoipMs(VoipMsClient):
@@ -30,3 +32,4 @@ class VoipMs(VoipMsClient):
         self.accounts = Accounts(self)
         self.calls = Calls(self)
         self.clients = Clients(self)
+        self.dids = Dids(self)
