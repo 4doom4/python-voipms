@@ -77,9 +77,42 @@ individual methods available after.
     client.accounts.get_report_estimated_hold_time(time_type=None)
     client.accounts.get_routes(route=None)
     client.accounts.get_sub_accounts(account=None)
-    client.accounts.set_sub_account(self, account_id, password, auth_type, device_type,
+    client.accounts.set_sub_account(account_id, password, auth_type, device_type,
                                     lock_international, international_route, music_on_hold,
                                     allowed_codecs, dtmf_mode, nat, **kwargs)
+
+### Calls
+
+    client.calls.get_call_accounts(client=None)
+    client.calls.get_call_billing(self)
+    client.calls.get_call_types(client=None)
+    client.calls.get_cdr(date_from, date_to, timezone,
+                         answered=False, noanswer=False, busy=False,
+                         failed=False, **kwargs)
+    client.calls.get_rates(package, query)
+    client.calls.get_termination_rates(route, query)
+    client.calls.get_reseller_cdr(date_from, date_to, client, timezone,
+                                  answered=False, noanswer=False, busy=False,
+                                  failed=False, **kwargs)
+
+### Clients
+
+    client.clients.add_charge(client, charge, description=None, test=False)
+    client.clients.add_payment(client, payment, description=None, test=False)
+    client.clients.get_balance_management(balance_management=None)
+    client.clients.get_charges(client)
+    client.clients.get_client_packages(client)
+    client.clients.get_clients(client=None)
+    client.clients.get_client_threshold(client)
+    client.clients.get_deposits(client)
+    client.clients.get_packages(package=None)
+    client.clients.get_reseller_balance(client)
+    client.clients.set_client(client, email, password, firstname,
+                              lastname, phone_number, **kwargs)
+    client.clients.set_client_threshold(client, threshold, email=None)
+    client.clients.signup_client(firstname, lastname, address, city, state, country,
+                                 zip_code, phone_number, email, confirm_email, password,
+                                 confirm_password, **kwargs)
 
 ## Support
 
