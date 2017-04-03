@@ -2224,3 +2224,139 @@ class Dids(BaseApi):
         }
 
         return self._voipms_client._get(method, parameters)
+
+    def set_callback(self, description, number, delay_before, response_timeout, digit_timeout, **kwargs):
+        """
+        Updates a specific Callback if a callback code is provided
+
+        - Adds a new Callback entry if no callback code is provided
+
+        :param description: [Required] Description for the Callback
+        :type description: :py:class:`str`
+        :param number: [Required] Number that will be called back
+        :type number: :py:class:`int`
+        :param delay_before: [Required] Delay befor calling back
+        :type delay_before: :py:class:`int`
+        :param response_timeout: [Required] Time before hanging up for incomplete input
+        :type response_timeout: :py:class:`int`
+        :param digit_timeout: [Required] Time between digits input
+        :type digit_timeout: :py:class:`int`
+
+        :param callback: ID for a specific Callback (Example: 2359 / Leave empty to create a new one)
+        :type callback: :py:class:`int`
+        :param callerid_number: Caller ID Override for the callback
+        :type callerid_number: :py:class:`int`
+
+        :returns: :py:class:`dict`
+        """
+        method = "setCallback"
+
+        if not isinstance(description, str):
+            raise ValueError("Description for the Callback needs to be a str")
+
+        if not isinstance(number, int):
+            raise ValueError("Number that will be called back needs to be an int")
+
+        if not isinstance(delay_before, int):
+            raise ValueError("Delay befor calling back needs to be an int")
+
+        if not isinstance(response_timeout, int):
+            raise ValueError("Time before hanging up for incomplete input needs to be an int")
+
+        if not isinstance(digit_timeout, int):
+            raise ValueError("Time between digits input needs to be an int")
+
+
+        parameters = {
+            "description": description,
+            "number": number,
+            "delay_before": delay_before,
+            "response_timeout": response_timeout,
+            "digit_timeout": digit_timeout,
+        }
+
+        if "callback" in kwargs:
+            if not isinstance(callback, int):
+                raise ValueError("ID for a specific Callback needs to be an int (Example: 2359 / Leave empty to create a new one)")
+            parameters["callback"] = kwargs.pop("callback")
+
+        if "callerid_number" in kwargs:
+            if not isinstance(callerid_number, int):
+                raise ValueError("Caller ID Override for the callback needs to be an int")
+            parameters["callerid_number"] = kwargs.pop("callerid_number")
+
+        if len(kwargs) > 0:
+            not_allowed_parameters = ""
+            for key, value in kwargs.items():
+                not_allowed_parameters += key + " "
+            raise ValueError("Parameters not allowed: {}".format(not_allowed_parameters))
+
+        return self._voipms_client._get(method, parameters)
+
+    def set_caller_id_filtering(self, callerid, did, routing, **kwargs):
+        """
+        Updates a specific Callback if a callback code is provided
+
+        - Adds a new Callback entry if no callback code is provided
+
+        :param description: [Required] Description for the Callback
+        :type description: :py:class:`str`
+        :param number: [Required] Number that will be called back
+        :type number: :py:class:`int`
+        :param delay_before: [Required] Delay befor calling back
+        :type delay_before: :py:class:`int`
+        :param response_timeout: [Required] Time before hanging up for incomplete input
+        :type response_timeout: :py:class:`int`
+        :param digit_timeout: [Required] Time between digits input
+        :type digit_timeout: :py:class:`int`
+
+        :param callback: ID for a specific Callback (Example: 2359 / Leave empty to create a new one)
+        :type callback: :py:class:`int`
+        :param callerid_number: Caller ID Override for the callback
+        :type callerid_number: :py:class:`int`
+
+        :returns: :py:class:`dict`
+        """
+        method = "setCallerIDFiltering"
+
+        if not isinstance(description, str):
+            raise ValueError("Description for the Callback needs to be a str")
+
+        if not isinstance(number, int):
+            raise ValueError("Number that will be called back needs to be an int")
+
+        if not isinstance(delay_before, int):
+            raise ValueError("Delay befor calling back needs to be an int")
+
+        if not isinstance(response_timeout, int):
+            raise ValueError("Time before hanging up for incomplete input needs to be an int")
+
+        if not isinstance(digit_timeout, int):
+            raise ValueError("Time between digits input needs to be an int")
+
+
+        parameters = {
+            "description": description,
+            "number": number,
+            "delay_before": delay_before,
+            "response_timeout": response_timeout,
+            "digit_timeout": digit_timeout,
+        }
+
+        if "callback" in kwargs:
+            if not isinstance(callback, int):
+                raise ValueError("ID for a specific Callback needs to be an int (Example: 2359 / Leave empty to create a new one)")
+            parameters["callback"] = kwargs.pop("callback")
+
+        if "callerid_number" in kwargs:
+            if not isinstance(callerid_number, int):
+                raise ValueError("Caller ID Override for the callback needs to be an int")
+            parameters["callerid_number"] = kwargs.pop("callerid_number")
+
+        if len(kwargs) > 0:
+            not_allowed_parameters = ""
+            for key, value in kwargs.items():
+                not_allowed_parameters += key + " "
+            raise ValueError("Parameters not allowed: {}".format(not_allowed_parameters))
+
+        return self._voipms_client._get(method, parameters)
