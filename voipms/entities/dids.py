@@ -2294,7 +2294,7 @@ class Dids(BaseApi):
         return self._voipms_client._get(method, parameters)
 
     def set_caller_id_filtering(self, callerid, did, routing, **kwargs):
-        """ 
+        """
         Updates a specific Callback if a callback code is provided
 
         - Adds a new Callback entry if no callback code is provided
