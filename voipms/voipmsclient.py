@@ -54,7 +54,6 @@ class VoipMsClient(object):
             query_set.update(parameters)
         url = self.base_url + urlencode(query_set)
         print(url)
-
         try:
             r = requests.get(url)
         except requests.exceptions.RequestException as e:
