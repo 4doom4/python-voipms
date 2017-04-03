@@ -501,11 +501,10 @@ class Dids(BaseApi):
         }
 
         if "next_billing" in kwargs:
-            next_billing = kwargs.pop("next_billing")
-            if not isinstance(next_billing, str):
+            if not isinstance(kwargs["next_billing"], str):
                 raise ValueError("Next billing date needs to be a str (Example: '2014-03-30')")
-            validate_date(next_billing)
-            parameters["next_billing"] = next_billing
+            validate_date(kwargs["next_billing"])
+            parameters["next_billing"] = kwargs.pop("next_billing")
 
         if "dont_charge_setup" in kwargs:
             if not isinstance(kwargs["dont_charge_setup"], bool):
@@ -1258,10 +1257,192 @@ class Dids(BaseApi):
         method = "getRateCentersUSA"
 
         parameters = {}
-        if state:
-            if not isinstance(state, str):
-                raise ValueError("United States State needs to be a str (Values from dids.get_states)")
-            parameters["state"] = state
+
+        if not isinstance(state, str):
+            raise ValueError("United States State needs to be a str (Values from dids.get_states)")
+        parameters["state"] = state
+
+        return self._voipms_client._get(method, parameters)
+
+    def get_recordings(self, recording=None):
+        """
+        Retrieves a list of Recordings if no additional parameter is provided
+
+        - Retrieves a specific Recording if a Recording code is provided
+
+        :param recording: ID for a specific Recording (Example: 7567)
+        :type recording: :py:class:`int`
+        :returns: :py:class:`dict`
+        """
+        method = "getRecordings"
+
+        parameters = {}
+
+        if recording:
+            if not isinstance(recording, int):
+                raise ValueError("ID for a specific Recording needs to be an int (Example: 7567)")
+            parameters["recording"] = recording
+
+        return self._voipms_client._get(method, parameters)
+
+    def get_recording_file(self, recording):
+        """
+        Retrieves a specific Recording File data in Base64 format
+
+        :param recording: [Required] ID for a specific Recording (Example: 7567)
+        :type recording: :py:class:`int`
+        :returns: :py:class:`dict`
+        """
+        method = "getRecordingFile"
+
+        parameters = {}
+
+        if not isinstance(recording, int):
+            raise ValueError("ID for a specific Recording needs to be an int (Example: 7567)")
+        parameters["recording"] = recording
+
+        return self._voipms_client._get(method, parameters)
+
+    def get_ring_groups(self, ringgroup=None):
+        """
+        Retrieves a list of Ring Groups if no additional parameter is provided
+
+        - Retrieves a specific Ring Group if a ring group code is provided
+
+        :param ringgroup: ID for a specific Ring Group (Example: 4768)
+        :type ringgroup: :py:class:`int`
+        :returns: :py:class:`dict`
+        """
+        method = "getRingGroups"
+
+        parameters = {}
+        
+        if ringgroup:
+            if not isinstance(ringgroup, int):
+                raise ValueError("ID for a specific Ring Group needs to be an int (Example: 4768)")
+            parameters["ringgroup"] = ringgroup
+
+        return self._voipms_client._get(method, parameters)
+
+    def get_ring_strategies(self, strategy=None):
+        """
+        Retrieves a list of Ring Strategies if no additional parameter is provided
+
+        - Retrieves a specific Ring Strategy if a ring strategy code is provided
+
+        :param strategy: ID for a specific Ring Strategy (Example: 'rrmemory')
+        :type strategy: :py:class:`str`
+        :returns: :py:class:`dict`
+        """
+        method = "getRingStrategies"
+
+        parameters = {}
+        
+        if strategy:
+            if not isinstance(strategy, int):
+                raise ValueError("ID for a specific Ring Strategy needs to be a str (Example: 'rrmemory')")
+            parameters["strategy"] = strategy
+
+        return self._voipms_client._get(method, parameters)
+
+    def get_sip_uris(self, sipuri=None):
+        """
+        Retrieves a list of SIP URIs if no additional parameter is provided
+
+        - Retrieves a specific SIP URI if a SIP URI code is provided
+
+        :param sipuri: ID for a specific SIP URI (Example: 6199)
+        :type sipuri: :py:class:`int`
+        :returns: :py:class:`dict`
+        """
+        method = "getSIPURIs"
+
+        parameters = {}
+        
+        if sipuri:
+            if not isinstance(sipuri, int):
+                raise ValueError("ID for a specific SIP URI needs to be an int (Example: 6199)")
+            parameters["sipuri"] = sipuri
+
+        return self._voipms_client._get(method, parameters)
+
+    def get_sms(self, **kwargs):
+        """
+        Retrieves a list of SMS messages by: date range, sms type, DID number, and contact
+
+        :param sms: ID for a specific SMS (Example: 5853)
+        :type sms: :py:class:`int`
+        :param from: Start Date for Filtering SMSs (Example: '2014-03-30')
+                     - Default value: Today
+        :type from: :py:class:`str`
+        :param to: End Date for Filtering SMSs (Example: '2014-03-30')
+                     - Default value: Today
+        :type to: :py:class:`str`
+        :param type: Filter SMSs by Type (Boolean: True = received / False = sent)
+        :type type: :py:class:`bool`
+        :param did: DID number for Filtering SMSs (Example: 5551234567)
+        :type did: :py:class:`int`
+        :param contact: Contact number for Filtering SMSs (Example: 5551234567)
+        :type contact: :py:class:`int`
+        :param limit: Number of records to be displayed (Example: 20)
+                       - Default value: 50
+        :type limit: :py:class:`int`
+        :param timezone: Adjust time of SMSs according to Timezome (Numeric: -12 to 13)
+        :type timezone: :py:class:`int`
+
+        :returns: :py:class:`dict`
+        """
+        method = "getSMS"
+
+        parameters = {}
+        
+        if "sms" in kwargs:
+            if not isinstance(kwargs["sms"], int):
+                raise ValueError("ID for a specific SMS needs to be an int (Example: 5853)")
+            parameters["sms"] = kwargs.pop("sms")
+
+        if "from" in kwargs:
+            if not isinstance(kwargs["from"], str):
+                raise ValueError("Start Date for Filtering SMSs needs to be a str (Example: '2014-03-30')")
+            validate_date(kwargs["from"])
+            parameters["from"] = kwargs.pop("from")
+
+        if "to" in kwargs:
+            if not isinstance(kwargs["to"], str):
+                raise ValueError("End Date for Filtering SMSs needs to be a str (Example: '2014-03-30')")
+            validate_date(kwargs["to"])
+            parameters["to"] = kwargs.pop("to")
+
+        if "type" in kwargs:
+            if not isinstance(kwargs["type"], bool):
+                raise ValueError("Filter SMSs by Type needs to be a bool (Boolean: True = received / False = sent)")
+            parameters["type"] = convert_bool(kwargs.pop("type"))
+
+        if "did" in kwargs:
+            if not isinstance(kwargs["did"], int):
+                raise ValueError("DID number for Filtering SMSs needs to be an int (Example: 5551234567)")
+            parameters["did"] = kwargs.pop("did")
+
+        if "contact" in kwargs:
+            if not isinstance(kwargs["contact"], int):
+                raise ValueError("Contact number for Filtering SMSs needs to be an int (Example: 5551234567)")
+            parameters["contact"] = kwargs.pop("contact")
+
+        if "limit" in kwargs:
+            if not isinstance(kwargs["limit"], int):
+                raise ValueError("Number of records to be displayed needs to be an int (Example: 20)")
+            parameters["limit"] = kwargs.pop("limit")
+
+        if "timezone" in kwargs:
+            if not isinstance(kwargs["timezone"], int):
+                raise ValueError("Adjust time of SMSs according to Timezome needs to be an int (Numeric: -12 to 13)")
+            parameters["timezone"] = kwargs.pop("timezone")
+
+        if len(kwargs) > 0:
+            not_allowed_parameters = ""
+            for key, value in kwargs.items():
+                not_allowed_parameters += key + " "
+            raise ValueError("Parameters not allowed: {}".format(not_allowed_parameters))
 
         return self._voipms_client._get(method, parameters)
 
@@ -2276,12 +2457,12 @@ class Dids(BaseApi):
         }
 
         if "callback" in kwargs:
-            if not isinstance(callback, int):
+            if not isinstance(kwargs["callback"], int):
                 raise ValueError("ID for a specific Callback needs to be an int (Example: 2359 / Leave empty to create a new one)")
             parameters["callback"] = kwargs.pop("callback")
 
         if "callerid_number" in kwargs:
-            if not isinstance(callerid_number, int):
+            if not isinstance(kwargs["callerid_number"], int):
                 raise ValueError("Caller ID Override for the callback needs to be an int")
             parameters["callerid_number"] = kwargs.pop("callerid_number")
 
@@ -2294,64 +2475,696 @@ class Dids(BaseApi):
         return self._voipms_client._get(method, parameters)
 
     def set_caller_id_filtering(self, callerid, did, routing, **kwargs):
-        """ 
-        Updates a specific Callback if a callback code is provided
+        """
+        Updates a specific Caller ID Filtering if a filtering code is provided
 
-        - Adds a new Callback entry if no callback code is provided
+        - Adds a new Caller ID Filtering if no filtering code is provided
 
-        :param description: [Required] Description for the Callback
-        :type description: :py:class:`str`
-        :param number: [Required] Number that will be called back
-        :type number: :py:class:`int`
-        :param delay_before: [Required] Delay befor calling back
-        :type delay_before: :py:class:`int`
-        :param response_timeout: [Required] Time before hanging up for incomplete input
-        :type response_timeout: :py:class:`int`
-        :param digit_timeout: [Required] Time between digits input
-        :type digit_timeout: :py:class:`int`
+        :param callerid: [Required] Caller ID that triggers the Filter (i = Non USA, 0 = Anonymous, NPANXXXXXX)
+        :type callerid: :py:class:`str`
+        :param did: [Required] DIDs affected by the filter (all, NPANXXXXXX)
+        :type did: :py:class:`str`
+        :param routing: [Required] Route the call follows when filter is triggered
+        :type routing: :py:class:`str`
 
-        :param callback: ID for a specific Callback (Example: 2359 / Leave empty to create a new one)
-        :type callback: :py:class:`int`
-        :param callerid_number: Caller ID Override for the callback
-        :type callerid_number: :py:class:`int`
+        :param filter: ID for a specific Caller ID Filtering (Example: 18915 / Leave empty to create a new one)
+        :type filter: :py:class:`int`
+        :param failover_unreachable: Route the call follows when unreachable
+        :type failover_unreachable: :py:class:`str`
+        :param failover_busy: Route the call follows when busy
+        :type failover_busy: :py:class:`str`
+        :param failover_noanswer: Route the call follows when noanswer
+        :type failover_noanswer: :py:class:`str`
+        :param note: Note for the Caller ID Filtering
+        :type note: :py:class:`str`
 
         :returns: :py:class:`dict`
+        
+        routing, failover_busy, failover_unreachable and failover_noanswer
+        can receive values in the following format => header:record_id
+        Where header could be: account, fwd, vm, sip, grp, ivr, sys, recording, queue, cb, tc, disa, none.
+        Examples:
+
+            account     Used for routing calls to Sub Accounts
+                        You can get all sub accounts using the getSubAccounts function
+
+            fwd         Used for routing calls to Forwarding entries.
+                        You can get the ID right after creating a Forwarding with setForwarding
+                        or by requesting all forwardings entries with getForwardings.
+
+            vm          Used for routing calls to a Voicemail.
+                        You can get all voicemails and their IDs using the getVoicemails function
+
+            sys         System Options:
+                        hangup       = Hangup the Call
+                        busy         = Busy tone
+                        noservice    = System Recording: Number not in service
+                        disconnected = System Recording: Number has been disconnected
+                        dtmf         = DTMF Test
+                        echo         = ECHO Test
+
+
+            none        Used to route calls to no action
+
+        Examples:
+            'account:100001_VoIP'
+            'fwd:1026'
+            'vm:101'
+            'none:'
+            'sys:echo'
         """
-        method = "setCallerIDFiltering"
+        method = "setCallerIDFiltering" 
 
-        if not isinstance(description, str):
-            raise ValueError("Description for the Callback needs to be a str")
+        if not isinstance(callerid, str):
+            raise ValueError("Caller ID that triggers the Filter needs to be a str (i = Non USA, 0 = Anonymous, NPANXXXXXX)")
 
-        if not isinstance(number, int):
-            raise ValueError("Number that will be called back needs to be an int")
+        if not isinstance(did, str):
+            raise ValueError("DIDs affected by the filter needs to be a str (all, NPANXXXXXX)")
 
-        if not isinstance(delay_before, int):
-            raise ValueError("Delay befor calling back needs to be an int")
-
-        if not isinstance(response_timeout, int):
-            raise ValueError("Time before hanging up for incomplete input needs to be an int")
-
-        if not isinstance(digit_timeout, int):
-            raise ValueError("Time between digits input needs to be an int")
+        if not isinstance(routing, str):
+            raise ValueError("Route the call follows when filter is triggered needs to be a str")
 
 
         parameters = {
-            "description": description,
-            "number": number,
-            "delay_before": delay_before,
-            "response_timeout": response_timeout,
+            "callerid": callerid,
+            "did": did,
+            "routing": routing,
+        }
+
+        if "filter" in kwargs:
+            if not isinstance(kwargs["filter"], int):
+                raise ValueError("ID for a specific Caller ID Filtering needs to be an int (Example: 18915 / Leave empty to create a new one)")
+            parameters["filter"] = kwargs.pop("filter")
+
+        if "failover_unreachable" in kwargs:
+            if not isinstance(kwargs["failover_unreachable"], str):
+                raise ValueError("Route the call follows when unreachable needs to be a str")
+            parameters["failover_unreachable"] = kwargs.pop("failover_unreachable")
+
+        if "failover_busy" in kwargs:
+            if not isinstance(kwargs["failover_busy"], str):
+                raise ValueError("Route the call follows when busy to be a str")
+            parameters["failover_busy"] = kwargs.pop("failover_busy")
+
+        if "failover_noanswer" in kwargs:
+            if not isinstance(kwargs["failover_noanswer"], str):
+                raise ValueError("Route the call follows when noanswer needs to be a str")
+            parameters["failover_noanswer"] = kwargs.pop("failover_noanswer")
+
+        if "note" in kwargs:
+            if not isinstance(kwargs["note"], str):
+                raise ValueError("Note for the Caller ID Filtering needs to be a str")
+            parameters["note"] = kwargs.pop("note")
+
+        if len(kwargs) > 0:
+            not_allowed_parameters = ""
+            for key, value in kwargs.items():
+                not_allowed_parameters += key + " "
+            raise ValueError("Parameters not allowed: {}".format(not_allowed_parameters))
+
+        return self._voipms_client._get(method, parameters)
+
+    def set_did_billing_type(self, did, billing_type):
+        """
+        Updates the Billing Plan from a specific DID
+
+        :param did: [Required] DID affected by the new billing plan
+        :type did: :py:class:`int`
+        :param billing_type: [Required] Billing type for the DID (1 = Per Minute, 2 = Flat)
+        :type billing_type: :py:class:`int`
+
+        :returns: :py:class:`dict`
+        """
+        method = "setDIDBillingType"
+
+        if not isinstance(did, int):
+            raise ValueError("DID affected by the new billing plan needs to be an int")
+
+        if not isinstance(billing_type, int):
+            raise ValueError("Billing type for the DID needs to be an int (1 = Per Minute, 2 = Flat)")
+
+        parameters = {
+            "did": did,
+            "billing_type": billing_type,
+        }
+
+        return self._voipms_client._get(method, parameters)
+
+    def set_did_info(self, did, routing, pop, dialtime, cnam, billing_type, **kwargs):
+        """
+        Updates the information from a specific DID
+
+        :param did: [Required] DID to be Ordered (Example: 5551234567)
+        :type did: :py:class:`int`
+        :param routing: [Required] Main Routing for the DID
+        :type routing: :py:class:`str`
+        :param pop: [Required] Point of Presence for the DID (Example: 3)
+        :type pop: :py:class:`int`
+        :param dialtime: [Required] Dial Time Out for the DID (Example: 60 -> in seconds)
+        :type dialtime: :py:class:`int`
+        :param cnam: [Required] CNAM for the DID (Boolean: True/False)
+        :type cnam: :py:class:`bool`
+        :param billing_type: [Required] Billing type for the DID (1 = Per Minute, 2 = Flat)
+        :type billing_type: :py:class:`int`
+        :param **kwargs: All optional parameters
+        :type **kwargs: :py:class:`dict`
+
+        :param failover_busy: Busy Routing for the DID
+        :type failover_busy: :py:class:`str`
+        :param failover_unreachable: Unreachable Routing for the DID
+        :type failover_unreachable: :py:class:`str`
+        :param failover_noanswer: NoAnswer Routing for the DID
+        :type failover_noanswer: :py:class:`str`
+        :param voicemail: Voicemail for the DID (Example: 101)
+        :type voicemail: :py:class:`int`
+        :param callerid_prefix: Caller ID Prefix for the DID
+        :type callerid_prefix: :py:class:`str`
+        :param note: Note for the DID
+        :type note: :py:class:`str`
+
+        :returns: :py:class:`dict`
+
+        routing, failover_busy, failover_unreachable and failover_noanswer
+        can receive values in the following format => header:record_id
+        Where header could be: account, fwd, vm, sip, grp, ivr, sys, recording, queue, cb, tc, disa, none.
+        Examples:
+
+            account     Used for routing calls to Sub Accounts
+                        You can get all sub accounts using the getSubAccounts function
+
+            fwd         Used for routing calls to Forwarding entries.
+                        You can get the ID right after creating a Forwarding with setForwarding
+                        or by requesting all forwardings entries with getForwardings.
+
+            vm          Used for routing calls to a Voicemail.
+                        You can get all voicemails and their IDs using the getVoicemails function
+
+            sys         System Options:
+                        hangup       = Hangup the Call
+                        busy         = Busy tone
+                        noservice    = System Recording: Number not in service
+                        disconnected = System Recording: Number has been disconnected
+                        dtmf         = DTMF Test
+                        echo         = ECHO Test
+
+
+            none        Used to route calls to no action
+
+        Examples:
+            'account:100001_VoIP'
+            'fwd:1026'
+            'vm:101'
+            'none:'
+            'sys:echo'
+        """
+        method = "setDIDInfo"
+
+        kwargs.update({
+            "method": method,
+            "did": did,
+            "routing": routing,
+            "pop": pop,
+            "dialtime": dialtime,
+            "cnam": cnam,
+            "billing_type": billing_type,
+        })
+
+        return self._order(**kwargs)
+
+    def set_did_pop(self, did, pop):
+        """
+        Updates the POP from a specific DID
+
+        :param did: [Required] DID affected by the new billing plan
+        :type did: :py:class:`int`
+        :param pop: [Required] Point of Presence for the DID ("server_pop" values from general.get_servers_info Example: 3)
+        :type pop: :py:class:`int`
+
+        :returns: :py:class:`dict`
+        """
+        method = "setDIDPOP"
+
+        if not isinstance(did, int):
+            raise ValueError("DID affected by the new billing plan needs to be an int")
+
+        if not isinstance(pop, int):
+            raise ValueError("Point of Presence for the DID needs to be an int ('server_pop' values from general.get_servers_info() Example: 3)")
+
+        parameters = {
+            "did": did,
+            "pop": pop,
+        }
+
+        return self._voipms_client._get(method, parameters)
+
+    def set_did_routing(self, did, routing):
+        """
+        Updates the Routing from a specific DID
+
+        :param did: [Required] DID affected by the new billing plan
+        :type did: :py:class:`int`
+        :param routing: [Required] Main Routing for the DID
+        :type routing: :py:class:`str`
+
+        :returns: :py:class:`dict`
+
+        routing can receive values in the following format => header:record_id
+        Where header could be: account, fwd, vm, sip, grp, ivr, sys, recording, queue, cb, tc, disa, none.
+        Examples:
+         
+            account     Used for routing calls to Sub Accounts
+                        You can get all sub accounts using the getSubAccounts function
+
+            fwd         Used for routing calls to Forwarding entries.
+                        You can get the ID right after creating a Forwarding with setForwarding
+                        or by requesting all forwardings entries with getForwardings.
+            
+            vm          Used for routing calls to a Voicemail.
+                        You can get all voicemails and their IDs using the getVoicemails function
+
+        Examples:
+            'account:100001_VoIP'
+            'fwd:1026'
+            'vm:101'
+        """
+        method = "setDIDRouting"
+
+        if not isinstance(did, int):
+            raise ValueError("DID affected by the new billing plan needs to be an int")
+
+        if not isinstance(routing, str):
+            raise ValueError("Main Routing for the DID needs to be a str")
+
+        parameters = {
+            "did": did,
+            "routing": routing,
+        }
+
+        return self._voipms_client._get(method, parameters)
+
+    def set_did_voicemail(self, did, voicemail=None):
+        """
+        Updates the Voicemail from a specific DID
+
+        :param did: [Required] DID affected by the new billing plan
+        :type did: :py:class:`int`
+
+        :param voicemail: Mailbox for the DID (Example: 101)
+        :type voicemail: :py:class:`int`
+
+        :returns: :py:class:`dict`
+        """
+        method = "setDIDVoicemail"
+
+        if not isinstance(did, int):
+            raise ValueError("DID affected by the new billing plan needs to be an int")
+
+        parameters = {
+            "did": did,
+        }
+
+        if voicemail:
+            if not isinstance(voicemail, int):
+                raise ValueError("Mailbox for the DID needs to be an int (Example: 101)")
+            else:
+                parameters["voicemail"] = voicemail
+
+        return self._voipms_client._get(method, parameters)
+
+    def set_disa(self, name, pin, digit_timeout, **kwargs):
+        """
+        Updates a specific DISA if a disa code is provided
+
+        - Adds a new DISA entry if no disa code is provided
+
+        :param name: [Required] Name for the DISA
+        :type name: :py:class:`str`
+        :param pin: [Required] Password for the DISA
+        :type pin: :py:class:`int`
+        :param digit_timeout: [Required] Time between digits
+        :type digit_timeout: :py:class:`int`
+
+        :param disa: ID for a specific DISA (Example: 2114 / Leave empty to create a new one)
+        :type disa: :py:class:`int`
+        :param callerid_override: Caller ID Override for the DISA
+        :type callerid_override: :py:class:`int`
+
+        :returns: :py:class:`dict`
+        """
+        method = "setDISA"
+
+        if not isinstance(name, str):
+            raise ValueError("Name for the DISA needs to be a str")
+
+        if not isinstance(pin, int):
+            raise ValueError("Password for the DISA needs to be an int")
+
+        if not isinstance(digit_timeout, int):
+            raise ValueError("Time between digits needs to be an int")
+
+
+        parameters = {
+            "name": name,
+            "pin": pin,
             "digit_timeout": digit_timeout,
         }
 
-        if "callback" in kwargs:
-            if not isinstance(callback, int):
-                raise ValueError("ID for a specific Callback needs to be an int (Example: 2359 / Leave empty to create a new one)")
-            parameters["callback"] = kwargs.pop("callback")
+        if "disa" in kwargs:
+            if not isinstance(kwargs["disa"], int):
+                raise ValueError("ID for a specific DISA needs to be an int (Example: 2114 / Leave empty to create a new one)")
+            parameters["disa"] = kwargs.pop("disa")
 
-        if "callerid_number" in kwargs:
-            if not isinstance(callerid_number, int):
-                raise ValueError("Caller ID Override for the callback needs to be an int")
-            parameters["callerid_number"] = kwargs.pop("callerid_number")
+        if "callerid_override" in kwargs:
+            if not isinstance(kwargs["callerid_override"], int):
+                raise ValueError("Caller ID Override for the DISA needs to be an int")
+            parameters["callerid_override"] = kwargs.pop("callerid_override")
+
+        if len(kwargs) > 0:
+            not_allowed_parameters = ""
+            for key, value in kwargs.items():
+                not_allowed_parameters += key + " "
+            raise ValueError("Parameters not allowed: {}".format(not_allowed_parameters))
+
+        return self._voipms_client._get(method, parameters)
+
+    def set_forwarding(self, phone_number, **kwargs):
+        """
+        Updates a specific Forwarding if a fwd code is provided
+
+        - Adds a new Forwarding entry if no fwd code is provided
+
+        :param phone_number: [Required] Phone Number for the Forwarding
+        :type phone_number: :py:class:`int`
+
+        :param forwarding: ID for a specific Forwarding (Example: 19183 / Leave empty to create a new one)
+        :type forwarding: :py:class:`int`
+        :param callerid_override: Caller ID Override for the Forwarding
+        :type callerid_override: :py:class:`int`
+        :param description: Description for the Forwarding
+        :type description: :py:class:`str`
+        :param dtmf_digits:  Send DTMF digits when call is answered
+        :type dtmf_digits: :py:class:`str`
+        :param pause: Pause (seconds) when call is answered before sending digits (Example: 1.5 / Values: 0 to 10 in increments of 0.5)
+        :type pause: :py:class:`float`
+
+        :returns: :py:class:`dict`
+        """
+        method = "setForwarding"
+
+        if not isinstance(phone_number, int):
+            raise ValueError("Phone Number for the Forwarding needs to be an int")
+
+        parameters = {
+            "phone_number": phone_number,
+        }
+
+        if "forwarding" in kwargs:
+            if not isinstance(kwargs["forwarding"], int):
+                raise ValueError("ID for a specific Forwarding needs to be an int (Example: 19183 / Leave empty to create a new one)")
+            parameters["forwarding"] = kwargs.pop("forwarding")
+
+        if "callerid_override" in kwargs:
+            if not isinstance(kwargs["callerid_override"], int):
+                raise ValueError("Caller ID Override for the Forwarding needs to be an int")
+            parameters["callerid_override"] = kwargs.pop("callerid_override")
+
+        if "description" in kwargs:
+            if not isinstance(kwargs["description"], str):
+                raise ValueError("Description for the Forwarding needs to be a str")
+            parameters["description"] = kwargs.pop("description")
+
+        if "dtmf_digits" in kwargs:
+            if not isinstance(kwargs["dtmf_digits"], str):
+                raise ValueError("Send DTMF digits when call is answered needs to be a str")
+            parameters["dtmf_digits"] = kwargs.pop("dtmf_digits")
+
+        if "pause" in kwargs:
+            if not isinstance(kwargs["pause"], float):
+                raise ValueError("Pause (seconds) when call is answered before sending digits needs to be a float (Example: 1.5 / Values: 0 to 10 in increments of 0.5)")
+            parameters["pause"] = kwargs.pop("pause")
+
+        if len(kwargs) > 0:
+            not_allowed_parameters = ""
+            for key, value in kwargs.items():
+                not_allowed_parameters += key + " "
+            raise ValueError("Parameters not allowed: {}".format(not_allowed_parameters))
+
+        return self._voipms_client._get(method, parameters)
+
+    def set_ivr(self, name, recording, timeout, language, voicemailsetup, choices, ivr=None):
+        """
+        Updates a specific IVR if an IVR code is provided
+
+        - Adds a new IVR entry if no IVR code is provided
+
+        :param name: [Required] Name for the IVR
+        :type name: :py:class:`str`
+        :param recording: [Required] Recording for the IVR (values from dids.get_recordings)
+        :type recording: :py:class:`int`
+        :param timeout: [Required] Maximum time for type in a choice after recording
+        :type timeout: :py:class:`int`
+        :param language: [Required] Language for the IVR (values from general.get_languages)
+        :type language: :py:class:`str`
+        :param voicemailsetup: [Required] Voicemail Setup for the IVR (values from dids.get_voicemail_setups)
+        :type voicemailsetup: :py:class:`int`
+        :param choices: [Required] Choices for the IVR (Example: '1=sip:5096 ; 2=fwd:20222')
+        :type choices: :py:class:`str`
+
+        :param voicemail: ID for a specific IVR (Example: 4636 / Leave empty to create a new one)
+        :type voicemail: :py:class:`int`
+
+        :returns: :py:class:`dict`
+        """
+        method = "setIVR"
+
+        if not isinstance(name, str):
+            raise ValueError("Name for the IVR to be a str")
+
+        if not isinstance(recording, int):
+            raise ValueError("Recording for the IVR needs to be an int (values from dids.get_recordings)")
+
+        if not isinstance(timeout, int):
+            raise ValueError("Maximum time for type in a choice after recording needs to be an int")
+
+        if not isinstance(language, str):
+            raise ValueError("Language for the IVR to be a str (values from general.get_languages)")
+
+        if not isinstance(voicemailsetup, int):
+            raise ValueError("Voicemail Setup for the IVR to be an int (values from dids.get_voicemail_setups)")
+
+        if not isinstance(choices, str):
+            raise ValueError("Choices for the IVR to be a str (Example: '1=sip:5096 ; 2=fwd:20222')")
+
+
+        parameters = {
+            "name": name,
+            "recording": recording,
+            "timeout": timeout,
+            "language": language,
+            "voicemailsetup": voicemailsetup,
+            "choices": choices,
+        }
+
+        if ivr:
+            if not isinstance(ivr, int):
+                raise ValueError("ID for a specific IVR needs to be an int (Example: 4636 / Leave empty to create a new one)")
+            else:
+                parameters["ivr"] = ivr
+
+        return self._voipms_client._get(method, parameters)
+
+    def set_phonebook(self, name, number, **kwargs):
+        """
+        Updates a specific Phonebook entry if a phonebook code is provided
+
+        - Adds a new Phonebook entry if no phonebook code is provided
+
+        :param name: [Required] Name for the Phonebook Entry
+        :type name: :py:class:`str`
+        :param number: [Required] Number or SIP for the Phonebook entry (Example: 'sip:2563' or '5552223333')
+        :type number: :py:class:`str`
+
+        :param phonebook: ID for a specific Phonebook entry (Example: 32207 / Leave empty to create a new one)
+        :type phonebook: :py:class:`int`
+        :param speed_dial: Speed Dial for the Phonebook entry
+        :type speed_dial: :py:class:`str`
+        :param callerid: Caller ID Override when dialing via Speed Dial
+        :type callerid: :py:class:`int`
+
+        :returns: :py:class:`dict`
+        """
+        method = "setPhonebook"
+
+        if not isinstance(name, str):
+            raise ValueError(" Name for the Phonebook Entry needs to be a str")
+
+        if not isinstance(number, str):
+            raise ValueError("Number or SIP for the Phonebook entry needs to be a str (Example: 'sip:2563' or '5552223333')")
+
+        parameters = {
+            "name": name,
+            "number": number,
+        }
+
+        if "phonebook" in kwargs:
+            if not isinstance(kwargs["phonebook"], int):
+                raise ValueError("ID for a specific Phonebook entry needs to be an int (Example: 32207 / Leave empty to create a new one)")
+            parameters["phonebook"] = kwargs.pop("phonebook")
+
+        if "speed_dial" in kwargs:
+            if not isinstance(kwargs["speed_dial"], str):
+                raise ValueError("Speed Dial for the Phonebook entry needs to be a str")
+            parameters["speed_dial"] = kwargs.pop("speed_dial")
+
+        if "callerid" in kwargs:
+            if not isinstance(kwargs["callerid"], int):
+                raise ValueError("Caller ID Override when dialing via Speed Dial needs to be an int")
+            parameters["callerid"] = kwargs.pop("callerid")
+
+        if len(kwargs) > 0:
+            not_allowed_parameters = ""
+            for key, value in kwargs.items():
+                not_allowed_parameters += key + " "
+            raise ValueError("Parameters not allowed: {}".format(not_allowed_parameters))
+
+        return self._voipms_client._get(method, parameters)
+
+    def set_queue(self, queue_name, queue_number, queue_language, priority_weight, report_hold_time_agent, join_when_empty, leave_when_empty, ring_strategy, ring_inuse, **kwargs):
+        """
+        Updates a specific Queue entry if a queue code is provided
+
+        - Adds a new Queue entry if no queue code is provided
+
+        :param queue_name: [Required] Queue entry name
+        :type queue_name: :py:class:`str`
+        :param queue_number: [Required] Queue entry number
+        :type queue_number: :py:class:`int`
+        :param queue_language: [Required] Language Code (Values from general.get_languages)
+        :type queue_language: :py:class:`str`
+        :param priority_weight: [Required] weight/priority of queue (Values 1 to 60)
+        :type priority_weight: :py:class:`int`
+        :param report_hold_time_agent: [Required] Report hold time to agent
+                                        - (Values from accounts.get_report_estimated_hold_time)
+        :type report_hold_time_agent: :py:class:`str`
+        :param join_when_empty: [Required] How caller join to the queue (Values from dids.get_join_when_empty_types)
+                                Examples:
+                                yes     Callers can join a queue with no members or 
+                                        only unavailable members
+                                no      Callers cannot join a queue with no members
+                                strict  Callers cannot join a queue with no members 
+                                        or only unavailable members
+        :type join_when_empty: :py:class:`str`
+        :param leave_when_empty: [Required] How caller leave the queue (Values 'yes'/'no'/'strict')
+                                 Examples:
+                                 yes     Callers are sent to failover when 
+                                         there are no members
+                                 no      Callers will remain in the queue even 
+                                         if there are no members
+                                 strict  Callers are sent to failover if there are 
+                                         members but none of them is available.
+        :type leave_when_empty: :py:class:`str`
+        :param ring_strategy: Ring strategy (Values from dids.get_ring_strategies)
+        :type ring_strategy: :py:class:`str`
+        :param ring_inuse: If you want the queue to avoid sending calls to members (Values 'yes'/'no')
+        :type ring_inuse: :py:class:`str`
+
+        :param queue: ID for a specific Phonebook entry (Example: 32207 / Leave empty to create a new one)
+        :type queue: :py:class:`int`
+        :param queue_password: Speed Dial for the Phonebook entry
+        :type queue_password: :py:class:`str`
+        :param callerid_prefix: Caller ID Override when dialing via Speed Dial
+        :type callerid_prefix: :py:class:`int`
+        :param join_announcement: ID for a specific Phonebook entry (Example: 32207 / Leave empty to create a new one)
+        :type join_announcement: :py:class:`int`
+        :param agent_announcement: Speed Dial for the Phonebook entry
+        :type agent_announcement: :py:class:`str`
+        :param member_delay: Caller ID Override when dialing via Speed Dial
+        :type member_delay: :py:class:`int`
+        :param maximum_wait_time: ID for a specific Phonebook entry (Example: 32207 / Leave empty to create a new one)
+        :type maximum_wait_time: :py:class:`int`
+        :param maximum_callers: Speed Dial for the Phonebook entry
+        :type maximum_callers: :py:class:`str`
+        :param agent_ring_timeout: Caller ID Override when dialing via Speed Dial
+        :type agent_ring_timeout: :py:class:`int`
+        :param retry_timer: ID for a specific Phonebook entry (Example: 32207 / Leave empty to create a new one)
+        :type retry_timer: :py:class:`int`
+        :param wrapup_time: Speed Dial for the Phonebook entry
+        :type wrapup_time: :py:class:`str`
+        :param voice_announcement: Caller ID Override when dialing via Speed Dial
+        :type voice_announcement: :py:class:`int`
+        :param frequency_announcement: Caller ID Override when dialing via Speed Dial
+        :type frequency_announcement: :py:class:`int`
+        :param announce_position_frecuency: Caller ID Override when dialing via Speed Dial
+        :type announce_position_frecuency: :py:class:`int`
+        :param announce_round_seconds: Caller ID Override when dialing via Speed Dial
+        :type announce_round_seconds: :py:class:`int`
+        :param if_announce_position_enabled_report_estimated_hold_time: Caller ID Override when dialing via Speed Dial
+        :type if_announce_position_enabled_report_estimated_hold_time: :py:class:`int`
+        :param thankyou_for_your_patience: Caller ID Override when dialing via Speed Dial
+        :type thankyou_for_your_patience: :py:class:`int`
+        :param music_on_hold: Caller ID Override when dialing via Speed Dial
+        :type music_on_hold: :py:class:`int`
+        :param fail_over_routing_timeout: Caller ID Override when dialing via Speed Dial
+        :type fail_over_routing_timeout: :py:class:`int`
+        :param fail_over_routing_full: Caller ID Override when dialing via Speed Dial
+        :type fail_over_routing_full: :py:class:`int`
+        :param fail_over_routing_join_empty: Caller ID Override when dialing via Speed Dial
+        :type fail_over_routing_join_empty: :py:class:`int`
+        :param fail_over_routing_leave_empty: Caller ID Override when dialing via Speed Dial
+        :type fail_over_routing_leave_empty: :py:class:`int`
+        :param fail_over_routing_join_unavail: Caller ID Override when dialing via Speed Dial
+        :type fail_over_routing_join_unavail: :py:class:`int`
+        :param fail_over_routing_leave_unavail: Caller ID Override when dialing via Speed Dial
+        :type fail_over_routing_leave_unavail: :py:class:`int`
+
+        :returns: :py:class:`dict`
+
+        routings can receive values in the following format => header:record_id
+        Where header could be: account, fwd, vm, sip, grp, ivr, sys, recording, queue, cb, tc, disa, none.
+        Examples:
+         
+            account     Used for routing calls to Sub Accounts
+                        You can get all sub accounts using the getSubAccounts function
+
+            fwd         Used for routing calls to Forwarding entries.
+                        You can get the ID right after creating a Forwarding with setForwarding
+                        or by requesting all forwardings entries with getForwardings.
+            
+            vm          Used for routing calls to a Voicemail.
+                        You can get all voicemails and their IDs using the getVoicemails function
+
+        Examples:
+            'account:100001_VoIP'
+            'fwd:1026'
+            'vm:101'    
+        """
+        method = "setQueue"
+
+        if not isinstance(name, str):
+            raise ValueError(" Name for the Phonebook Entry needs to be a str")
+
+        if not isinstance(number, str):
+            raise ValueError("Number or SIP for the Phonebook entry needs to be a str (Example: 'sip:2563' or '5552223333')")
+
+        parameters = {
+            "name": name,
+            "number": number,
+        }
+
+        if "phonebook" in kwargs:
+            if not isinstance(kwargs["phonebook"], int):
+                raise ValueError("ID for a specific Phonebook entry needs to be an int (Example: 32207 / Leave empty to create a new one)")
+            parameters["phonebook"] = kwargs.pop("phonebook")
+
+        if "speed_dial" in kwargs:
+            if not isinstance(kwargs["speed_dial"], str):
+                raise ValueError("Speed Dial for the Phonebook entry needs to be a str")
+            parameters["speed_dial"] = kwargs.pop("speed_dial")
+
+        if "callerid" in kwargs:
+            if not isinstance(kwargs["callerid"], int):
+                raise ValueError("Caller ID Override when dialing via Speed Dial needs to be an int")
+            parameters["callerid"] = kwargs.pop("callerid")
 
         if len(kwargs) > 0:
             not_allowed_parameters = ""
