@@ -1,5 +1,4 @@
 from voipms.baseapi import BaseApi
-
 from voipms.helpers import convert_bool, validate_email, validate_date
 
 
@@ -2822,7 +2821,6 @@ class Dids(BaseApi):
         if not isinstance(digit_timeout, int):
             raise ValueError("Time between digits needs to be an int")
 
-
         parameters = {
             "name": name,
             "pin": pin,
@@ -3522,7 +3520,7 @@ class Dids(BaseApi):
         :param url_callback_retry: Enable URL callback Retry (Values:True=Enable / False=Disable)
                                     we will be expecting an "ok" output (without quotes) from your URL callback
                                     page as an indicator that you have received the message correctly.
-                                    If we don't receive the "ok" letters (wihtout quotes) from your callback 
+                                    If we don't receive the "ok" letters (wihtout quotes) from your callback
                                     page, we will keep sending you the same message every 30 minutes.
         :type url_callback_retry: :py:class:`bool`
 
