@@ -2,12 +2,12 @@ from voipms.baseapi import BaseApi
 from voipms.helpers import convert_bool, validate_date, validate_email
 
 
-class Dids(BaseApi):
+class Fax(BaseApi):
     def __init__(self, *args, **kwargs):
         """
         Initialize the endpoint
         """
-        super(Dids, self).__init__(*args, **kwargs)
+        super(Fax, self).__init__(*args, **kwargs)
         self.endoint = 'fax'
 
     def cancel_fax_number(self, fax_id, test=None):

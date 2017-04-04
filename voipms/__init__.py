@@ -16,6 +16,10 @@ from voipms.entities.calls import Calls
 from voipms.entities.clients import Clients
 # DIDs
 from voipms.entities.dids import Dids
+# Fax
+from voipms.entities.fax import Fax
+# Voicemail
+from voipms.entities.voicemail import Voicemail
 
 
 class VoipMs(VoipMsClient):
@@ -33,3 +37,5 @@ class VoipMs(VoipMsClient):
         self.calls = Calls(self)
         self.clients = Clients(self)
         self.dids = Dids(self)
+        self.fax = Fax(self)
+        self.voicemail = Voicemail(self)
