@@ -224,14 +224,14 @@ class Dids(BaseApi):
         Examples:
 
             account     Used for routing calls to Sub Accounts
-                        You can get all sub accounts using the getSubAccounts function
+                        You can get all sub accounts using the accounts.get_sub_accounts function
 
             fwd         Used for routing calls to Forwarding entries.
                         You can get the ID right after creating a Forwarding with setForwarding
                         or by requesting all forwardings entries with getForwardings.
 
             vm          Used for routing calls to a Voicemail.
-                        You can get all voicemails and their IDs using the getVoicemails function
+                        You can get all voicemails and their IDs using the voicemail.get_voicemails function
 
             sys         System Options:
                         hangup       = Hangup the Call
@@ -315,14 +315,14 @@ class Dids(BaseApi):
         Examples:
 
             account     Used for routing calls to Sub Accounts
-                        You can get all sub accounts using the getSubAccounts function
+                        You can get all sub accounts using the accounts.get_sub_accounts function
 
             fwd         Used for routing calls to Forwarding entries.
                         You can get the ID right after creating a Forwarding with setForwarding
                         or by requesting all forwardings entries with getForwardings.
 
             vm          Used for routing calls to a Voicemail.
-                        You can get all voicemails and their IDs using the getVoicemails function
+                        You can get all voicemails and their IDs using the voicemail.get_voicemails function
 
             sys         System Options:
                         hangup       = Hangup the Call
@@ -384,14 +384,14 @@ class Dids(BaseApi):
         Examples:
 
             account     Used for routing calls to Sub Accounts
-                        You can get all sub accounts using the getSubAccounts function
+                        You can get all sub accounts using the accounts.get_sub_accounts function
 
             fwd         Used for routing calls to Forwarding entries.
                         You can get the ID right after creating a Forwarding with setForwarding
                         or by requesting all forwardings entries with getForwardings.
             
             vm          Used for routing calls to a Voicemail.
-                        You can get all voicemails and their IDs using the getVoicemails function
+                        You can get all voicemails and their IDs using the voicemail.get_voicemails function
 
             sys         System Options:
                         hangup       = Hangup the Call
@@ -1602,14 +1602,14 @@ class Dids(BaseApi):
         Examples:
 
             account     Used for routing calls to Sub Accounts
-                        You can get all sub accounts using the getSubAccounts function
+                        You can get all sub accounts using the accounts.get_sub_accounts function
 
             fwd         Used for routing calls to Forwarding entries.
                         You can get the ID right after creating a Forwarding with setForwarding
                         or by requesting all forwardings entries with getForwardings.
 
             vm          Used for routing calls to a Voicemail.
-                        You can get all voicemails and their IDs using the getVoicemails function
+                        You can get all voicemails and their IDs using the voicemail.get_voicemails function
 
             sys         System Options:
                         hangup       = Hangup the Call
@@ -1697,14 +1697,14 @@ class Dids(BaseApi):
         Examples:
 
             account     Used for routing calls to Sub Accounts
-                        You can get all sub accounts using the getSubAccounts function
+                        You can get all sub accounts using the accounts.get_sub_accounts function
 
             fwd         Used for routing calls to Forwarding entries.
                         You can get the ID right after creating a Forwarding with setForwarding
                         or by requesting all forwardings entries with getForwardings.
 
             vm          Used for routing calls to a Voicemail.
-                        You can get all voicemails and their IDs using the getVoicemails function
+                        You can get all voicemails and their IDs using the voicemail.get_voicemails function
 
             sys         System Options:
                         hangup       = Hangup the Call
@@ -1793,14 +1793,14 @@ class Dids(BaseApi):
         Examples:
 
             account     Used for routing calls to Sub Accounts
-                        You can get all sub accounts using the getSubAccounts function
+                        You can get all sub accounts using the accounts.get_sub_accounts function
 
             fwd         Used for routing calls to Forwarding entries.
                         You can get the ID right after creating a Forwarding with setForwarding
                         or by requesting all forwardings entries with getForwardings.
 
             vm          Used for routing calls to a Voicemail.
-                        You can get all voicemails and their IDs using the getVoicemails function
+                        You can get all voicemails and their IDs using the voicemail.get_voicemails function
 
             sys         System Options:
                         hangup       = Hangup the Call
@@ -1889,14 +1889,14 @@ class Dids(BaseApi):
         Examples:
 
             account     Used for routing calls to Sub Accounts
-                        You can get all sub accounts using the getSubAccounts function
+                        You can get all sub accounts using the accounts.get_sub_accounts function
 
             fwd         Used for routing calls to Forwarding entries.
                         You can get the ID right after creating a Forwarding with setForwarding
                         or by requesting all forwardings entries with getForwardings.
 
             vm          Used for routing calls to a Voicemail.
-                        You can get all voicemails and their IDs using the getVoicemails function
+                        You can get all voicemails and their IDs using the voicemail.get_voicemails function
 
             sys         System Options:
                         hangup       = Hangup the Call
@@ -1983,14 +1983,14 @@ class Dids(BaseApi):
         Examples:
 
             account     Used for routing calls to Sub Accounts
-                        You can get all sub accounts using the getSubAccounts function
+                        You can get all sub accounts using the accounts.get_sub_accounts function
 
             fwd         Used for routing calls to Forwarding entries.
                         You can get the ID right after creating a Forwarding with setForwarding
                         or by requesting all forwardings entries with getForwardings.
 
             vm          Used for routing calls to a Voicemail.
-                        You can get all voicemails and their IDs using the getVoicemails function
+                        You can get all voicemails and their IDs using the voicemail.get_voicemails function
 
             sys         System Options:
                         hangup       = Hangup the Call
@@ -2076,14 +2076,14 @@ class Dids(BaseApi):
         Examples:
 
             account     Used for routing calls to Sub Accounts
-                        You can get all sub accounts using the getSubAccounts function
+                        You can get all sub accounts using the accounts.get_sub_accounts function
 
             fwd         Used for routing calls to Forwarding entries.
                         You can get the ID right after creating a Forwarding with setForwarding
                         or by requesting all forwardings entries with getForwardings.
 
             vm          Used for routing calls to a Voicemail.
-                        You can get all voicemails and their IDs using the getVoicemails function
+                        You can get all voicemails and their IDs using the voicemail.get_voicemails function
 
             sys         System Options:
                         hangup       = Hangup the Call
@@ -2171,14 +2171,14 @@ class Dids(BaseApi):
         Examples:
 
             account     Used for routing calls to Sub Accounts
-                        You can get all sub accounts using the getSubAccounts function
+                        You can get all sub accounts using the accounts.get_sub_accounts function
 
             fwd         Used for routing calls to Forwarding entries.
                         You can get the ID right after creating a Forwarding with setForwarding
                         or by requesting all forwardings entries with getForwardings.
 
             vm          Used for routing calls to a Voicemail.
-                        You can get all voicemails and their IDs using the getVoicemails function
+                        You can get all voicemails and their IDs using the voicemail.get_voicemails function
 
             sys         System Options:
                         hangup       = Hangup the Call
@@ -2506,14 +2506,14 @@ class Dids(BaseApi):
         Examples:
 
             account     Used for routing calls to Sub Accounts
-                        You can get all sub accounts using the getSubAccounts function
+                        You can get all sub accounts using the accounts.get_sub_accounts function
 
             fwd         Used for routing calls to Forwarding entries.
                         You can get the ID right after creating a Forwarding with setForwarding
                         or by requesting all forwardings entries with getForwardings.
 
             vm          Used for routing calls to a Voicemail.
-                        You can get all voicemails and their IDs using the getVoicemails function
+                        You can get all voicemails and their IDs using the voicemail.get_voicemails function
 
             sys         System Options:
                         hangup       = Hangup the Call
@@ -2650,14 +2650,14 @@ class Dids(BaseApi):
         Examples:
 
             account     Used for routing calls to Sub Accounts
-                        You can get all sub accounts using the getSubAccounts function
+                        You can get all sub accounts using the accounts.get_sub_accounts function
 
             fwd         Used for routing calls to Forwarding entries.
                         You can get the ID right after creating a Forwarding with setForwarding
                         or by requesting all forwardings entries with getForwardings.
 
             vm          Used for routing calls to a Voicemail.
-                        You can get all voicemails and their IDs using the getVoicemails function
+                        You can get all voicemails and their IDs using the voicemail.get_voicemails function
 
             sys         System Options:
                         hangup       = Hangup the Call
@@ -2733,14 +2733,14 @@ class Dids(BaseApi):
         Examples:
          
             account     Used for routing calls to Sub Accounts
-                        You can get all sub accounts using the getSubAccounts function
+                        You can get all sub accounts using the accounts.get_sub_accounts function
 
             fwd         Used for routing calls to Forwarding entries.
                         You can get the ID right after creating a Forwarding with setForwarding
                         or by requesting all forwardings entries with getForwardings.
             
             vm          Used for routing calls to a Voicemail.
-                        You can get all voicemails and their IDs using the getVoicemails function
+                        You can get all voicemails and their IDs using the voicemail.get_voicemails function
 
         Examples:
             'account:100001_VoIP'
@@ -2938,7 +2938,7 @@ class Dids(BaseApi):
         method = "setIVR"
 
         if not isinstance(name, str):
-            raise ValueError("Name for the IVR to be a str")
+            raise ValueError("Name for the IVR needs to be a str")
 
         if not isinstance(recording, int):
             raise ValueError("Recording for the IVR needs to be an int (values from dids.get_recordings)")
@@ -2996,7 +2996,7 @@ class Dids(BaseApi):
         method = "setPhonebook"
 
         if not isinstance(name, str):
-            raise ValueError(" Name for the Phonebook Entry needs to be a str")
+            raise ValueError("Name for the Phonebook Entry needs to be a str")
 
         if not isinstance(number, str):
             raise ValueError("Number or SIP for the Phonebook entry needs to be a str (Example: 'sip:2563' or '5552223333')")
@@ -3043,8 +3043,7 @@ class Dids(BaseApi):
         :type queue_language: :py:class:`str`
         :param priority_weight: [Required] weight/priority of queue (Values 1 to 60)
         :type priority_weight: :py:class:`int`
-        :param report_hold_time_agent: [Required] Report hold time to agent
-                                        - (Values from accounts.get_report_estimated_hold_time)
+        :param report_hold_time_agent: [Required] Report hold time to agent (Values from accounts.get_report_estimated_hold_time)
         :type report_hold_time_agent: :py:class:`str`
         :param join_when_empty: [Required] How caller join to the queue (Values from dids.get_join_when_empty_types)
                                 Examples:
@@ -3068,53 +3067,53 @@ class Dids(BaseApi):
         :param ring_inuse: If you want the queue to avoid sending calls to members (Values 'yes'/'no')
         :type ring_inuse: :py:class:`str`
 
-        :param queue: ID for a specific Phonebook entry (Example: 32207 / Leave empty to create a new one)
+        :param queue: ID for a specific Queue entry (Example: 32208 / Leave empty to create a new one)
         :type queue: :py:class:`int`
-        :param queue_password: Speed Dial for the Phonebook entry
-        :type queue_password: :py:class:`str`
-        :param callerid_prefix: Caller ID Override when dialing via Speed Dial
-        :type callerid_prefix: :py:class:`int`
-        :param join_announcement: ID for a specific Phonebook entry (Example: 32207 / Leave empty to create a new one)
+        :param queue_password: Queue Password
+        :type queue_password: :py:class:`int`
+        :param callerid_prefix: Caller ID Prefix for queue
+        :type callerid_prefix: :py:class:`str`
+        :param join_announcement: Recording Code (Values from dids.get_recordings or 'none')
         :type join_announcement: :py:class:`int`
-        :param agent_announcement: Speed Dial for the Phonebook entry
-        :type agent_announcement: :py:class:`str`
-        :param member_delay: Caller ID Override when dialing via Speed Dial
+        :param agent_announcement: Recording Code (Values from dids.get_recordings or 'none')
+        :type agent_announcement: :py:class:`int`
+        :param member_delay: Member delay when the agent is connected to the caller (Values 1 to 15 in seconds or 'none')
         :type member_delay: :py:class:`int`
-        :param maximum_wait_time: ID for a specific Phonebook entry (Example: 32207 / Leave empty to create a new one)
+        :param maximum_wait_time: Ammount of time a caller can wait in queue (Values in seconds: multiples of 30, max value: 1200 or 'unlimited')
         :type maximum_wait_time: :py:class:`int`
-        :param maximum_callers: Speed Dial for the Phonebook entry
-        :type maximum_callers: :py:class:`str`
-        :param agent_ring_timeout: Caller ID Override when dialing via Speed Dial
+        :param maximum_callers: Maximum callers (Values: 1 to 60 or 'unlimited')
+        :type maximum_callers: :py:class:`int`
+        :param agent_ring_timeout: Number of seconds to ring an agent (Values 5 to 60)
         :type agent_ring_timeout: :py:class:`int`
-        :param retry_timer: ID for a specific Phonebook entry (Example: 32207 / Leave empty to create a new one)
+        :param retry_timer: How long do we wait before trying all the members again (Values 5 to 60 seconds or 'none'= No Delay)
         :type retry_timer: :py:class:`int`
-        :param wrapup_time: Speed Dial for the Phonebook entry
-        :type wrapup_time: :py:class:`str`
-        :param voice_announcement: Caller ID Override when dialing via Speed Dial
+        :param wrapup_time: After a successful call, the number of seconds to wait before sending a free agent another call (Values 1 to 60 seconds or 'none'= No Delay)
+        :type wrapup_time: :py:class:`int`
+        :param voice_announcement: Code for Recording (Values from dids.get_recordings or 'none')
         :type voice_announcement: :py:class:`int`
-        :param frequency_announcement: Caller ID Override when dialing via Speed Dial
+        :param frequency_announcement: Periodic interval to play voice announce recording (Values in seconds: multiples of 15, max value: 1200 or 'none' = No announcement)
         :type frequency_announcement: :py:class:`int`
-        :param announce_position_frecuency: Caller ID Override when dialing via Speed Dial
+        :param announce_position_frecuency: How often to make any periodic announcement (Values in seconds: multiples of 15, max value: 1200 or 'none' = No announcement)
         :type announce_position_frecuency: :py:class:`int`
-        :param announce_round_seconds: Caller ID Override when dialing via Speed Dial
+        :param announce_round_seconds: Announce seconds (Values in seconds: 1 to 60  or 'none' = Do not announce)
         :type announce_round_seconds: :py:class:`int`
-        :param if_announce_position_enabled_report_estimated_hold_time: Caller ID Override when dialing via Speed Dial
-        :type if_announce_position_enabled_report_estimated_hold_time: :py:class:`int`
-        :param thankyou_for_your_patience: Caller ID Override when dialing via Speed Dial
+        :param if_announce_position_enabled_report_estimated_hold_time: Include estimated hold time in position announcements (Values 'yes'/'no'/'once')
+        :type if_announce_position_enabled_report_estimated_hold_time: :py:class:`str`
+        :param thankyou_for_your_patience: Yes to say "Thank you for your patience" immediatly after announcing Queue Position and Estimated hold time left (Values 'yes'/'no')
         :type thankyou_for_your_patience: :py:class:`int`
-        :param music_on_hold: Caller ID Override when dialing via Speed Dial
-        :type music_on_hold: :py:class:`int`
-        :param fail_over_routing_timeout: Caller ID Override when dialing via Speed Dial
-        :type fail_over_routing_timeout: :py:class:`int`
-        :param fail_over_routing_full: Caller ID Override when dialing via Speed Dial
-        :type fail_over_routing_full: :py:class:`int`
-        :param fail_over_routing_join_empty: Caller ID Override when dialing via Speed Dial
-        :type fail_over_routing_join_empty: :py:class:`int`
-        :param fail_over_routing_leave_empty: Caller ID Override when dialing via Speed Dial
-        :type fail_over_routing_leave_empty: :py:class:`int`
-        :param fail_over_routing_join_unavail: Caller ID Override when dialing via Speed Dial
-        :type fail_over_routing_join_unavail: :py:class:`int`
-        :param fail_over_routing_leave_unavail: Caller ID Override when dialing via Speed Dial
+        :param music_on_hold: Music on Hold Code (Values from accounts.get_music_on_hold)
+        :type music_on_hold: :py:class:`str`
+        :param fail_over_routing_timeout: Failover routing to Maximum wait time reached
+        :type fail_over_routing_timeout: :py:class:`str`
+        :param fail_over_routing_full: Failover routing to Maximum callers reached
+        :type fail_over_routing_full: :py:class:`str`
+        :param fail_over_routing_join_empty: A call was sent to the queue but the queue had no members (Only works when Join when Empty is set to no)
+        :type fail_over_routing_join_empty: :py:class:`str`
+        :param fail_over_routing_leave_empty: The last agent was removed form the queue before all calls were handled (Only works when Leave when Empty is set to yes)
+        :type fail_over_routing_leave_empty: :py:class:`str`
+        :param fail_over_routing_join_unavail: Same as routingjoinempty, except that there were still queue members, but all were status unavailable
+        :type fail_over_routing_join_unavail: :py:class:`str`
+        :param fail_over_routing_leave_unavail: Same as routingleaveempty, except that there were still queue members, but all were status unavailable
         :type fail_over_routing_leave_unavail: :py:class:`int`
 
         :returns: :py:class:`dict`
@@ -3124,14 +3123,14 @@ class Dids(BaseApi):
         Examples:
          
             account     Used for routing calls to Sub Accounts
-                        You can get all sub accounts using the getSubAccounts function
+                        You can get all sub accounts using the accounts.get_sub_accounts function
 
             fwd         Used for routing calls to Forwarding entries.
                         You can get the ID right after creating a Forwarding with setForwarding
                         or by requesting all forwardings entries with getForwardings.
             
             vm          Used for routing calls to a Voicemail.
-                        You can get all voicemails and their IDs using the getVoicemails function
+                        You can get all voicemails and their IDs using the voicemail.get_voicemails function
 
         Examples:
             'account:100001_VoIP'
@@ -3140,36 +3139,604 @@ class Dids(BaseApi):
         """
         method = "setQueue"
 
-        if not isinstance(name, str):
-            raise ValueError(" Name for the Phonebook Entry needs to be a str")
+        if not isinstance(queue_name, str):
+            raise ValueError("Queue entry name needs to be a str")
 
-        if not isinstance(number, str):
-            raise ValueError("Number or SIP for the Phonebook entry needs to be a str (Example: 'sip:2563' or '5552223333')")
+        if not isinstance(queue_number, str):
+            raise ValueError("Queue entry number needs to be an int")
+
+        if not isinstance(queue_language, str):
+            raise ValueError("Language Code needs to be a str (Values from general.get_languages)")
+
+        if not isinstance(priority_weight, int):
+            raise ValueError("weight/priority of queue to be an int (Values 1 to 60) ")
+
+        if not isinstance(report_hold_time_agent, str):
+            raise ValueError("Report hold time to agent needs to be a str (Values from accounts.get_report_estimated_hold_time)")
+
+        if not isinstance(join_when_empty, str):
+            raise ValueError("How caller join to the queue needs to be a str (Values from dids.get_join_when_empty_types)")
+
+        if not isinstance(leave_when_empty, str):
+            raise ValueError("How caller leave the queue needs to be a str (Values 'yes'/'no'/'strict')")
+
+        if not isinstance(ring_strategy, str):
+            raise ValueError("Ring strategy needs to be a str (Values from dids.get_ring_strategies)")
+
+        if not isinstance(ring_inuse, str):
+            raise ValueError("If you want the queue to avoid sending calls to members needs to be a str (Values 'yes'/'no')")
 
         parameters = {
-            "name": name,
-            "number": number,
+            "queue_name": queue_name,
+            "queue_number": queue_number,
+            "queue_language": queue_language,
+            "priority_weight": priority_weight,
+            "report_hold_time_agent": report_hold_time_agent,
+            "join_when_empty": join_when_empty,
+            "leave_when_empty": leave_when_empty,
+            "ring_strategy": ring_strategy,
+            "ring_inuse": ring_inuse,
         }
 
-        if "phonebook" in kwargs:
-            if not isinstance(kwargs["phonebook"], int):
-                raise ValueError("ID for a specific Phonebook entry needs to be an int (Example: 32207 / Leave empty to create a new one)")
-            parameters["phonebook"] = kwargs.pop("phonebook")
+        if "queue" in kwargs:
+            if not isinstance(kwargs["queue"], int):
+                raise ValueError("ID for a specific Queue entry needs to be an int (Example: 32208 / Leave empty to create a new one)")
+            parameters["queue"] = kwargs.pop("queue")
 
-        if "speed_dial" in kwargs:
-            if not isinstance(kwargs["speed_dial"], str):
-                raise ValueError("Speed Dial for the Phonebook entry needs to be a str")
-            parameters["speed_dial"] = kwargs.pop("speed_dial")
+        if "queue_password" in kwargs:
+            if not isinstance(kwargs["queue_password"], int):
+                raise ValueError("Queue Password needs to be an int")
+            parameters["queue_password"] = kwargs.pop("queue_password")
 
-        if "callerid" in kwargs:
-            if not isinstance(kwargs["callerid"], int):
-                raise ValueError("Caller ID Override when dialing via Speed Dial needs to be an int")
-            parameters["callerid"] = kwargs.pop("callerid")
+        if "callerid_prefix" in kwargs:
+            if not isinstance(kwargs["callerid_prefix"], str):
+                raise ValueError("Caller ID Prefix for queue needs to be a str")
+            parameters["callerid_prefix"] = kwargs.pop("callerid_prefix")
+
+        if "join_announcement" in kwargs:
+            if not isinstance(kwargs["join_announcement"], int) and kwargs["join_announcement"] != "none":                      
+                raise ValueError("Recording Code needs to be an int (Values from dids.get_recordings or 'none')")
+            parameters["join_announcement"] = kwargs.pop("join_announcement")
+
+        if "agent_announcement" in kwargs:
+            if not isinstance(kwargs["agent_announcement"], int) and kwargs["join_announcement"] != "none":
+                raise ValueError("Recording Code needs to be an int (Values from dids.get_recordings or 'none')")
+            parameters["agent_announcement"] = kwargs.pop("agent_announcement")
+
+        if "member_delay" in kwargs:
+            if not isinstance(kwargs["member_delay"], int) and kwargs["member_delay"] != "none":
+                raise ValueError("Member delay when the agent is connected to the caller needs to be an int (Values 1 to 15 in seconds or 'none')")
+            parameters["member_delay"] = kwargs.pop("member_delay")
+
+        if "maximum_wait_time" in kwargs:
+            maximum_wait_time = kwargs.pop("maximum_wait_time")
+            if not isinstance(maximum_wait_time, int) and maximum_wait_time != "unlimited":
+                raise ValueError("Ammount of time a caller can wait in queue needs to be an int (Values in seconds: multiples of 30, max value: 1200 or 'unlimited')")
+            elif maximum_wait_time % 30 != 0:
+                raise ValueError("Ammount of time a caller can wait in queue needs to be a multiples of 30")
+            elif maximum_wait_time > 1200:
+                raise ValueError("Ammount of time a caller can wait in queue needs smaller than 1200 or 'unlimited'")
+            parameters["maximum_wait_time"] = maximum_wait_time
+
+        if "maximum_callers" in kwargs:
+            if not isinstance(kwargs["maximum_callers"], int):
+                raise ValueError("Maximum callers needs to be an int (Values: 1 to 60 or 'unlimited')")
+            parameters["maximum_callers"] = kwargs.pop("maximum_callers")
+
+        if "agent_ring_timeout" in kwargs:
+            agent_ring_timeout = kwargs.pop("agent_ring_timeout")
+            if not isinstance(agent_ring_timeout, int):
+                raise ValueError("Number of seconds to ring an agent needs to be an int (Values 5 to 60)")
+            elif not 5<= agent_ring_timeout <= 60:
+                raise ValueError("Number of seconds to ring an agent needs to be between 5 and 60")
+            parameters["agent_ring_timeout"] = agent_ring_timeout
+
+        if "retry_timer" in kwargs:
+            retry_timer = kwargs.pop("retry_timer")
+            if not isinstance(retry_timer, int) and retry_timer != 'none':
+                raise ValueError("How long do we wait before trying all the members again needs to be an int (Values 5 to 60 seconds or 'none'= No Delay)")
+            elif not 5 <= retry_timer <= 60:
+                raise ValueError("How long do we wait before trying all the members again needs to be between 5 and 60")
+            parameters["retry_timer"] = retry_timer
+
+        if "wrapup_time" in kwargs:
+            wrapup_time = kwargs.pop("wrapup_time")
+            if not isinstance(wrapup_time, int) and wrapup_time != 'none':
+                raise ValueError("After a successful call, the number of seconds to wait before sending a free agent another call needs to be an int (Values 1 to 60 seconds or 'none'= No Delay)")
+            elif not 1 <= wrapup_time <= 60:
+                raise ValueError("After a successful call, the number of seconds to wait before sending a free agent another call needs to be between 1 and 60 seconds")
+            parameters["wrapup_time"] = wrapup_time
+
+        if "voice_announcement" in kwargs:
+            voice_announcement = kwargs.pop("voice_announcement")
+            if not isinstance(voice_announcement, int) and voice_announcement != 'none':
+                raise ValueError("Code for Recording needs to be an int (Values from dids.get_recordings or 'none')")
+            parameters["voice_announcement"] = voice_announcement
+
+        if "frequency_announcement" in kwargs:
+            frequency_announcement = kwargs.pop("frequency_announcement")
+            if not isinstance(frequency_announcement, int) and frequency_announcement != 'none':
+                raise ValueError("Periodic interval to play voice announce recording needs to be an int (Values in seconds: multiples of 15, max value: 1200 or 'none' = No announcement)")
+            elif frequency_announcement > 1200:
+                raise ValueError("Periodic interval to play voice announce recording needs to be smaller than 1200")
+            elif frequency_announcement % 15 != 0:
+                raise ValueError("Periodic interval to play voice announce recording needs to be multiples of 15")
+            parameters["frequency_announcement"] = frequency_announcement
+
+        if "announce_position_frecuency" in kwargs:
+            announce_position_frecuency = kwargs.pop("announce_position_frecuency")
+            if not isinstance(announce_position_frecuency, int) and announce_position_frecuency != 'none':
+                raise ValueError("How often to make any periodic announcement needs to be an int (Values in seconds: multiples of 15, max value: 1200 or 'none' = No announcement)")
+            elif frequency_announcement > 1200:
+                raise ValueError("How often to make any periodic announcement needs to be smaller than 1200")
+            elif frequency_announcement % 15 != 0:
+                raise ValueError("How often to make any periodic announcement needs to be multiples of 15")
+            parameters["announce_position_frecuency"] = announce_position_frecuency
+
+        if "announce_round_seconds" in kwargs:
+            announce_round_seconds = kwargs.pop("announce_round_seconds")
+            if not isinstance(announce_round_seconds, int) and announce_round_seconds != 'none':
+                raise ValueError("Announce seconds needs to be an int (Values in seconds: 1 to 60  or 'none' = Do not announce)")
+            elif not 1 <= announce_round_seconds <= 60:
+                raise ValueError("Announce seconds needs to be between 1 and 60 seconds")
+            parameters["announce_round_seconds"] = announce_round_seconds
+
+        if "if_announce_position_enabled_report_estimated_hold_time" in kwargs:
+            if_announce_position_enabled_report_estimated_hold_time = kwargs.pop("if_announce_position_enabled_report_estimated_hold_time")
+            if not isinstance(if_announce_position_enabled_report_estimated_hold_time, str):
+                raise ValueError("Include estimated hold time in position announcements needs to be a str (Values 'yes'/'no'/'once')")
+            elif if_announce_position_enabled_report_estimated_hold_time not in ("yes", "no", "once"):
+                raise ValueError("Include estimated hold time in position announcements needs 'yes', 'no' or 'once'")
+            parameters["if_announce_position_enabled_report_estimated_hold_time"] = if_announce_position_enabled_report_estimated_hold_time
+
+        if "thankyou_for_your_patience" in kwargs:
+            thankyou_for_your_patience = kwargs.pop("thankyou_for_your_patience")
+            if not isinstance(thankyou_for_your_patience, str):
+                raise ValueError("Yes to say \"Thank you for your patience\" immediatly after announcing Queue Position and Estimated hold time left needs to be a str (Values 'yes'/'no')")
+            elif thankyou_for_your_patience not in ("yes", "no"):
+                aise ValueError("Yes to say \"Thank you for your patience\" immediatly after announcing Queue Position and Estimated hold time left needs to be 'yes' or 'no'")
+            parameters["thankyou_for_your_patience"] = thankyou_for_your_patience
+
+        if "music_on_hold" in kwargs:
+            if not isinstance(kwargs["music_on_hold"], str):
+                raise ValueError("Music on Hold Code needs to be a str (Values from accounts.get_music_on_hold)")
+            parameters["music_on_hold"] = kwargs.pop("music_on_hold")
+
+        if "fail_over_routing_timeout" in kwargs:
+            if not isinstance(kwargs["fail_over_routing_timeout"], str):
+                raise ValueError("Failover routing to Maximum wait time reached needs to be a str")
+            parameters["fail_over_routing_timeout"] = kwargs.pop("fail_over_routing_timeout")
+
+        if "fail_over_routing_full" in kwargs:
+            if not isinstance(kwargs["fail_over_routing_full"], str):
+                raise ValueError("Failover routing to Maximum callers reached needs to be a str")
+            parameters["fail_over_routing_full"] = kwargs.pop("fail_over_routing_full")
+
+        if "fail_over_routing_join_empty" in kwargs:
+            if not isinstance(kwargs["fail_over_routing_join_empty"], str):
+                raise ValueError("A call was sent to the queue but the queue had no members needs to be a str (Only works when Join when Empty is set to no)")
+            parameters["fail_over_routing_join_empty"] = kwargs.pop("fail_over_routing_join_empty")
+
+        if "fail_over_routing_leave_empty" in kwargs:
+            if not isinstance(kwargs["fail_over_routing_leave_empty"], str):
+                raise ValueError("The last agent was removed form the queue before all calls were handled needs to be a str (Only works when Leave when Empty is set to yes)")
+            parameters["fail_over_routing_leave_empty"] = kwargs.pop("fail_over_routing_leave_empty")
+
+        if "fail_over_routing_join_unavail" in kwargs:
+            if not isinstance(kwargs["fail_over_routing_join_unavail"], str):
+                raise ValueError("Same as routingjoinempty, except that there were still queue members, but all were status unavailable needs to be a str")
+            parameters["fail_over_routing_join_unavail"] = kwargs.pop("fail_over_routing_join_unavail")
+
+        if "fail_over_routing_leave_unavail" in kwargs:
+            if not isinstance(kwargs["fail_over_routing_leave_unavail"], int):
+                raise ValueError("Same as routingleaveempty, except that there were still queue members, but all were status unavailable needs to be a str")
+            parameters["fail_over_routing_leave_unavail"] = kwargs.pop("fail_over_routing_leave_unavail")
 
         if len(kwargs) > 0:
             not_allowed_parameters = ""
             for key, value in kwargs.items():
                 not_allowed_parameters += key + " "
             raise ValueError("Parameters not allowed: {}".format(not_allowed_parameters))
+
+        return self._voipms_client._get(method, parameters)
+
+    def set_recording(self, file, name, recording=None):
+        """
+        Updates a specific Recording File if a Recording ID is provided
+
+        - Adds a new Recording file entry if no Recording ID is provided
+
+        :param file: [Required] Base64 encoded file (Provide Recording ID and file if you want update the file only)
+        :type file: :py:class:`str`
+        :param name: [Required] Name for the Recording Entry (Example: 'recording1')
+                     - Provide Recording ID and name if you want update the name only
+                     - Provide Recording ID, file and name if you want update both parameters at the same time
+        :type name: :py:class:`str`
+
+        :param recording: ID for a specific Phonebook entry (Example: 33221 / Leave empty to create a new one)
+        :type recording: :py:class:`int`
+
+        :returns: :py:class:`dict`
+        """
+        method = "setRecording"
+
+        if not isinstance(file, str):
+            raise ValueError("Base64 encoded file needs to be a str (Provide Recording ID and file if you want update the file only)")
+
+        if not isinstance(name, str):
+            raise ValueError("Name for the Recording Entry needs to be a str(Example: 'recording1')")
+
+
+        parameters = {
+            "file": file,
+            "name": name,
+        }
+
+        if recording:
+            if not isinstance(recording, int):
+                raise ValueError("ID for a specific Phonebook entry needs to be an int (Example: 33221 / Leave empty to create a new one)")
+            else:
+                parameters["recording"] = recording
+
+        return self._voipms_client._get(method, parameters)
+
+    def set_ring_group(self, name, members, voicemail, **kwargs):
+        """
+        Updates a specific Ring Group if a ring group code is provided
+
+        - Adds a new Ring Group entry if no ring group code is provided
+
+        :param name: [Required] Name for the Ring Group
+        :type name: :py:class:`str`
+        :param members: [Required] Members for the Ring Group (Example: 'account:100001;fwd:16006')
+        :type members: :py:class:`str`
+        :param voicemail: [Required] Voicemail for the Ring Group (Values from voicemail.get_voicemails)
+        :type voicemail: :py:class:`int`
+
+        :param ring_group: ID for a specific Ring Group (Example: 4768 / Leave empty to create a new one)
+        :type ring_group: :py:class:`int`
+        :param caller_announcement: Recording Code (Values from dids.get_recordings)
+        :type caller_announcement: :py:class:`int`
+        :param music_on_hold: Music on Hold Code (Values from accounts.get_music_on_hold)
+        :type music_on_hold: :py:class:`str`
+        :param language: Code for Language (Values from general.get_languages)
+        :type language: :py:class:`str`
+
+        :returns: :py:class:`dict`
+        """
+        method = "setRingGroup"
+
+        if not isinstance(name, str):
+            raise ValueError("Name for the Ring Group needs to be a str")
+
+        if not isinstance(members, str):
+            raise ValueError("Members for the Ring Group needs to be a str (Example: 'account:100001;fwd:16006')")
+
+        if not isinstance(voicemail, int):
+            raise ValueError("Voicemail for the Ring Group needs to be an int (Values from voicemail.get_voicemails)")
+
+        parameters = {
+            "name": name,
+            "members": members,
+            "voicemail": voicemail,
+        }
+
+        if "ring_group" in kwargs:
+            if not isinstance(kwargs["ring_group"], int):
+                raise ValueError("ID for a specific Ring Group needs to be an int (Example: 4768 / Leave empty to create a new one)")
+            parameters["ring_group"] = kwargs.pop("ring_group")
+
+        if "caller_announcement" in kwargs:
+            if not isinstance(kwargs["caller_announcement"], int):
+                raise ValueError("Recording Code needs to be an int (Values from dids.get_recordings)")
+            parameters["caller_announcement"] = kwargs.pop("caller_announcement")
+
+        if "music_on_hold" in kwargs:
+            if not isinstance(kwargs["music_on_hold"], str):
+                raise ValueError("Music on Hold Code needs to be a str (Values from accounts.get_music_on_hold)")
+            parameters["music_on_hold"] = kwargs.pop("music_on_hold")
+
+        if "language" in kwargs:
+            if not isinstance(kwargs["language"], str):
+                raise ValueError("Code for Language needs to be a str (Values from general.get_languages)")
+            parameters["language"] = kwargs.pop("language")
+
+        if len(kwargs) > 0:
+            not_allowed_parameters = ""
+            for key, value in kwargs.items():
+                not_allowed_parameters += key + " "
+            raise ValueError("Parameters not allowed: {}".format(not_allowed_parameters))
+
+        return self._voipms_client._get(method, parameters)
+
+    def set_sip_uri(self, uri, **kwargs):
+        """
+        Updates a specific SIP URI if a SIP URI code is provided
+
+        - Adds a new SIP URI entry if no SIP URI code is provided
+
+        :param uri: [Required] SIP URI (Example: '5552223333@sip.voip.ms')
+        :type uri: :py:class:`str`
+
+        :param sipuri: ID for a specific SIP URI (Example: 6199 / Leave empty to create a new one)
+        :type sipuri: :py:class:`int`
+        :param description: Description for the SIP URI
+        :type description: :py:class:`str`
+
+        :returns: :py:class:`dict`
+        """
+        method = "setSIPURI"
+
+        if not isinstance(uri, str):
+            raise ValueError("Name for the Ring Group needs to be a str")
+
+        parameters = {
+            "uri": uri,
+        }
+
+        if "sipuri" in kwargs:
+            if not isinstance(kwargs["sipuri"], int):
+                raise ValueError("ID for a specific SIP URI needs to be an int (Example: 6199 / Leave empty to create a new one)")
+            parameters["sipuri"] = kwargs.pop("sipuri")
+
+        if "description" in kwargs:
+            if not isinstance(kwargs["description"], str):
+                raise ValueError("Description for the SIP URI needs to be a str")
+            parameters["description"] = kwargs.pop("description")
+
+        if len(kwargs) > 0:
+            not_allowed_parameters = ""
+            for key, value in kwargs.items():
+                not_allowed_parameters += key + " "
+            raise ValueError("Parameters not allowed: {}".format(not_allowed_parameters))
+
+        return self._voipms_client._get(method, parameters)
+
+    def set_sms(self, did, enable, **kwargs):
+        """
+        Updates a specific SIP URI if a SIP URI code is provided
+
+        - Adds a new SIP URI entry if no SIP URI code is provided
+
+        :param did: [Required] DID to be Updated (Example: 5551234567)
+        :type did: :py:class:`int`
+        :param enable: Enable/Disable the DID to receive SMS Messages (Values:True=Enable / False=Disable)
+        :type enable: :py:class:`bool`
+
+        :param email_enabled: If Enable, SMS Messages received by your DID will be sent to the email address provided (Values:True=Enable / False=Disable)
+        :type email_enabled: :py:class:`bool`
+        :param email_address: SMS Messages received by your DID will be sent to the email address provided
+        :type email_address: :py:class:`str`
+        :param sms_forward_enable: If Enable, SMS Messages received by your DID will be forwarded to the phone number provided (Values:True=Enable / False=Disable)
+        :type sms_forward_enable: :py:class:`bool`
+        :param sms_forward: SMS Messages received by your DID will be forwarded to the phone number provided (Example: 5551234567)  
+        :type sms_forward: :py:class:`int`
+        :param url_callback_enable: If Enable, SMS Messages received by your DID will be send a GET request to the URL callback provided (Values:True=Enable / False=Disable)
+        :type url_callback_enable: :py:class:`bool`
+        :param url_callback: SMS Messages received by your DID will be send a GET request to the URL callback provided Available Variables for your URL:
+                             - {FROM}    The phone number that sent you the message.
+                             - {TO}      The DID number that received the message.
+                             - {MESSAGE} The content of the message.
+                             Example:
+                             http://mysite.com/sms.php?to={TO}&from={FROM}&message={MESSAGE}
+        :type url_callback: :py:class:`str`
+        :param url_callback_retry: Enable URL callback Retry (Values:True=Enable / False=Disable)
+                                    we will be expecting an "ok" output (without quotes) from your URL callback
+                                    page as an indicator that you have received the message correctly.
+                                    If we don't receive the "ok" letters (wihtout quotes) from your callback 
+                                    page, we will keep sending you the same message every 30 minutes.
+        :type url_callback_retry: :py:class:`bool`
+
+        :returns: :py:class:`dict`
+        """
+        method = "setSMS"
+
+        if not isinstance(did, int):
+            raise ValueError("DID to be Updated needs to be an int (Example: 5551234567)")
+
+        if not isinstance(enable, bool):
+            raise ValueError("Enable/Disable the DID to receive SMS Messages needs to be a bool (Values:True=Enable / False=Disable)")
+
+        parameters = {
+            "did": did,
+            "enable": convert_bool(enable),
+        }
+
+        if "email_enabled" in kwargs:
+            if not isinstance(kwargs["email_enabled"], bool):
+                raise ValueError("If Enable, SMS Messages received by your DID will be sent to the email address provided needs to be a bool (Values:True=Enable / False=Disable)")
+            parameters["email_enabled"] = convert_bool(kwargs.pop("email_enabled"))
+
+        if "email_address" in kwargs:
+            email_address = kwargs.pop("email_address")
+            if not isinstance(email_address, str):
+                raise ValueError("SMS Messages received by your DID will be sent to the email address provided needs to be a str")
+            elif not validate_email(email_address):
+                raise ValueError("Client's e-mail is not a correct email syntax")
+            parameters["email_address"] = email_address
+
+        if "sms_forward_enable" in kwargs:
+            if not isinstance(kwargs["sms_forward_enable"], bool):
+                raise ValueError("If Enable, SMS Messages received by your DID will be forwarded to the phone number provided needs to be a bool (Values:True=Enable / False=Disable)")
+            parameters["sms_forward_enable"] = convert_bool(kwargs.pop("sms_forward_enable"))
+
+        if "sms_forward" in kwargs:
+            if not isinstance(kwargs["sms_forward"], int):
+                raise ValueError("SMS Messages received by your DID will be forwarded to the phone number provided needs to be int (Example: 5551234567)")
+            parameters["sms_forward"] = convert_bool(kwargs.pop("sms_forward"))
+
+        if "url_callback_enable" in kwargs:
+            if not isinstance(kwargs["url_callback_enable"], bool):
+                raise ValueError("If Enable, SMS Messages received by your DID will be send a GET request to the URL callback provided needs to be a bool (Values:True=Enable / False=Disable)")
+            parameters["url_callback_enable"] = convert_bool(kwargs.pop("url_callback_enable"))
+
+        if "url_callback" in kwargs:
+            if not isinstance(kwargs["url_callback"], str):
+                raise ValueError("SMS Messages received by your DID will be send a GET request to the URL callback provided needs to be a str")
+            parameters["url_callback"] = convert_bool(kwargs.pop("url_callback"))
+
+        if "url_callback_retry" in kwargs:
+            if not isinstance(kwargs["url_callback_retry"], bool):
+                raise ValueError("Enable URL callback Retry needs to be a bool (Values:True=Enable / False=Disable)")
+            parameters["url_callback_retry"] = convert_bool(kwargs.pop("url_callback_retry"))
+
+        if len(kwargs) > 0:
+            not_allowed_parameters = ""
+            for key, value in kwargs.items():
+                not_allowed_parameters += key + " "
+            raise ValueError("Parameters not allowed: {}".format(not_allowed_parameters))
+
+        return self._voipms_client._get(method, parameters)
+
+    def set_static_member(self, queue, member_name, priority, **kwargs):
+        """
+        Updates a specific SIP URI if a SIP URI code is provided
+
+        - Adds a new SIP URI entry if no SIP URI code is provided
+
+        :param queue: [Required] ID for a specific Queue
+        :type queue: :py:class:`int`
+        :param member_name: [Required] Member Description Static Member Routing to receive calls (You can get all sub accounts using the accounts.get_sub_accounts function)
+        :type member_name: :py:class:`str`
+        :param priority: [Required] Values for get calls first (Example: 0)
+        :type priority: :py:class:`int`
+
+        :param member: ID for a specific Member (Example: 619 / Leave empty to create a new one)
+        :type member: :py:class:`int`
+        :param account: Static Member Routing to receive calls (You can get all sub accounts using the accounts.get_sub_accounts function)
+        :type account: :py:class:`str`
+
+        :returns: :py:class:`dict`
+        """
+        method = "setStaticMember"
+
+        if not isinstance(queue, int):
+            raise ValueError("ID for a specific Queue needs to be an int")
+
+        if not isinstance(member_name, str):
+            raise ValueError("Member Description Static Member Routing to receive calls needs to be a str (You can get all sub accounts using the accounts.get_sub_accounts function)")
+
+        if not isinstance(priority, int):
+            raise ValueError("Values for get calls first needs to be an int (Example: 0)")
+
+        parameters = {
+            "queue": queue,
+            "member_name": member_name,
+            "priority": priority,
+        }
+
+        if "member" in kwargs:
+            if not isinstance(kwargs["member"], int):
+                raise ValueError("ID for a specific Member needs to be an int (Example: 619 / Leave empty to create a new one)")
+            parameters["member"] = kwargs.pop("member")
+
+        if "account" in kwargs:
+            if not isinstance(kwargs["account"], str):
+                raise ValueError("Static Member Routing to receive calls needs to be a str (You can get all sub accounts using the accounts.get_sub_accounts function)")
+            parameters["account"] = kwargs.pop("account")
+
+        if len(kwargs) > 0:
+            not_allowed_parameters = ""
+            for key, value in kwargs.items():
+                not_allowed_parameters += key + " "
+            raise ValueError("Parameters not allowed: {}".format(not_allowed_parameters))
+
+        return self._voipms_client._get(method, parameters)
+
+    def set_time_condition(self, name, routing_match, routing_nomatch, starthour, startminute, endhour, endminute, weekdaystart, weekdayend, timecondition=None):
+        """
+        Updates a specific Time Condition if a time condition code is provided
+
+        - Adds a new Time Condition entry if no time condition code is provided
+
+        :param name: [Required] Name for the Time Condition
+        :type name: :py:class:`str`
+        :param routing_match: [Required] Routing for the Call when condition matches
+        :type routing_match: :py:class:`str`
+        :param routing_nomatch: Routing for the Call when condition does not match
+        :type routing_nomatch: :py:class:`str`
+        :param starthour: [Required] All the Start Hour Conditions (Example: '8;8')
+        :type starthour: :py:class:`str`
+        :param startminute: [Required] All the Start Minute Conditions (Example: '0;0')
+        :type startminute: :py:class:`str`
+        :param endhour: [Required] All the End Hour Conditions (Example: '16;12')
+        :type endhour: :py:class:`str`
+        :param endminute: [Required] All the End Minute Conditions (Example: '0;0')
+        :type endminute: :py:class:`str`
+        :param weekdaystart: [Required] All the Week Day Start Conditions (Example: 'mon;sat')
+        :type weekdaystart: :py:class:`str`
+        :param weekdayend: [Required] All the Week Day End Conditions (Example: 'fri;sat')
+        :type weekdayend: :py:class:`str`
+
+
+        :param member: ID for a specific Time Condition (Example: 1830 / Leave empty to create a new one)
+        :type member: :py:class:`int`
+
+        :returns: :py:class:`dict`
+        """
+        method = "setTimeCondition"
+
+        if not isinstance(name, str):
+            raise ValueError("Name for the Time Condition needs to be a str")
+
+        if not isinstance(routing_match, str):
+            raise ValueError("Routing for the Call when condition matches needs to be a str")
+
+        if not isinstance(routing_nomatch, str):
+            raise ValueError("Routing for the Call when condition does not match needs to be a str")
+
+        if not isinstance(starthour, str):
+            raise ValueError("All the Start Hour Conditions needs to be a str (Example: '8;8')")
+
+        if not isinstance(endhour, str):
+            raise ValueError("All the End Hour Conditions needs to be a str (Example: '16;12')")
+
+        if not isinstance(endminute, str):
+            raise ValueError("All the End Minute Conditions needs to be a str (Example: '0;0')")
+
+        if not isinstance(weekdaystart, str):
+            raise ValueError("All the Week Day Start Conditions needs to be a str (Example: 'mon;sat')")
+
+        if not isinstance(weekdayend, str):
+            raise ValueError("All the Week Day End Conditions needs to be a str (Example: 'fri;sat')")
+
+        parameters = {
+            "name": name,
+            "routing_match": routing_match,
+            "routing_nomatch": routing_nomatch,
+            "starthour": starthour,
+            "endhour": endhour,
+            "endminute": endminute,
+            "weekdaystart": weekdaystart,
+            "weekdayend": weekdayend,
+        }
+
+        if timecondition:
+            if not isinstance(timecondition, int):
+                raise ValueError("ID for a specific Time Condition needs to be an int (Example: 1830 / Leave empty to create a new one)")
+            else:
+                parameters["timecondition"] = timecondition
+
+        return self._voipms_client._get(method, parameters)
+
+    def unconnect_did(self, did):
+        """
+        Updates a specific Time Condition if a time condition code is provided
+
+        - Adds a new Time Condition entry if no time condition code is provided
+
+        :param did: [Required] DID to be Unconnected from Reseller Sub Account(Example: 5551234567)
+        :type did: :py:class:`str`
+
+        :returns: :py:class:`dict`
+        """
+        method = "unconnectDID"
+
+        if not isinstance(did, int):
+            raise ValueError("DID to be Unconnected from Reseller Sub Account needs to be an int (Example: 5551234567)")
+
+        parameters = {
+            "did": did,
+        }
 
         return self._voipms_client._get(method, parameters)
