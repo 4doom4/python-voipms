@@ -14,7 +14,7 @@ class Dids(BaseApi):
     def _order(self, **kwargs):
 
         parameters = {}
-        
+
         international_fields = ("location_id", "quantity", "routing", "pop", "dialtime", "cnam")
         did_fields = ("did", "routing", "pop", "dialtime", "cnam", "billing_type")
         required_fields = {
@@ -389,7 +389,7 @@ class Dids(BaseApi):
             fwd         Used for routing calls to Forwarding entries.
                         You can get the ID right after creating a Forwarding with setForwarding
                         or by requesting all forwardings entries with getForwardings.
-            
+
             vm          Used for routing calls to a Voicemail.
                         You can get all voicemails and their IDs using the voicemail.get_voicemails function
 
@@ -2955,7 +2955,6 @@ class Dids(BaseApi):
         if not isinstance(choices, str):
             raise ValueError("Choices for the IVR to be a str (Example: '1=sip:5096 ; 2=fwd:20222')")
 
-
         parameters = {
             "name": name,
             "recording": recording,
@@ -3194,7 +3193,7 @@ class Dids(BaseApi):
             parameters["callerid_prefix"] = kwargs.pop("callerid_prefix")
 
         if "join_announcement" in kwargs:
-            if not isinstance(kwargs["join_announcement"], int) and kwargs["join_announcement"] != "none":                      
+            if not isinstance(kwargs["join_announcement"], int) and kwargs["join_announcement"] != "none":
                 raise ValueError("Recording Code needs to be an int (Values from dids.get_recordings or 'none')")
             parameters["join_announcement"] = kwargs.pop("join_announcement")
 
@@ -3227,7 +3226,7 @@ class Dids(BaseApi):
             agent_ring_timeout = kwargs.pop("agent_ring_timeout")
             if not isinstance(agent_ring_timeout, int):
                 raise ValueError("Number of seconds to ring an agent needs to be an int (Values 5 to 60)")
-            elif not 5<= agent_ring_timeout <= 60:
+            elif not 5 <= agent_ring_timeout <= 60:
                 raise ValueError("Number of seconds to ring an agent needs to be between 5 and 60")
             parameters["agent_ring_timeout"] = agent_ring_timeout
 
@@ -3294,7 +3293,7 @@ class Dids(BaseApi):
             if not isinstance(thankyou_for_your_patience, str):
                 raise ValueError("Yes to say \"Thank you for your patience\" immediatly after announcing Queue Position and Estimated hold time left needs to be a str (Values 'yes'/'no')")
             elif thankyou_for_your_patience not in ("yes", "no"):
-                aise ValueError("Yes to say \"Thank you for your patience\" immediatly after announcing Queue Position and Estimated hold time left needs to be 'yes' or 'no'")
+                raise ValueError("Yes to say \"Thank you for your patience\" immediatly after announcing Queue Position and Estimated hold time left needs to be 'yes' or 'no'")
             parameters["thankyou_for_your_patience"] = thankyou_for_your_patience
 
         if "music_on_hold" in kwargs:
