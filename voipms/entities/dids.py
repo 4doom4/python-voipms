@@ -1315,7 +1315,7 @@ class Dids(BaseApi):
         method = "getRingGroups"
 
         parameters = {}
-        
+
         if ringgroup:
             if not isinstance(ringgroup, int):
                 raise ValueError("ID for a specific Ring Group needs to be an int (Example: 4768)")
@@ -1336,7 +1336,7 @@ class Dids(BaseApi):
         method = "getRingStrategies"
 
         parameters = {}
-        
+
         if strategy:
             if not isinstance(strategy, int):
                 raise ValueError("ID for a specific Ring Strategy needs to be a str (Example: 'rrmemory')")
@@ -1357,7 +1357,7 @@ class Dids(BaseApi):
         method = "getSIPURIs"
 
         parameters = {}
-        
+
         if sipuri:
             if not isinstance(sipuri, int):
                 raise ValueError("ID for a specific SIP URI needs to be an int (Example: 6199)")
@@ -1394,7 +1394,7 @@ class Dids(BaseApi):
         method = "getSMS"
 
         parameters = {}
-        
+
         if "sms" in kwargs:
             if not isinstance(kwargs["sms"], int):
                 raise ValueError("ID for a specific SMS needs to be an int (Example: 5853)")
@@ -2376,7 +2376,7 @@ class Dids(BaseApi):
 
         :param did: [Required] DID Numbers which is sending the message (Example: 5551234567)
         :type did: :py:class:`int`
-        :param dst: [Required] Destination Number (Example: 5551234568) 
+        :param dst: [Required] Destination Number (Example: 5551234568)
         :type dst: :py:class:`int`
         :param message: [Required] Message to be sent (Example: 'hello John Smith' max chars: 160)
         :type message: :py:class:`str`
@@ -2446,7 +2446,6 @@ class Dids(BaseApi):
         if not isinstance(digit_timeout, int):
             raise ValueError("Time between digits input needs to be an int")
 
-
         parameters = {
             "description": description,
             "number": number,
@@ -2498,7 +2497,7 @@ class Dids(BaseApi):
         :type note: :py:class:`str`
 
         :returns: :py:class:`dict`
-        
+
         routing, failover_busy, failover_unreachable and failover_noanswer
         can receive values in the following format => header:record_id
         Where header could be: account, fwd, vm, sip, grp, ivr, sys, recording, queue, cb, tc, disa, none.
@@ -2532,7 +2531,7 @@ class Dids(BaseApi):
             'none:'
             'sys:echo'
         """
-        method = "setCallerIDFiltering" 
+        method = "setCallerIDFiltering"
 
         if not isinstance(callerid, str):
             raise ValueError("Caller ID that triggers the Filter needs to be a str (i = Non USA, 0 = Anonymous, NPANXXXXXX)")
@@ -2542,7 +2541,6 @@ class Dids(BaseApi):
 
         if not isinstance(routing, str):
             raise ValueError("Route the call follows when filter is triggered needs to be a str")
-
 
         parameters = {
             "callerid": callerid,
@@ -2730,14 +2728,14 @@ class Dids(BaseApi):
         routing can receive values in the following format => header:record_id
         Where header could be: account, fwd, vm, sip, grp, ivr, sys, recording, queue, cb, tc, disa, none.
         Examples:
-         
+
             account     Used for routing calls to Sub Accounts
                         You can get all sub accounts using the accounts.get_sub_accounts function
 
             fwd         Used for routing calls to Forwarding entries.
                         You can get the ID right after creating a Forwarding with setForwarding
                         or by requesting all forwardings entries with getForwardings.
-            
+
             vm          Used for routing calls to a Voicemail.
                         You can get all voicemails and their IDs using the voicemail.get_voicemails function
 
@@ -3044,19 +3042,19 @@ class Dids(BaseApi):
         :type report_hold_time_agent: :py:class:`str`
         :param join_when_empty: [Required] How caller join to the queue (Values from dids.get_join_when_empty_types)
                                 Examples:
-                                yes     Callers can join a queue with no members or 
+                                yes     Callers can join a queue with no members or
                                         only unavailable members
                                 no      Callers cannot join a queue with no members
-                                strict  Callers cannot join a queue with no members 
+                                strict  Callers cannot join a queue with no members
                                         or only unavailable members
         :type join_when_empty: :py:class:`str`
         :param leave_when_empty: [Required] How caller leave the queue (Values 'yes'/'no'/'strict')
                                  Examples:
-                                 yes     Callers are sent to failover when 
+                                 yes     Callers are sent to failover when
                                          there are no members
-                                 no      Callers will remain in the queue even 
+                                 no      Callers will remain in the queue even
                                          if there are no members
-                                 strict  Callers are sent to failover if there are 
+                                 strict  Callers are sent to failover if there are
                                          members but none of them is available.
         :type leave_when_empty: :py:class:`str`
         :param ring_strategy: Ring strategy (Values from dids.get_ring_strategies)
@@ -3118,21 +3116,21 @@ class Dids(BaseApi):
         routings can receive values in the following format => header:record_id
         Where header could be: account, fwd, vm, sip, grp, ivr, sys, recording, queue, cb, tc, disa, none.
         Examples:
-         
+
             account     Used for routing calls to Sub Accounts
                         You can get all sub accounts using the accounts.get_sub_accounts function
 
             fwd         Used for routing calls to Forwarding entries.
                         You can get the ID right after creating a Forwarding with setForwarding
                         or by requesting all forwardings entries with getForwardings.
-            
+
             vm          Used for routing calls to a Voicemail.
                         You can get all voicemails and their IDs using the voicemail.get_voicemails function
 
         Examples:
             'account:100001_VoIP'
             'fwd:1026'
-            'vm:101'    
+            'vm:101'
         """
         method = "setQueue"
 
@@ -3363,7 +3361,6 @@ class Dids(BaseApi):
         if not isinstance(name, str):
             raise ValueError("Name for the Recording Entry needs to be a str(Example: 'recording1')")
 
-
         parameters = {
             "file": file,
             "name": name,
@@ -3506,7 +3503,7 @@ class Dids(BaseApi):
         :type email_address: :py:class:`str`
         :param sms_forward_enable: If Enable, SMS Messages received by your DID will be forwarded to the phone number provided (Values:True=Enable / False=Disable)
         :type sms_forward_enable: :py:class:`bool`
-        :param sms_forward: SMS Messages received by your DID will be forwarded to the phone number provided (Example: 5551234567)  
+        :param sms_forward: SMS Messages received by your DID will be forwarded to the phone number provided (Example: 5551234567)
         :type sms_forward: :py:class:`int`
         :param url_callback_enable: If Enable, SMS Messages received by your DID will be send a GET request to the URL callback provided (Values:True=Enable / False=Disable)
         :type url_callback_enable: :py:class:`bool`
