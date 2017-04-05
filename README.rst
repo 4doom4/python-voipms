@@ -1,46 +1,54 @@
-![MIT license](https://img.shields.io/badge/licence-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-0.2-orange.svg)
-![Unstable](https://img.shields.io/badge/status-unstable-red.svg)
+|MIT license| |Version| |Unstable|
 
-# python-voipms
+python-voipms
+=============
 
-Python client for v1 of voip.ms REST API using requests >=
-2.7.0.
+Python client for v1 of voip.ms REST API using requests >= 2.7.0.
 
-## Getting Started
+Getting Started
+---------------
 
-### Installation
+Installation
+~~~~~~~~~~~~
 
-This client is hosted at PyPi under the name `voipms`, to install
-it, simply run
+This client is hosted at PyPi under the name ``voipms``, to install it,
+simply run
 
-`pip install voipms`
+``pip install voipms``
 
-### History
+History
+~~~~~~~
 
-- Version 0.2 from 05.04.2017
-    - First alpha version of this API 
-    - Up to date with features listed through 20.02.2017
-    - TODO:
-        - Code cleanup
-        - Cleanup of inner references to functions
-        - Testing all functions
-        - More validations of input and streamlining how to input dids (only digits or also dids with seperators)
+-  Version 0.2 from 05.04.2017
 
-### Initialization
+   -  First alpha version of this API
+   -  Up to date with features listed through 20.02.2017
+   -  TODO:
 
-Go to your the voip.ms customer portal go to the API config page (Main Menu > SOAP and REST/JSON API)
-- `YOUR_USERNAME` is your voip.ms username
-- Set `YOUR_PASSWORD`
-- Activate the API
-- Set the IP address of your development server
+      -  Code cleanup
+      -  Cleanup of inner references to functions
+      -  Testing all functions
+      -  More validations of input and streamlining how to input dids
+         (only digits or also dids with seperators)
+
+Initialization
+~~~~~~~~~~~~~~
+
+Go to your the voip.ms customer portal go to the API config page (Main
+Menu > SOAP and REST/JSON API) - ``YOUR_USERNAME`` is your voip.ms
+username - Set ``YOUR_PASSWORD`` - Activate the API - Set the IP address
+of your development server
+
+::
 
     from voipms import VoipMs
 
     client = VoipMs('YOUR_USERNAME', 'YOUR_PASSWORD')
 
+Examples
+~~~~~~~~
 
-### Examples
+::
 
     # return allowed IPs
     client.general.get.ip()
@@ -48,11 +56,14 @@ Go to your the voip.ms customer portal go to the API config page (Main Menu > SO
     # returns a specific allowed codec
     client.accounts.get.allowed_codecs(codec="ulaw")
 
-## API Structure
+API Structure
+-------------
 
-All endpoints follow the structure listed in the official voip.ms API
-v1 documentation. The structure will be listed below and then the
+All endpoints follow the structure listed in the official voip.ms API v1
+documentation. The structure will be listed below and then the
 individual methods available after.
+
+::
 
     VoipMs
     +- General
@@ -98,9 +109,13 @@ individual methods available after.
     |   +- Send
     |   +- Set
 
-### General
+General
+~~~~~~~
 
-#### Get
+Get
+^^^
+
+::
 
     client.general.get.balance(advanced=False)
     client.general.get.countries(country=None)
@@ -109,19 +124,29 @@ individual methods available after.
     client.general.get.servers_info(server_pop=None)
     client.general.get.transaction_history(date_from, date_to)
 
-### Accounts
+Accounts
+~~~~~~~~
 
-#### Create
-    
+Create
+^^^^^^
+
+::
+
     client.accounts.create.sub_account(username, password, protocol, auth_type, device_type,
                                        lock_international, international_route, music_on_hold,
                                        allowed_codecs, dtmf_mode, nat, **kwargs)
 
-#### Delete
+Delete
+^^^^^^
+
+::
 
     client.accounts.delete.sub_account(account_id)
 
-#### Get
+Get
+^^^
+
+::
 
     client.accounts.get.allowed_codecs(codec=None)
     client.accounts.get.auth_types(auth_type=None)
@@ -136,15 +161,22 @@ individual methods available after.
     client.accounts.get.routes(route=None)
     client.accounts.get.sub_accounts(account=None)
 
-#### Set
+Set
+^^^
+
+::
 
     client.accounts.set.sub_account(account_id, password, auth_type, device_type,
                                     lock_international, international_route, music_on_hold,
                                     allowed_codecs, dtmf_mode, nat, **kwargs)
 
-### Calls
+Calls
+~~~~~
 
-#### Get
+Get
+^^^
+
+::
 
     client.calls.get.call_accounts(client=None)
     client.calls.get.call_billing(self)
@@ -158,9 +190,13 @@ individual methods available after.
                                   answered=False, noanswer=False, busy=False,
                                   failed=False, **kwargs)
 
-### Clients
+Clients
+~~~~~~~
 
-#### Add
+Add
+^^^
+
+::
 
     client.clients.add.charge(client, charge, description=None, test=False)
     client.clients.add.client(firstname, lastname, address, city, state, country,
@@ -168,7 +204,10 @@ individual methods available after.
                               confirm_password, **kwargs)
     client.clients.add.payment(client, payment, description=None, test=False)
 
-#### Get
+Get
+^^^
+
+::
 
     client.clients.get.balance_management(balance_management=None)
     client.clients.get.charges(client)
@@ -179,31 +218,46 @@ individual methods available after.
     client.clients.get.packages(package=None)
     client.clients.get.reseller_balance(client)
 
-#### Set
+Set
+^^^
+
+::
 
     client.clients.set.client(client, email, password, firstname,
                               lastname, phone_number, **kwargs)
     client.clients.set.client_threshold(client, threshold, email=None)
 
+Dids
+~~~~
 
-### Dids
+Back\_order
+^^^^^^^^^^^
 
-#### Back_order
+::
 
     client.dids.back_order.did_can(quantity, province, ratecenter, routing, 
                                    pop, dialtime, cnam, billing_type, **kwargs)
     client.dids.back_order.did_usa(quantity, state, ratecenter, routing, pop, 
                                    dialtime, cnam, billing_type, **kwargs)
 
-#### Cancel
+Cancel
+^^^^^^
+
+::
 
     client.dids.cancel.did(did, **kwargs)
 
-#### Connect
+Connect
+^^^^^^^
+
+::
 
     client.dids.connect.did(did, account, monthly, setup, minute, **kwargs)
 
-#### Delete
+Delete
+^^^^^^
+
+::
 
     client.dids.delete.callback(callback)
     client.dids.delete.caller_id_filtering(filtering)
@@ -220,7 +274,10 @@ individual methods available after.
     client.dids.delete.static_member(member, queue)
     client.dids.delete.time_condition(timecondition)
 
-#### Get
+Get
+^^^
+
+::
 
     client.dids.get.callbacks(callback=None)
     client.dids.get.caller_id_filtering(filtering=None)
@@ -255,7 +312,10 @@ individual methods available after.
     client.dids.get.voicemail_setups(voicemailsetup=None)
     client.dids.get.voicemail_attachment_formats(email_attachment_format=None)
 
-#### Order
+Order
+^^^^^
+
+::
 
     client.dids.order.did(did, routing, pop, dialtime, cnam, billing_type, **kwargs)
     client.dids.order.did_international_geographic(location_id, quantity, routing,
@@ -268,7 +328,10 @@ individual methods available after.
     client.dids.order.toll_free(did, routing, pop, dialtime, cnam, billing_type, **kwargs)
     client.dids.order.vanity(did, routing, pop, dialtime, cnam, billing_type, carrier, **kwargs)
 
-#### Search
+Search
+^^^^^^
+
+::
 
     client.dids.search.dids_can(search_type, query, province=None)
     client.dids.search.dids_usa(search_type, query, state=None)
@@ -276,12 +339,18 @@ individual methods available after.
     client.dids.search.toll_free_usa(search_type=None, query=None)
     client.dids.search.vanity(search_type, query)
 
-#### Send
+Send
+^^^^
+
+::
 
     client.dids.send.sms(did, dst, message)
 
-#### Set
- 
+Set
+^^^
+
+::
+
     client.dids.set.callback(description, number, delay_before, response_timeout, digit_timeout, **kwargs)
     client.dids.set.caller_id_filtering(callerid, did, routing, **kwargs)
     client.dids.set.did_billing_type(did, billing_type)
@@ -303,23 +372,36 @@ individual methods available after.
     client.dids.set.time_condition(name, routing_match, routing_nomatch, starthour, startminute,
                                    endhour, endminute, weekdaystart, weekdayend, timecondition=None)
 
-#### Unconnect
+Unconnect
+^^^^^^^^^
+
+::
 
     client.dids.unconnect.did(did)
 
-### Fax
+Fax
+~~~
 
-#### Cancel
+Cancel
+^^^^^^
+
+::
 
     client.fax.cancel.fax_number(fax_id, test=None)
 
-#### Delete
+Delete
+^^^^^^
+
+::
 
     client.fax.delete.fax_message(fax_id, test=None)
     client.fax.delete.email_to_fax(fax_id, test=None)
     client.fax.delete.fax_folder(folder_id, test=None)
 
-#### Get
+Get
+^^^
+
+::
 
     client.fax.get.fax_provinces(province=None)
     client.fax.get.fax_states(state=None)
@@ -332,28 +414,46 @@ individual methods available after.
     client.fax.get.fax_folders()
     client.fax.get.email_to_fax(fax_id=None)
 
-#### Mail
+Mail
+^^^^
+
+::
 
     client.fax.mail.fax_message_pdf(fax_id, email)
 
-#### Move
+Move
+^^^^
+
+::
 
     client.fax.move_fax_message(fax_id, folder_id, test=None)
 
-#### Order
+Order
+^^^^^
+
+::
 
     client.fax.order.fax_number(location, quantity, **kwargs)
 
-#### Set
+Set
+^^^
+
+::
 
     client.fax.search.fax_area_code_can(area_code)
     client.fax.search.fax_area_code_usa(area_code)
 
-#### Send
+Send
+^^^^
+
+::
 
     client.fax.send.fax_message(to_number, from_name, from_number, file, **kwargs)
 
-#### Set
+Set
+^^^
+
+::
 
     client.fax.set.fax_folder(name, **kwargs)
     client.fax.set.email_to_fax(auth_email, from_number_id, security_code, **kwargs)
@@ -361,19 +461,29 @@ individual methods available after.
     client.fax.set.fax_number_email(did, **kwargs)
     client.fax.set.fax_number_url_callback(did, **kwargs)
 
-### Voicemail
+Voicemail
+~~~~~~~~~
 
-#### Create
-    
+Create
+^^^^^^
+
+::
+
     client.voicemail.create.voicemail(digits, name, password, skip_password, attach_message, delete_message,
                                       say_time, timezone, say_callerid, play_instructions, language, **kwargs)
 
-#### Delete
+Delete
+^^^^^^
+
+::
 
     client.voicemail.delete.messages(mailbox, **kwargs)
     client.voicemail.delete.voicemail(mailbox)
 
-#### Get
+Get
+^^^
+
+::
 
     client.voicemail.get.play_instructions(play_instructions=None)
     client.voicemail.get.timezones(timezone=None)
@@ -382,33 +492,53 @@ individual methods available after.
     client.voicemail.get.voicemail_message_file(mailbox, folder, message_num)
     client.voicemail.get.voicemail_messages(mailbox, **kwargs)
 
-#### Mark
+Mark
+^^^^
+
+::
 
     client.voicemail.mark.listened_voicemail_message(mailbox, folder, message_num, listened)
     client.voicemail.mark.urgent_voicemail_message(mailbox, folder, message_num, urgent)
 
-#### Move
+Move
+^^^^
+
+::
 
     client.voicemail.move.folder_voicemail_message(mailbox, folder, message_num, new_folder)
 
-#### Send
+Send
+^^^^
+
+::
 
     client.voicemail.send.voicemail_email(mailbox, folder, message_num, email_address)
 
-#### Set
+Set
+^^^
+
+::
 
     client.voicemail.set.voicemail(mailbox, name, password, skip_password, attach_message, delete_message,
                                    say_time, timezone, say_callerid, play_instructions, language, **kwargs)
 
-## Support
+Support
+-------
 
 If you are having issues, please let us know or submit a pull request.
 
-## License
+License
+-------
 
 The project is licensed under the MIT License.
 
-## Special Thanks
+Special Thanks
+--------------
 
-I was highly inspired by the mailchim3 API at https://github.com/charlesthk/python-mailchimp/.
-Thanks for your nice code layout!
+I was highly inspired by the mailchim3 API at
+https://github.com/charlesthk/python-mailchimp/. Thanks for your nice
+code layout!
+
+.. |MIT license| image:: https://img.shields.io/badge/licence-MIT-blue.svg
+.. |Version| image:: https://img.shields.io/badge/version-0.2-orange.svg
+.. |Unstable| image:: https://img.shields.io/badge/status-unstable-red.svg
