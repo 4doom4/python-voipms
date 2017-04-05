@@ -1,5 +1,6 @@
 ![MIT license](https://img.shields.io/badge/licence-MIT-blue.svg)
-![Stable](https://img.shields.io/badge/status-stable-green.svg)
+![Version](https://img.shields.io/badge/version-0.2-orange.svg)
+![Unstable](https://img.shields.io/badge/status-unstable-red.svg)
 
 # python-voipms
 
@@ -17,7 +18,14 @@ it, simply run
 
 ### History
 
-Up to date with features listed thru 2/20/2017.
+- Version 0.2 from 05.04.2017
+    - First alpha version of this API 
+    - Up to date with features listed thru 20.02.2017
+    - TODO:
+        - Code cleanup
+        - Cleanup of inner references to functions
+        - Testing all functions
+        - More validations of input and streamlining how to input dids (only digits or also dids with seperators)
 
 ### Initialization
 
@@ -35,10 +43,10 @@ Go to your the voip.ms customer portal go to the API config page (Main Menu > SO
 ### Examples
 
     # return allowed IPs
-    client.general.get_ip()
+    client.general.get.ip()
 
     # returns a specific allowed codec
-    client.accounts.get_allowed_codecs(codec="ulaw")
+    client.accounts.get.allowed_codecs(codec="ulaw")
 
 ## API Structure
 
@@ -60,6 +68,28 @@ individual methods available after.
     |   +- Add
     |   +- Get
     |   +- Set
+    +- Dids
+    |   +- Back_order
+    |   +- Cancel
+    |   +- Connect
+    |   +- Delete
+    |   +- Get
+    |   +- Order
+    |   +- Search
+    |   +- Send
+    |   +- Set
+    |   +- Unconnect
+    +- Fax
+    |   +- Cancel
+    |   +- Delete
+    |   +- Get
+    |   +- Mail
+    |   +- Move
+    |   +- Order
+    |   +- Search
+    |   +- Send
+    |   +- Set
+    +- Voicemail
 
 ### General
 
@@ -151,141 +181,216 @@ individual methods available after.
 
 ### Dids
 
-    client.dids.back_order_did_can(quantity, province, ratecenter, routing, 
+#### Back_order
+
+    client.dids.back_order.did_can(quantity, province, ratecenter, routing, 
                                    pop, dialtime, cnam, billing_type, **kwargs)
-    client.dids.back_order_did_usa(quantity, state, ratecenter, routing, pop, 
+    client.dids.back_order.did_usa(quantity, state, ratecenter, routing, pop, 
                                    dialtime, cnam, billing_type, **kwargs)
-    client.dids.cancel_did(did, **kwargs)
-    client.dids.connect_did(did, account, monthly, setup, minute, **kwargs)
-    client.dids.del_callback(callback)
-    client.dids.del_caller_id_filtering(filtering)
-    client.dids.del_client(client)
-    client.dids.del_disa(disa)
+
+#### Cancel
+
+    client.dids.cancel.did(did, **kwargs)
+
+#### Connect
+
+    client.dids.connect.did(did, account, monthly, setup, minute, **kwargs)
+
+#### Delete
+
+    client.dids.delete.callback(callback)
+    client.dids.delete.caller_id_filtering(filtering)
+    client.dids.delete.client(client)
+    client.dids.delete.disa(disa)
     client.dids.delete_sms(sms_id)
-    client.dids.del_forwarding(forwarding)
-    client.dids.del_ivr(ivr)
-    client.dids.del_phonebook(phonebook)
-    client.dids.del_queue(queue)
-    client.dids.del_recording(recording)
-    client.dids.del_ring_group(ringgroup)
-    client.dids.del_sip_uri(sipuri)
-    client.dids.del_static_member(member, queue)
-    client.dids.del_time_condition(timecondition)
-    client.dids.get_callbacks(callback=None)
-    client.dids.get_caller_id_filtering(filtering=None)
-    client.dids.get_did_countries(international_type, country_id=None)
-    client.dids.get_carriers(carrier=None)
-    client.dids.get_dids_can(province, ratecenter=None)
-    client.dids.get_dids_info(client=None, did=None)
-    client.dids.get_dids_international_geographic(country_id)
-    client.dids.get_dids_international_national(country_id)
-    client.dids.get_dids_international_toll_free(country_id)
-    client.dids.get_dids_usa(state, ratecenter=None)
-    client.dids.get_disas(disa=None)
-    client.dids.get_forwardings(forwarding=None)
-    client.dids.get_international_types(international_type=None)
-    client.dids.get_ivrs(ivr=None)
-    client.dids.get_join_when_empty_types(join_type=None)
-    client.dids.get_phonebook(phonebook=None, name=None)
-    client.dids.get_portability(did)
-    client.dids.get_provinces()
-    client.dids.get_queues(queue=None)
-    client.dids.get_rate_centers_can(province)
-    client.dids.get_rate_centers_usa(state)
-    client.dids.get_recordings(recording=None)
-    client.dids.get_recording_file(recording)
-    client.dids.get_ring_groups(ringgroup=None)
-    client.dids.get_ring_strategies(strategy=None)
-    client.dids.get_sip_uris(sipuri=None)
-    client.dids.get_sms(**kwargs)
-    client.dids.get_states()
-    client.dids.get_static_members(queue, member=None)
-    client.dids.get_time_conditions(timecondition=None)
-    client.dids.get_voicemail_setups(voicemailsetup=None)
-    client.dids.get_voicemail_attachment_formats(email_attachment_format=None)
-    client.dids.order_did(did, routing, pop, dialtime, cnam, billing_type, **kwargs)
-    client.dids.order_did_international_geographic(location_id, quantity, routing,
+    client.dids.delete.forwarding(forwarding)
+    client.dids.delete.ivr(ivr)
+    client.dids.delete.phonebook(phonebook)
+    client.dids.delete.queue(queue)
+    client.dids.delete.recording(recording)
+    client.dids.delete.ring_group(ringgroup)
+    client.dids.delete.sip_uri(sipuri)
+    client.dids.delete.static_member(member, queue)
+    client.dids.delete.time_condition(timecondition)
+
+#### Get
+
+    client.dids.get.callbacks(callback=None)
+    client.dids.get.caller_id_filtering(filtering=None)
+    client.dids.get.did_countries(international_type, country_id=None)
+    client.dids.get.carriers(carrier=None)
+    client.dids.get.dids_can(province, ratecenter=None)
+    client.dids.get.dids_info(client=None, did=None)
+    client.dids.get.dids_international_geographic(country_id)
+    client.dids.get.dids_international_national(country_id)
+    client.dids.get.dids_international_toll_free(country_id)
+    client.dids.get.dids_usa(state, ratecenter=None)
+    client.dids.get.disas(disa=None)
+    client.dids.get.forwardings(forwarding=None)
+    client.dids.get.international_types(international_type=None)
+    client.dids.get.ivrs(ivr=None)
+    client.dids.get.join_when_empty_types(join_type=None)
+    client.dids.get.phonebook(phonebook=None, name=None)
+    client.dids.get.portability(did)
+    client.dids.get.provinces()
+    client.dids.get.queues(queue=None)
+    client.dids.get.rate_centers_can(province)
+    client.dids.get.rate_centers_usa(state)
+    client.dids.get.recordings(recording=None)
+    client.dids.get.recording_file(recording)
+    client.dids.get.ring_groups(ringgroup=None)
+    client.dids.get.ring_strategies(strategy=None)
+    client.dids.get.sip_uris(sipuri=None)
+    client.dids.get.sms(**kwargs)
+    client.dids.get.states()
+    client.dids.get.static_members(queue, member=None)
+    client.dids.get.time_conditions(timecondition=None)
+    client.dids.get.voicemail_setups(voicemailsetup=None)
+    client.dids.get.voicemail_attachment_formats(email_attachment_format=None)
+
+#### Order
+
+    client.dids.order.did(did, routing, pop, dialtime, cnam, billing_type, **kwargs)
+    client.dids.order.did_international_geographic(location_id, quantity, routing,
                                                    pop, dialtime, cnam, billing_type, **kwargs)
-    client.dids.order_did_international_national(location_id, quantity, routing,
+    client.dids.order.did_international_national(location_id, quantity, routing,
                                                  pop, dialtime, cnam, billing_type, **kwargs)
-    client.dids.order_did_international_toll_free(location_id, quantity, routing, pop,
+    client.dids.order.did_international_toll_free(location_id, quantity, routing, pop,
                                                   dialtime, cnam, billing_type, **kwargs)
-    client.dids.order_did_virtual(digits, routing, pop, dialtime, cnam, billing_type, **kwargs)
-    client.dids.order_toll_free(did, routing, pop, dialtime, cnam, billing_type, **kwargs)
-    client.dids.order_vanity(did, routing, pop, dialtime, cnam, billing_type, carrier, **kwargs)
-    client.dids.search_dids_can(search_type, query, province=None)
-    client.dids.search_dids_usa(search_type, query, state=None)
-    client.dids.search_toll_free_can_us(search_type=None, query=None)
-    client.dids.search_toll_free_usa(search_type=None, query=None)
-    client.dids.search_vanity(search_type, query)
-    client.dids.send_sms(did, dst, message)
-    client.dids.set_callback(description, number, delay_before, response_timeout, digit_timeout, **kwargs)
-    client.dids.set_caller_id_filtering(callerid, did, routing, **kwargs)
-    client.dids.set_did_billing_type(did, billing_type)
-    client.dids.set_did_info(did, routing, pop, dialtime, cnam, billing_type, **kwargs)
-    client.dids.set_did_pop(did, pop)
-    client.dids.set_did_routing(did, routing)
-    client.dids.set_did_voicemail(did, voicemail=None)
-    client.dids.set_disa(name, pin, digit_timeout, **kwargs)
-    client.dids.set_forwarding(phone_number, **kwargs)
-    client.dids.set_ivr(name, recording, timeout, language, voicemailsetup, choices, ivr=None)
-    client.dids.set_phonebook(name, number, **kwargs)
-    client.dids.set_queue(queue_name, queue_number, queue_language, priority_weight, report_hold_time_agent,
+    client.dids.order.did_virtual(digits, routing, pop, dialtime, cnam, billing_type, **kwargs)
+    client.dids.order.toll_free(did, routing, pop, dialtime, cnam, billing_type, **kwargs)
+    client.dids.order.vanity(did, routing, pop, dialtime, cnam, billing_type, carrier, **kwargs)
+
+#### Search
+
+    client.dids.search.dids_can(search_type, query, province=None)
+    client.dids.search.dids_usa(search_type, query, state=None)
+    client.dids.search.toll_free_can_us(search_type=None, query=None)
+    client.dids.search.toll_free_usa(search_type=None, query=None)
+    client.dids.search.vanity(search_type, query)
+
+#### Send
+
+    client.dids.send.sms(did, dst, message)
+
+#### Set
+ 
+    client.dids.set.callback(description, number, delay_before, response_timeout, digit_timeout, **kwargs)
+    client.dids.set.caller_id_filtering(callerid, did, routing, **kwargs)
+    client.dids.set.did_billing_type(did, billing_type)
+    client.dids.set.did_info(did, routing, pop, dialtime, cnam, billing_type, **kwargs)
+    client.dids.set.did_pop(did, pop)
+    client.dids.set.did_routing(did, routing)
+    client.dids.set.did_voicemail(did, voicemail=None)
+    client.dids.set.disa(name, pin, digit_timeout, **kwargs)
+    client.dids.set.forwarding(phone_number, **kwargs)
+    client.dids.set.ivr(name, recording, timeout, language, voicemailsetup, choices, ivr=None)
+    client.dids.set.phonebook(name, number, **kwargs)
+    client.dids.set.queue(queue_name, queue_number, queue_language, priority_weight, report_hold_time_agent,
                           join_when_empty, leave_when_empty, ring_strategy, ring_inuse, **kwargs)
-    client.dids.set_recording(file, name, recording=None)
-    client.dids.set_ring_group(name, members, voicemail, **kwargs)
-    client.dids.set_sip_uri(uri, **kwargs)
-    client.dids.set_sms(did, enable, **kwargs)
-    client.dids.set_static_member(queue, member_name, priority, **kwargs)
-    client.dids.set_time_condition(name, routing_match, routing_nomatch, starthour, startminute,
+    client.dids.set.recording(file, name, recording=None)
+    client.dids.set.ring_group(name, members, voicemail, **kwargs)
+    client.dids.set.sip_uri(uri, **kwargs)
+    client.dids.set.sms(did, enable, **kwargs)
+    client.dids.set.static_member(queue, member_name, priority, **kwargs)
+    client.dids.set.time_condition(name, routing_match, routing_nomatch, starthour, startminute,
                                    endhour, endminute, weekdaystart, weekdayend, timecondition=None)
-    client.dids.unconnect_did(did)
+
+#### Unconnect
+
+    client.dids.unconnect.did(did)
 
 ### Fax
 
-    client.fax.cancel_fax_number(fax_id, test=None)
-    client.fax.delete_fax_message(fax_id, test=None)
-    client.fax.del_email_to_fax(fax_id, test=None)
-    client.fax.del_fax_folder(folder_id, test=None)
-    client.fax.get_fax_provinces(province=None)
-    client.fax.get_fax_states(state=None)
-    client.fax.get_fax_rate_centers_can(province)
-    client.fax.get_fax_rate_centers_usa(state)
-    client.fax.get_fax_numbers_info(did=None)
-    client.fax.get_fax_numbers_portability(did)
-    client.fax.get_fax_messages(**kwargs)
-    client.fax.get_fax_message_pdf(fax_id)
-    client.fax.get_fax_folders()
-    client.fax.get_email_to_fax(fax_id=None)
-    client.fax.mail_fax_message_pdf(fax_id, email)
+#### Cancel
+
+    client.fax.cancel.fax_number(fax_id, test=None)
+
+#### Delete
+
+    client.fax.delete.fax_message(fax_id, test=None)
+    client.fax.delete.email_to_fax(fax_id, test=None)
+    client.fax.delete.fax_folder(folder_id, test=None)
+
+#### Get
+
+    client.fax.get.fax_provinces(province=None)
+    client.fax.get.fax_states(state=None)
+    client.fax.get.fax_rate_centers_can(province)
+    client.fax.get.fax_rate_centers_usa(state)
+    client.fax.get.fax_numbers_info(did=None)
+    client.fax.get.fax_numbers_portability(did)
+    client.fax.get.fax_messages(**kwargs)
+    client.fax.get.fax_message_pdf(fax_id)
+    client.fax.get.fax_folders()
+    client.fax.get.email_to_fax(fax_id=None)
+
+#### Mail
+
+    client.fax.mail.fax_message_pdf(fax_id, email)
+
+#### Move
+
     client.fax.move_fax_message(fax_id, folder_id, test=None)
-    client.fax.order_fax_number(location, quantity, **kwargs)
-    client.fax.set_fax_folder(name, **kwargs)
-    client.fax.set_email_to_fax(auth_email, from_number_id, security_code, **kwargs)
-    client.fax.search_fax_area_code_can(area_code)
-    client.fax.search_fax_area_code_usa(area_code)
-    client.fax.set_fax_number_info(did, **kwargs)
-    client.fax.set_fax_number_email(did, **kwargs)
-    client.fax.set_fax_number_url_callback(did, **kwargs)
-    client.fax.send_fax_message(to_number, from_name, from_number, file, **kwargs)
+
+#### Order
+
+    client.fax.order.fax_number(location, quantity, **kwargs)
+
+#### Set
+
+    client.fax.search.fax_area_code_can(area_code)
+    client.fax.search.fax_area_code_usa(area_code)
+
+#### Send
+
+    client.fax.send.fax_message(to_number, from_name, from_number, file, **kwargs)
+
+#### Set
+
+    client.fax.set.fax_folder(name, **kwargs)
+    client.fax.set.email_to_fax(auth_email, from_number_id, security_code, **kwargs)
+    client.fax.set.fax_number_info(did, **kwargs)
+    client.fax.set.fax_number_email(did, **kwargs)
+    client.fax.set.fax_number_url_callback(did, **kwargs)
 
 ### Voicemail
+
+#### Create
     
-    client.voicemail.create_voicemail(digits, name, password, skip_password, attach_message, delete_message,
+    client.voicemail.create.voicemail(digits, name, password, skip_password, attach_message, delete_message,
                                       say_time, timezone, say_callerid, play_instructions, language, **kwargs)
-    client.voicemail.del_messages(mailbox, **kwargs)
-    client.voicemail.del_voicemail(mailbox)
-    client.voicemail.get_play_instructions(play_instructions=None)
-    client.voicemail.get_timezones(timezone=None)
-    client.voicemail.get_voicemails(mailbox=None)
-    client.voicemail.get_voicemail_folders(folder=None)
-    client.voicemail.get_voicemail_message_file(mailbox, folder, message_num)
-    client.voicemail.get_voicemail_messages(mailbox, **kwargs)
-    client.voicemail.mark_listened_voicemail_message(mailbox, folder, message_num, listened)
-    client.voicemail.mark_urgent_voicemail_message(mailbox, folder, message_num, urgent)
-    client.voicemail.move_folder_voicemail_message(mailbox, folder, message_num, new_folder)
-    client.voicemail.send_voicemail_email(mailbox, folder, message_num, email_address)
-    client.voicemail.set_voicemail(mailbox, name, password, skip_password, attach_message, delete_message,
+
+#### Delete
+
+    client.voicemail.delete.messages(mailbox, **kwargs)
+    client.voicemail.delete.voicemail(mailbox)
+
+#### Get
+
+    client.voicemail.get.play_instructions(play_instructions=None)
+    client.voicemail.get.timezones(timezone=None)
+    client.voicemail.get.voicemails(mailbox=None)
+    client.voicemail.get.voicemail_folders(folder=None)
+    client.voicemail.get.voicemail_message_file(mailbox, folder, message_num)
+    client.voicemail.get.voicemail_messages(mailbox, **kwargs)
+
+#### Mark
+
+    client.voicemail.mark.listened_voicemail_message(mailbox, folder, message_num, listened)
+    client.voicemail.mark.urgent_voicemail_message(mailbox, folder, message_num, urgent)
+
+#### Move
+
+    client.voicemail.move.folder_voicemail_message(mailbox, folder, message_num, new_folder)
+
+#### Send
+
+    client.voicemail.send.voicemail_email(mailbox, folder, message_num, email_address)
+
+#### Set
+
+    client.voicemail.set.voicemail(mailbox, name, password, skip_password, attach_message, delete_message,
                                    say_time, timezone, say_callerid, play_instructions, language, **kwargs)
 
 ## Support

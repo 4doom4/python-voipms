@@ -27,6 +27,172 @@ def validate_email(email):
         return False
 
 
+def order(**kwargs):
+
+    parameters = {}
+
+    international_fields = ("location_id", "quantity", "routing", "pop", "dialtime", "cnam")
+    did_fields = ("did", "routing", "pop", "dialtime", "cnam", "billing_type")
+    required_fields = {
+        "backOrderDIDUSA": ("quantity", "state", "ratecenter", "routing", "pop", "dialtime", "cnam", "billing_type"),
+        "backOrderDIDCAN": ("quantity", "province", "ratecenter", "routing", "pop", "dialtime", "cnam", "billing_type"),
+        "orderDID": did_fields,
+        "orderDIDInternationalGeographic": international_fields,
+        "orderDIDInternationalNational": international_fields,
+        "orderDIDInternationalTollFree": international_fields,
+        "orderDIDVirtual": ("digits", "routing", "pop", "dialtime", "cnam", "billing_type"),
+        "orderTollFree": did_fields,
+        "orderVanity": ("did", "routing", "pop", "dialtime", "cnam", "billing_type", "carrier"),
+    }
+
+    # Minimize possibility of code injection
+    if "method" in kwargs:
+        if not isinstance(kwargs["method"], str):
+            raise ValueError("method needs to be a str")
+        else:
+            if kwargs["method"] not in required_fields:
+                raise ValueError("This method is not allowed")
+        method = kwargs.pop("method")
+    else:
+        raise ValueError("A method needs to be specified")
+
+    if "did" in kwargs:
+        if not isinstance(kwargs["did"], int):
+            raise ValueError("DID to be Ordered needs to be an int (Example: 5552223333)")
+        parameters["did"] = kwargs.pop("did")
+
+    if "digits" in kwargs:
+        if not isinstance(kwargs["digits"], int):
+            raise ValueError("Three Digits for the new Virtual DID needs to be an int (Example: 001)")
+        parameters["digits"] = kwargs.pop("digits")
+
+    if "location_id" in kwargs:
+        if not isinstance(kwargs["location_id"], int):
+            raise ValueError("ID for a specific International Location needs to be an int (Values from dids.get_dids_international_geographic)")
+        parameters["location_id"] = kwargs.pop("location_id")
+
+    if "quantity" in kwargs:
+        if not isinstance(kwargs["quantity"], int):
+            raise ValueError("Number of dids to be purchased needs to be an int (Example: 2)")
+        parameters["quantity"] = kwargs.pop("quantity")
+
+    if "state" in kwargs:
+        if not isinstance(kwargs["state"], str):
+            raise ValueError("USA State needs to be a str (values from dids.get_states)")
+        parameters["state"] = kwargs.pop("state")
+
+    if "province" in kwargs:
+        if not isinstance(kwargs["province"], str):
+            raise ValueError("Canadian Province needs to be a str (values from dids.get_provinces)")
+        parameters["province"] = kwargs.pop("province")
+
+    if "ratecenter" in kwargs:
+        if not isinstance(kwargs["ratecenter"], str):
+            if method == "backOrderDIDUSA":
+                raise ValueError("USA Ratecenter needs to be a str (Values from dids.get_rate_centers_usa)")
+            else:
+                raise ValueError("Canada Ratecenter needs to be a str (Values from dids.get_rate_centers_can)")
+        parameters["ratecenter"] = kwargs.pop("ratecenter")
+
+    if "routing" in kwargs:
+        if not isinstance(kwargs["routing"], str):
+            raise ValueError("Main Routing for the DID needs to be an int (Values from accounts.get_routes)")
+        parameters["routing"] = kwargs.pop("routing")
+
+    if "failover_busy" in kwargs:
+        if not isinstance(kwargs["failover_busy"], str):
+            raise ValueError("Busy Routing for the DID needs to be a str")
+        parameters["failover_busy"] = kwargs.pop("failover_busy")
+
+    if "failover_unreachable" in kwargs:
+        if not isinstance(kwargs["failover_unreachable"], str):
+            raise ValueError("Unreachable Routing for the DID needs to be a str")
+        parameters["failover_unreachable"] = kwargs.pop("failover_unreachable")
+
+    if "failover_noanswer" in kwargs:
+        if not isinstance(kwargs["failover_noanswer"], str):
+            raise ValueError("NoAnswer Routing for the DID")
+        parameters["failover_noanswer"] = kwargs.pop("failover_noanswer")
+
+    if "voicemail" in kwargs:
+        if not isinstance(kwargs["voicemail"], int):
+            raise ValueError("Voicemail for the DID needs to be an int (Example: 101)")
+        parameters["voicemail"] = kwargs.pop("voicemail")
+
+    if "pop" in kwargs:
+        if not isinstance(kwargs["pop"], int):
+            raise ValueError("Point of pop for the DID needs to be an int (Example: 5)")
+        parameters["pop"] = kwargs.pop("pop")
+
+    if "dialtime" in kwargs:
+        if not isinstance(kwargs["dialtime"], int):
+            raise ValueError("Dial Time Out for the DID needs to be an int (Example: 60 -> in seconds)")
+        parameters["dialtime"] = kwargs.pop("dialtime")
+
+    if "cnam" in kwargs:
+        if not isinstance(kwargs["cnam"], bool):
+            raise ValueError("CNAM for the DID needs to be a bool (Boolean: True/False)")
+        parameters["cnam"] = convert_bool(kwargs.pop("cnam"))
+
+    if "carrier" in kwargs:
+        if not isinstance(kwargs["carrier"], int):
+            raise ValueError("Carrier for the DID needs to be a bool (Values from dids.get_carriers)")
+        parameters["carrier"] = convert_bool(kwargs.pop("carrier"))
+
+    if "callerid_prefix" in kwargs:
+        if not isinstance(kwargs["callerid_prefix"], str):
+            raise ValueError("Caller ID Prefix for the DID needs to be a str")
+        parameters["callerid_prefix"] = kwargs.pop("callerid_prefix")
+
+    if "note" in kwargs:
+        if not isinstance(kwargs["note"], str):
+            raise ValueError("Note for the DID needs to be a str")
+        parameters["note"] = kwargs.pop("note")
+
+    if "billing_type" in kwargs:
+        if not isinstance(kwargs["billing_type"], int):
+            raise ValueError("Billing type for the DID needs to be an int (1 = Per Minute, 2 = Flat)")
+        parameters["billing_type"] = kwargs.pop("billing_type")
+
+    if "account" in kwargs:
+        if not isinstance(kwargs["account"], str):
+            raise ValueError("Reseller Sub Account needs to be a str (Example: '100001_VoIP')")
+        parameters["account"] = kwargs.pop("account")
+
+    if "monthly" in kwargs:
+        if not isinstance(kwargs["monthly"], float):
+            raise ValueError("Montly Fee for Reseller Client needs to be a float (Example: 3.50)")
+        parameters["monthly"] = kwargs.pop("monthly")
+
+    if "setup" in kwargs:
+        if not isinstance(kwargs["setup"], float):
+            raise ValueError("Setup Fee for Reseller Client needs to be a float (Example: 1.99)")
+        parameters["setup"] = kwargs.pop("setup")
+
+    if "minute" in kwargs:
+        if not isinstance(kwargs["minute"], float):
+            raise ValueError("Minute Rate for Reseller Client needs to be a float (Example: 0.03)")
+        parameters["minute"] = kwargs.pop("minute")
+
+    if "test" in kwargs:
+        if not isinstance(kwargs["test"], bool):
+            raise ValueError("Test needs to be a bool (True/False)")
+        parameters["test"] = convert_bool(kwargs.pop("test"))
+
+    if len(kwargs) > 0:
+        not_allowed_parameters = ""
+        for key, value in kwargs.items():
+            not_allowed_parameters += key + " "
+        raise ValueError("Parameters not allowed: {}".format(not_allowed_parameters))
+
+    # Verify again if all required fields present
+    for field in required_fields[method]:
+        if field not in parameters:
+            raise ValueError("The parameter {} is required".format(field))
+
+    return method, parameters
+
+
 ERROR_CODES = {
     "account_with_dids": "The Account has DIDs assigned to it.",
     "api_not_enabled": "API has not been enabled or has been disabled",

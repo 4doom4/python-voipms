@@ -6,7 +6,7 @@ Documentation: https://voip.ms/m/apidocs.php
 """
 from voipms.baseapi import BaseApi
 from voipms.entities.accountscreate import AccountsCreate
-from voipms.entities.accountsdel import AccountsDelete
+from voipms.entities.accountsdelete import AccountsDelete
 from voipms.entities.accountsget import AccountsGet
 from voipms.entities.accountsset import AccountsSet
 

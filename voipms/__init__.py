@@ -25,10 +25,36 @@ from voipms.entities.clientsget import ClientsGet
 from voipms.entities.clientsset import ClientsSet
 # DIDs
 from voipms.entities.dids import Dids
+from voipms.entities.didsback_order import DidsBackOrder
+from voipms.entities.didscancel import DidsCancel
+from voipms.entities.didsconnect import DidsConnect
+from voipms.entities.didsdelete import DidsDelete
+from voipms.entities.didsget import DidsGet
+from voipms.entities.didsorder import DidsOrder
+from voipms.entities.didssearch import DidsSearch
+from voipms.entities.didssend import DidsSend
+from voipms.entities.didsset import DidsSet
+from voipms.entities.didsunconnect import DidsUnconnect
 # Fax
 from voipms.entities.fax import Fax
+from voipms.entities.faxcancel import FaxCancel
+from voipms.entities.faxdelete import FaxDelete
+from voipms.entities.faxget import FaxGet
+from voipms.entities.faxmail import FaxMail
+from voipms.entities.faxmove import FaxMove
+from voipms.entities.faxorder import FaxOrder
+from voipms.entities.faxsearch import FaxSearch
+from voipms.entities.faxsend import FaxSend
+from voipms.entities.faxset import FaxSet
 # Voicemail
 from voipms.entities.voicemail import Voicemail
+from voipms.entities.voicemailcreate import VoicemailCreate
+from voipms.entities.voicemaildelete import VoicemailDelete
+from voipms.entities.voicemailget import VoicemailGet
+from voipms.entities.voicemailmark import VoicemailMark
+from voipms.entities.voicemailmove import VoicemailMove
+from voipms.entities.voicemailsend import VoicemailSend
+from voipms.entities.voicemailset import VoicemailSet
 
 
 class VoipMs(VoipMsClient):
@@ -60,5 +86,33 @@ class VoipMs(VoipMsClient):
         self.clients.set = ClientsSet(self)
         # Dids
         self.dids = Dids(self)
+        self.dids.back_order = DidsBackOrder(self)
+        self.dids.cancel = DidsCancel(self)
+        self.dids.connect = DidsConnect(self)
+        self.dids.delete = DidsDelete(self)
+        self.dids.get = DidsGet(self)
+        self.dids.order = DidsOrder(self)
+        self.dids.search = DidsSearch(self)
+        self.dids.send = DidsSend(self)
+        self.dids.set = DidsSet(self)
+        self.dids.unconnect = DidsUnconnect(self)
+        # Fax
         self.fax = Fax(self)
+        self.fax.cancel = FaxCancel(self)
+        self.fax.delete = FaxDelete(self)
+        self.fax.get = FaxGet(self)
+        self.fax.mail = FaxMail(self)
+        self.fax.move = FaxMove(self)
+        self.fax.order = FaxOrder(self)
+        self.fax.search = FaxSearch(self)
+        self.fax.send = FaxSend(self)
+        self.fax.set = FaxSet(self)
+        # Voicemail
         self.voicemail = Voicemail(self)
+        self.create = VoicemailCreate(self)
+        self.delete = VoicemailDelete(self)
+        self.get = VoicemailGet(self)
+        self.mark = VoicemailMark(self)
+        self.move = VoicemailMove(self)
+        self.send = VoicemailSend(self)
+        self.set = VoicemailSet(self)
