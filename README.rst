@@ -19,7 +19,7 @@ simply run
 History
 ~~~~~~~
 
--  Version 0.2 from 05.04.2017
+-  Version 0.2.3 from 05.04.2017
 
    -  First alpha version of this API
    -  Up to date with features listed through 20.02.2017
@@ -542,3 +542,4 @@ code layout!
 .. |MIT license| image:: https://img.shields.io/badge/licence-MIT-blue.svg
 .. |Version| image:: https://img.shields.io/badge/version-0.2-orange.svg
 .. |Unstable| image:: https://img.shields.io/badge/status-unstable-red.svg
+

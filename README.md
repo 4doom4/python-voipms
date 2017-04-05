@@ -18,7 +18,7 @@ it, simply run
 
 ### History
 
-- Version 0.2 from 05.04.2017
+- Version 0.2.3 from 05.04.2017
     - First alpha version of this API 
     - Up to date with features listed through 20.02.2017
     - TODO:
