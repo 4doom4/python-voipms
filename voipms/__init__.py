@@ -130,4 +130,4 @@ class VoipMs(VoipMsClient):
         self.voicemail.mark = VoicemailMark(self)
         self.voicemail.move = VoicemailMove(self)
         self.voicemail.send = VoicemailSend(self)
-        self.set = VoicemailSet(self)
+        self.voicemail.set = VoicemailSet(self)
