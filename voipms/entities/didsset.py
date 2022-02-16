@@ -300,7 +300,7 @@ class DidsSet(BaseApi):
             "billing_type": billing_type,
         })
 
-        return self._order(**kwargs)
+        return self._voipms_client._get(method, kwargs)
 
     def did_pop(self, did, pop):
         """
