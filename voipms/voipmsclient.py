@@ -47,6 +47,12 @@ class VoipMsClient(object):
         :type parameters: :py:class:`str`
         :returns: The JSON output from the API
         """
+
+        # The `method` param can be passed in as a tuple containing both 
+        # params - unpack in that case.
+        if isinstance(method, tuple):
+            method, parameters = method
+
         query_set = {
             "method": method
         }

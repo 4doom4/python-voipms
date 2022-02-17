@@ -221,7 +221,7 @@ class DidsSet(BaseApi):
 
         return self._voipms_client._get(method, parameters)
 
-    def did_info(self, did, routing, pop, dialtime, cnam, billing_type, **kwargs):
+    def did_info(self, did, routing, pop, dialtime, cnam, **kwargs):
         """
         Updates the information from a specific DID
 
@@ -235,11 +235,11 @@ class DidsSet(BaseApi):
         :type dialtime: :py:class:`int`
         :param cnam: [Required] CNAM for the DID (Boolean: True/False)
         :type cnam: :py:class:`bool`
-        :param billing_type: [Required] Billing type for the DID (1 = Per Minute, 2 = Flat)
-        :type billing_type: :py:class:`int`
         :param **kwargs: All optional parameters
         :type **kwargs: :py:class:`dict`
 
+        :param billing_type: Billing type for the DID (1 = Per Minute, 2 = Flat)
+        :type billing_type: :py:class:`int`
         :param failover_busy: Busy Routing for the DID
         :type failover_busy: :py:class:`str`
         :param failover_unreachable: Unreachable Routing for the DID
@@ -297,10 +297,9 @@ class DidsSet(BaseApi):
             "pop": pop,
             "dialtime": dialtime,
             "cnam": cnam,
-            "billing_type": billing_type,
         })
 
-        return self._order(**kwargs)
+        return self._voipms_client._get(method, kwargs)
 
     def did_pop(self, did, pop):
         """
