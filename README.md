@@ -400,6 +400,18 @@ individual methods available after.
     client.voicemail.set.voicemail(mailbox, name, password, skip_password, attach_message, delete_message,
                                    say_time, timezone, say_callerid, play_instructions, language, **kwargs)
 
+## Contributing
+ 
+* To run tests:
+    * Install Python 3.7 via [pyenv](https://github.com/pyenv/pyenv)
+    * Set up [pipenv](https://pipenv.pypa.io/en/latest/)
+    * Create a `.env` file in the root with credentials for a VoIP.ms account:
+        ```
+        VOIPMS_USERNAME=
+        VOIPMS_PASSWORD=
+        ```
+    * Run `make init` and `make test`
+
 ## Support
 
 If you are having issues, please let us know or submit a pull request.
