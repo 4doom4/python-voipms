@@ -1069,6 +1069,10 @@ class DidsSet(BaseApi):
         :type sipuri: :py:class:`int`
         :param description: Description for the SIP URI
         :type description: :py:class:`str`
+        :param callerid_e164: Enable to make the CallerID E164 compliant
+        :type callerid_e164: :py:class:`bool`
+        :param callerid_override: Override CallerID number when using this SIP URI
+        :type callerid_override: :py:class:`str`
 
         :returns: :py:class:`dict`
         """
@@ -1090,6 +1094,16 @@ class DidsSet(BaseApi):
             if not isinstance(kwargs["description"], str):
                 raise ValueError("Description for the SIP URI needs to be a str")
             parameters["description"] = kwargs.pop("description")
+
+        if "callerid_e164" in kwargs:
+            if not isinstance(kwargs["callerid_e164"], bool):
+                raise ValueError("CallerID E164 needs to be a bool")
+            parameters["callerid_e164"] = convert_bool(kwargs.pop("callerid_e164"))
+
+        if "callerid_override" in kwargs:
+            if not isinstance(kwargs["callerid_override"], str):
+                raise ValueError("CallerID Override for the SIP URI needs to be a str")
+            parameters["callerid_override"] = kwargs.pop("callerid_override")
 
         if len(kwargs) > 0:
             not_allowed_parameters = ""
