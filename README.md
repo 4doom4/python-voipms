@@ -285,7 +285,7 @@ individual methods available after.
     client.dids.set.callback(description, number, delay_before, response_timeout, digit_timeout, **kwargs)
     client.dids.set.caller_id_filtering(callerid, did, routing, **kwargs)
     client.dids.set.did_billing_type(did, billing_type)
-    client.dids.set.did_info(did, routing, pop, dialtime, cnam, billing_type, **kwargs)
+    client.dids.set.did_info(did, routing, pop, dialtime, cnam, **kwargs)
     client.dids.set.did_pop(did, pop)
     client.dids.set.did_routing(did, routing)
     client.dids.set.did_voicemail(did, voicemail=None)
