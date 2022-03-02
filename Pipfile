@@ -9,6 +9,7 @@ voipms = {editable = true, path = "."}
 [dev-packages]
 pytest = "*"
 autopep8 = "*"
+build = "*"
 
 [requires]
 python_version = "3.7"
