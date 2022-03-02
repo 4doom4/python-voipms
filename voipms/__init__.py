@@ -12,11 +12,11 @@ __description__ = "Complete REST API for the voip.ms service"
 __uri__ = "https://github.com/4doom4/python-voipms"
 __doc__ = __description__ + " <" + __uri__ + ">"
 
-__author__ = "Maximilian Ebert"
+__author__ = "Maximilian Ebert and Andrew Langemann"
 __email__ = "max.ebert@me.com"
 
 __license__ = "MIT"
-__copyright__ = "Copyright (c) 2017 Maximilian Ebert"
+__copyright__ = "Copyright (c) 2022"
 
 
 # API Client
