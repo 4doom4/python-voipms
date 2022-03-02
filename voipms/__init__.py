@@ -6,7 +6,7 @@ Documentation at https://voip.ms/m/apidocs.php
 """
 
 # META
-__version__ = "0.2.3"
+__version__ = "0.2.4"
 __title__ = "voipms"
 __description__ = "Complete REST API for the voip.ms service"
 __uri__ = "https://github.com/4doom4/python-voipms"

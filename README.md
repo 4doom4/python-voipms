@@ -1,5 +1,5 @@
 ![MIT license](https://img.shields.io/badge/licence-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-0.2-orange.svg)
+![Version](https://img.shields.io/badge/version-0.2.4-orange.svg)
 ![Unstable](https://img.shields.io/badge/status-unstable-red.svg)
 
 # python-voipms
@@ -18,14 +18,20 @@ it, simply run
 
 ### History
 
+- Version 0.2.4 from 02.03.2022
+    - Add support for setting `callerid_e164` and `callerid_override` when calling `dids.set.sip_uri`
+    - Fix bugs:
+        - Fix `voicemail` commands
+        - Fix `dids.order` commands
+        - Tweak `dids.set.did_info` to longer require the `billing_type` param
 - Version 0.2.3 from 05.04.2017
     - First alpha version of this API 
     - Up to date with features listed through 20.02.2017
-    - TODO:
-        - Code cleanup
-        - Cleanup of inner references to functions
-        - Testing all functions
-        - More validations of input and streamlining how to input dids (only digits or also dids with seperators)
+- TODO:
+    - Code cleanup
+    - Cleanup of inner references to functions
+    - Testing all functions
+    - More validations of input and streamlining how to input dids (only digits or also dids with seperators)
 
 ### Initialization
 
