@@ -1,5 +1,5 @@
 ![MIT license](https://img.shields.io/badge/licence-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-0.2.4-orange.svg)
+![Version](https://img.shields.io/badge/version-0.2.5-orange.svg)
 ![Unstable](https://img.shields.io/badge/status-unstable-red.svg)
 
 # python-voipms
@@ -18,6 +18,8 @@ it, simply run
 
 ### History
 
+- Version 0.2.5 from 25.03.2022
+    - Restore `billing_type` param in `dids.set.did_info` since that is now required by the voip.ms REST API
 - Version 0.2.4 from 02.03.2022
     - Add support for setting `callerid_e164` and `callerid_override` when calling `dids.set.sip_uri`
     - Fix bugs:
