@@ -419,6 +419,15 @@ individual methods available after.
         VOIPMS_PASSWORD=
         ```
     * Run `make init` and `make test`
+* To deploy a new version:
+    * Add release notes to README.md
+    * Increment version
+    * Commit
+    * Tag
+    * Push with tags
+    * `make clean`
+    * `make build`
+    * `make deploy`
 
 ## Support
 

@@ -3,6 +3,9 @@
 init:
 	pipenv install --dev
 
+clean:
+	rm -r dist/*
+
 build:
 	pipenv run python -m build
 
