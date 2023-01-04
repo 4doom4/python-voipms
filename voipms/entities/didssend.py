@@ -112,7 +112,7 @@ class DidsSend(BaseApi):
             "did": did,
             "dst": dst,
             "message": message,
-            "media1": media1,
+            "media": media1,
             "media2": media2,
         }
 
