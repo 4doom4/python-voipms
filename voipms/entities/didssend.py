@@ -5,7 +5,23 @@ The Dids API endpoint send
 Documentation: https://voip.ms/m/apidocs.php
 """
 from voipms.baseapi import BaseApi
+import validators
+from validators import ValidationFailure
+import base64
 
+def isBase64(s):
+    try:
+        return base64.b64encode(base64.b64decode(s)) == s
+    except Exception:
+        return False
+    
+def valid_url(url_string: str) -> bool:
+    result = validators.url(url_string)
+
+    if isinstance(result, ValidationFailure):
+        return False
+
+    return result
 
 class DidsSend(BaseApi):
     """
@@ -53,9 +69,9 @@ class DidsSend(BaseApi):
 
         return self._voipms_client._get(method, parameters)
 
-    def mms(self, did, dst, message):
+    def mms(self, did, dst, message, media1=None, media2=None):
         """
-        Send a SMS message to a Destination Number
+        Send a MMS message to a Destination Number
 
         :param did: [Required] DID Numbers which is sending the message (Example: 5551234567)
         :type did: :py:class:`int`
@@ -63,6 +79,10 @@ class DidsSend(BaseApi):
         :type dst: :py:class:`int`
         :param message: [Required] Message to be sent (Example: 'hello John Smith' max chars: 1600)
         :type message: :py:class:`str`
+        :param media1: [Optional]  Url to media file (Example: 'https://voip.ms/themes/voipms/assets/img/talent.jpg?v=2' 
+        :type media1: :py:class:`str`
+        :param media2: [Optional] Base 64 image encode (Example: data:image/png;base64,iVBORw0KGgoAAAANSUh...)
+        :type media2: :py:class:`str`
 
         :returns: :py:class:`dict`
         """
@@ -76,6 +96,12 @@ class DidsSend(BaseApi):
 
         if not isinstance(message, str):
             raise ValueError("Message to be sent needs to be a str (Example: 'hello John Smith' max chars: 1600)")
+            
+        if not valid_url(media1):
+            raise ValueError("Media1 to be sent needs to be a valid url to media file (Example: 'https://voip.ms/themes/voipms/assets/img/talent.jpg?v=2' ")
+            
+        if not isBase64(media2):
+            raise ValueError("Media2 to be sent needs to be a base 64 image encode (Example: data:image/png;base64,iVBORw0KGgoAAAANSUh...)")
         else:
             if len(message) > 1600:
                 raise ValueError("Message to be sent can only have 1600 chars")
@@ -84,6 +110,8 @@ class DidsSend(BaseApi):
             "did": did,
             "dst": dst,
             "message": message,
+            "media1": media1,
+            "media2": media2,
         }
 
         return self._voipms_client._get(method, parameters)
