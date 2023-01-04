@@ -97,11 +97,13 @@ class DidsSend(BaseApi):
         if not isinstance(message, str):
             raise ValueError("Message to be sent needs to be a str (Example: 'hello John Smith' max chars: 1600)")
             
-        if not valid_url(media1):
-            raise ValueError("Media1 to be sent needs to be a valid url to media file (Example: 'https://voip.ms/themes/voipms/assets/img/talent.jpg?v=2' ")
+        if media1:
+            if not valid_url(media1):
+                raise ValueError("Media1 to be sent needs to be a valid url to media file (Example: 'https://voip.ms/themes/voipms/assets/img/talent.jpg?v=2' ")
             
-        if not isBase64(media2):
-            raise ValueError("Media2 to be sent needs to be a base 64 image encode (Example: data:image/png;base64,iVBORw0KGgoAAAANSUh...)")
+        if media2:
+            if not isBase64(media2):
+                raise ValueError("Media2 to be sent needs to be a base 64 image encode (Example: data:image/png;base64,iVBORw0KGgoAAAANSUh...)")
         else:
             if len(message) > 1600:
                 raise ValueError("Message to be sent can only have 1600 chars")
