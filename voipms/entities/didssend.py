@@ -108,12 +108,25 @@ class DidsSend(BaseApi):
             if len(message) > 1600:
                 raise ValueError("Message to be sent can only have 1600 chars")
 
-        parameters = {
-            "did": did,
-            "dst": dst,
-            "message": message,
-            "media": media1,
-            "media2": media2,
-        }
+        if media1:
+            parameters = {
+                "did": did,
+                "dst": dst,
+                "message": message,
+                "media1":  media1,
+            }
+        elif media2:
+            parameters = {
+                "did": did,
+                "dst": dst,
+                "message": message,
+                "media2": media2,
+            }
+        else:
+            parameters = {
+                "did": did,
+                "dst": dst,
+                "message": message,
+            }
 
         return self._voipms_client._get(method, parameters)
