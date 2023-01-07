@@ -3,6 +3,7 @@
 ![Unstable](https://img.shields.io/badge/status-unstable-red.svg)
 
 # python-voipms
+*Added support for sending MMS messages
 
 Python client for v1 of voip.ms REST API using requests >=
 2.7.0.
@@ -287,6 +288,7 @@ individual methods available after.
 #### Send
 
     client.dids.send.sms(did, dst, message)
+    client.dids.send.mms(did, dst, message)
 
 #### Set
  

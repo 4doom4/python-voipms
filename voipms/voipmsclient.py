@@ -1,4 +1,4 @@
-import requests
+import requests, json
 
 # Handle library reorganisation Python 2 > Python 3.
 try:
@@ -24,6 +24,9 @@ class VoipMsClient(object):
         """
         super(VoipMsClient, self).__init__()
         self.base_url = 'https://voip.ms/api/v1/rest.php?api_username={}&api_password={}&'.format(voip_user, voip_api_password)
+        self.post_url = 'https://voip.ms/api/v1/rest.php'
+        self.voip_user = voip_user
+        self.voip_api_password = voip_api_password
 
     def _error_code(self, status):
         """
@@ -58,10 +61,42 @@ class VoipMsClient(object):
         }
         if parameters:
             query_set.update(parameters)
-        url = self.base_url + urlencode(query_set)
+        url = self.base_url + urlencode(query_set).replace('%2F', '/').replace('%3A', ':').replace('%0D%0A', '+').replace('%0A', '+').replace('%21', '+')
 
         try:
             r = requests.get(url)
+        except requests.exceptions.RequestException as e:
+            raise e
+        else:
+            r.raise_for_status()
+            if r.status_code == 204:
+                return None
+            r_json = r.json()
+            status = r_json["status"]
+            if status != "success":
+                self._error_code(status)
+            return r_json
+
+    def _post(self, method, parameters=None):
+        """
+        Handle authenticated POST requests
+
+        :param method: The method call for the API
+        :type method: :py:class:`str`
+        :param parameters: The POST parameters
+        :type parameters: :py:class:`str`
+        :returns: The JSON output from the API
+        """
+        url = self.post_url
+        headers = {
+            'api_username' : self.voip_user,
+            'api_password' : self.voip_api_password,
+            "method" : method
+        }
+        parameters.update(headers)
+
+        try:
+            r = requests.post(url, data=parameters)
         except requests.exceptions.RequestException as e:
             raise e
         else:
