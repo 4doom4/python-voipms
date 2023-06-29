@@ -55,7 +55,7 @@ class VoipMsClient(object):
         }
         if parameters:
             query_set.update(parameters)
-        url = self.base_url + urlencode(query_set).replace('%2F', '/').replace('%3A', ':').replace('%0D%0A', '+').replace('%0A', '+').replace('%21', '+')
+        url = self.base_url + urlencode(query_set, safe='@:').replace('%2F', '/').replace('%3A', ':').replace('%0D%0A', '+').replace('%0A', '+').replace('%21', '+')
 
         try:
             r = requests.get(url)
