@@ -1183,9 +1183,10 @@ class DidsSet(BaseApi):
             parameters["sms_forward_enable"] = convert_bool(kwargs.pop("sms_forward_enable"))
 
         if "sms_forward" in kwargs:
+            sms_forward = kwargs.pop("sms_forward")
             if not isinstance(kwargs["sms_forward"], int):
                 raise ValueError("SMS Messages received by your DID will be forwarded to the phone number provided needs to be int (Example: 5551234567)")
-            parameters["sms_forward"] = convert_bool(kwargs.pop("sms_forward"))
+            parameters["sms_forward"] = sms_forward
 
         if "url_callback_enable" in kwargs:
             if not isinstance(kwargs["url_callback_enable"], bool):
@@ -1193,9 +1194,10 @@ class DidsSet(BaseApi):
             parameters["url_callback_enable"] = convert_bool(kwargs.pop("url_callback_enable"))
 
         if "url_callback" in kwargs:
+            url_callback = kwargs.pop("url_callback")
             if not isinstance(kwargs["url_callback"], str):
                 raise ValueError("SMS Messages received by your DID will be send a GET request to the URL callback provided needs to be a str")
-            parameters["url_callback"] = convert_bool(kwargs.pop("url_callback"))
+            parameters["url_callback"] = url_callback
 
         if "url_callback_retry" in kwargs:
             if not isinstance(kwargs["url_callback_retry"], bool):
