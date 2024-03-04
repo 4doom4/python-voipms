@@ -5,6 +5,7 @@ The Accounts API endpoint
 Documentation: https://voip.ms/m/apidocs.php
 """
 from voipms.baseapi import BaseApi
+from voipms.entities.accountsadd import AccountsAdd
 from voipms.entities.accountscreate import AccountsCreate
 from voipms.entities.accountsdelete import AccountsDelete
 from voipms.entities.accountsget import AccountsGet
@@ -18,6 +19,7 @@ class Accounts(BaseApi):
         """
         super(Accounts, self).__init__(*args, **kwargs)
         self.endoint = 'accounts'
+        self.add = AccountsAdd(self)
         self.create = AccountsCreate(self)
         self.delete = AccountsDelete(self)
         self.get = AccountsGet(self)

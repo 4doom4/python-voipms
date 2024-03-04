@@ -18,21 +18,34 @@ class AccountsDelete(BaseApi):
         super(AccountsDelete, self).__init__(*args, **kwargs)
         self.endpoint = 'accounts'
 
+    def music_on_hold(self, music_on_hold):
+        """
+        Deletes a specific custom Music on Hold
+
+        :param music_on_hold: [Required] Music on Hold Name (Values from getMusicOnHold)
+        :type music_on_hold: :py:class:`str`
+        :returns: :py:class:`dict`
+        """
+        method = "delMusicOnHold"
+
+        parameters = {}
+        if not isinstance(music_on_hold, str):
+            raise ValueError("[Required] Music on Hold Name (Values from getMusicOnHold)")
+        parameters["music_on_hold"] = music_on_hold
+        return self._voipms_client._get(method, parameters)
+
     def sub_account(self, account_id):
         """
-        Retrieves a list of Allowed Codecs if no additional parameter is provided
+        Deletes a specific Sub Account from your Account
 
-        - Retrieves a specific Allowed Codec if a codec code is provided
-
-        :param auth_type: Code for a specific Codec (Example: 'ulaw;g729;gsm')
-        :type auth_type: :py:class:`str`
+        :param account_id: [Required] ID for a specific Sub Account (Example: 99785)
+        :type account_id: :py:class:`str`
         :returns: :py:class:`dict`
         """
         method = "delSubAccount"
 
         parameters = {}
-        if account_id:
-            if not isinstance(account_id, int):
-                raise ValueError("ID for a specific Sub Account as int (Example: 99785) ")
-            parameters["id"] = account_id
+        if not isinstance(account_id, int):
+            raise ValueError("ID for a specific Sub Account as int (Example: 99785) ")
+        parameters["id"] = account_id
         return self._voipms_client._get(method, parameters)

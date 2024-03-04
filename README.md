@@ -19,6 +19,10 @@ it, simply run
 
 ### History
 
+- Version 0.2.6 from 03.03.2024
+    - Fill in all missing documented methods
+    - Fix bugs:
+        - parameter collisions with keywords, eg. `filter`, `from`, `range`, `type`, `zip` given non-conflicting names, eg. `filter_id`, `date_from`, `time_range`, `search_type`, `zip_code`
 - Version 0.2.5 from 25.03.2022
     - Restore `billing_type` param in `dids.set.did_info` since that is now required by the voip.ms REST API
 - Version 0.2.4 from 02.03.2022

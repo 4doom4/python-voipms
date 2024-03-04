@@ -56,6 +56,63 @@ class DidsDelete(BaseApi):
 
         return self._voipms_client._get(method, parameters)
 
+    def call_hunting(self, callhunting):
+        """
+        Deletes a specific Caller Hunting from your Account
+
+        :param callhunting: [Required] ID for a specific Call Hunting (Example: 323)
+        :type callhunting: :py:class:`int`
+
+        :returns: :py:class:`dict`
+        """
+        method = "delCallHunting"
+
+        if not isinstance(callhunting, str):
+            raise ValueError("[Required] ID for a specific Call Hunting (Example: 323)")
+        parameters = {
+            "callhunting": callhunting
+        }
+
+        return self._voipms_client._get(method, parameters)
+
+    def conference(self, conference):
+        """
+        Deletes a specific Conference from your Account
+
+        :param conference: [Required] ID for a specific Conference (Example: 737)
+        :type conference: :py:class:`int`
+
+        :returns: :py:class:`dict`
+        """
+        method = "delConference"
+
+        if not isinstance(conference, str):
+            raise ValueError("[Required] ID for a specific Conference (Example: 737)")
+        parameters = {
+            "conference": conference
+        }
+
+        return self._voipms_client._get(method, parameters)
+
+    def conference_member(self, member):
+        """
+        Deletes a specific Member profile from your Account
+
+        :param member: [Required] ID for a specific Member Profile (Example: 737)
+        :type member: :py:class:`int`
+
+        :returns: :py:class:`dict`
+        """
+        method = "delConferenceMember"
+
+        if not isinstance(member, str):
+            raise ValueError("[Required] ID for a specific Member Profile (Example: 737)")
+        parameters = {
+            "member": member
+        }
+
+        return self._voipms_client._get(method, parameters)
+
     def client(self, client):
         """
         Deletes a specific reseller client from your Account
@@ -90,25 +147,6 @@ class DidsDelete(BaseApi):
             raise ValueError("ID for a specific DISA needs to be an int (Example: 19183)")
         parameters = {
             "disa": disa
-        }
-
-        return self._voipms_client._get(method, parameters)
-
-    def sms(self, sms_id):
-        """
-        Deletes a specific SMS from your Account
-
-        :param sms_id: [Required] ID for a specific SMS (Example: 1918)
-        :type sms_id: :py:class:`int`
-
-        :returns: :py:class:`dict`
-        """
-        method = "deleteSMS"
-
-        if not isinstance(sms_id, int):
-            raise ValueError("ID for a specific SMS needs to be an int (Example: 1918)")
-        parameters = {
-            "id": sms_id
         }
 
         return self._voipms_client._get(method, parameters)
@@ -151,6 +189,25 @@ class DidsDelete(BaseApi):
 
         return self._voipms_client._get(method, parameters)
 
+    def mms(self, mms_id):
+        """
+        Deletes a specific MMS from your Account
+
+        :param mms_id: [Required] ID for a specific MMS (Example: 1918)
+        :type mms_id: :py:class:`int`
+
+        :returns: :py:class:`dict`
+        """
+        method = "deleteMMS"
+
+        if not isinstance(mms_id, int):
+            raise ValueError("ID for a specific MMS needs to be an int (Example: 1918)")
+        parameters = {
+            "id": mms_id
+        }
+
+        return self._voipms_client._get(method, parameters)
+
     def phonebook(self, phonebook):
         """
         Deletes a specific Phonebook from your Account
@@ -166,6 +223,25 @@ class DidsDelete(BaseApi):
             raise ValueError("ID for a specific Phonebook needs to be an int (Example: 19183)")
         parameters = {
             "phonebook": phonebook
+        }
+
+        return self._voipms_client._get(method, parameters)
+
+    def phonebook_group(self, group):
+        """
+        Deletes a specific Phonebook group from your Account
+
+        :param group: [Required] ID for a specific Phonebook group
+        :type group: :py:class:`int`
+
+        :returns: :py:class:`dict`
+        """
+        method = "delPhonebookGroup"
+
+        if not isinstance(group, int):
+            raise ValueError("[Required] ID for a specific Phonebook group")
+        parameters = {
+            "group": group
         }
 
         return self._voipms_client._get(method, parameters)
@@ -227,6 +303,31 @@ class DidsDelete(BaseApi):
 
         return self._voipms_client._get(method, parameters)
 
+    def sequences(self, sequence, client=None):
+        """
+        Deletes a specific Sequence from your Account
+
+        :param sequence: [Required] ID for a specific Sequence (Example: 5356)
+        :type sequence: :py:class:`int`
+        :param client: [Optional] ID for a specific Reseller Client (Example: 561115)
+        :type client: :py:class:`int`
+
+        :returns: :py:class:`dict`
+        """
+        method = "delSequences"
+
+        parameters = {}
+        if not isinstance(sequence, str):
+            raise ValueError("[Required] ID for a specific Sequence (Example: 737)")
+        parameters["sequence"] = sequence
+
+        if client:
+            if not isinstance(sequence, str):
+                raise ValueError("[Required] ID for a specific Sequence (Example: 737)")
+            parameters["client"] = client
+
+        return self._voipms_client._get(method, parameters)
+
     def sip_uri(self, sipuri):
         """
         Deletes a specific SIP URI from your Account
@@ -242,6 +343,25 @@ class DidsDelete(BaseApi):
             raise ValueError("ID for a specific SIP URI needs to be an int (Example: 19183)")
         parameters = {
             "sipuri": sipuri
+        }
+
+        return self._voipms_client._get(method, parameters)
+
+    def sms(self, sms_id):
+        """
+        Deletes a specific SMS from your Account
+
+        :param sms_id: [Required] ID for a specific SMS (Example: 1918)
+        :type sms_id: :py:class:`int`
+
+        :returns: :py:class:`dict`
+        """
+        method = "deleteSMS"
+
+        if not isinstance(sms_id, int):
+            raise ValueError("ID for a specific SMS needs to be an int (Example: 1918)")
+        parameters = {
+            "id": sms_id
         }
 
         return self._voipms_client._get(method, parameters)
