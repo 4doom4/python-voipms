@@ -594,12 +594,12 @@ class DidsGet(BaseApi):
 
         :param sms: ID for a specific SMS (Example: 5853)
         :type sms: :py:class:`int`
-        :param from: Start Date for Filtering SMSs (Example: '2014-03-30')
+        :param date_from: Start Date for Filtering SMSs (Example: '2014-03-30')
                      - Default value: Today
-        :type from: :py:class:`str`
-        :param to: End Date for Filtering SMSs (Example: '2014-03-30')
+        :type date_from: :py:class:`str`
+        :param date_to: End Date for Filtering SMSs (Example: '2014-03-30')
                      - Default value: Today
-        :type to: :py:class:`str`
+        :type date_to: :py:class:`str`
         :param type: Filter SMSs by Type (Boolean: True = received / False = sent)
         :type type: :py:class:`bool`
         :param did: DID number for Filtering SMSs (Example: 5551234567)
@@ -623,17 +623,17 @@ class DidsGet(BaseApi):
                 raise ValueError("ID for a specific SMS needs to be an int (Example: 5853)")
             parameters["sms"] = kwargs.pop("sms")
 
-        if "from" in kwargs:
-            if not isinstance(kwargs["from"], str):
+        if "date_from" in kwargs:
+            if not isinstance(kwargs["date_from"], str):
                 raise ValueError("Start Date for Filtering SMSs needs to be a str (Example: '2014-03-30')")
-            validate_date(kwargs["from"])
-            parameters["from"] = kwargs.pop("from")
+            validate_date(kwargs["date_from"])
+            parameters["from"] = kwargs.pop("date_from")
 
-        if "to" in kwargs:
-            if not isinstance(kwargs["to"], str):
+        if "date_to" in kwargs:
+            if not isinstance(kwargs["date_to"], str):
                 raise ValueError("End Date for Filtering SMSs needs to be a str (Example: '2014-03-30')")
-            validate_date(kwargs["to"])
-            parameters["to"] = kwargs.pop("to")
+            validate_date(kwargs["date_to"])
+            parameters["to"] = kwargs.pop("date_to")
 
         if "type" in kwargs:
             if not isinstance(kwargs["type"], bool):

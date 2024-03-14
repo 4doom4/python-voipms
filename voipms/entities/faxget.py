@@ -153,12 +153,12 @@ class FaxGet(BaseApi):
         """
         Retrieves a list of Fax Messages
 
-        :param from: Start Date for Filtering Fax Messages (Example: '2014-03-30')
+        :param date_from: Start Date for Filtering Fax Messages (Example: '2014-03-30')
                      - Default value: Today
-        :type from: :py:class:`str`
-        :param to: End Date for Filtering Fax Messages (Example: '2014-03-30')
+        :type date_from: :py:class:`str`
+        :param date_to: End Date for Filtering Fax Messages (Example: '2014-03-30')
                    - Default value: Today
-        :type to: :py:class:`str`
+        :type date_to: :py:class:`str`
         :param folder: Name of specific Fax Folder (Example: SENT)
                        - Default value: ALL
         :type folder: :py:class:`str`
@@ -170,17 +170,17 @@ class FaxGet(BaseApi):
         parameters = {
         }
 
-        if "from" in kwargs:
-            if not isinstance(kwargs["from"], str):
+        if "date_from" in kwargs:
+            if not isinstance(kwargs["date_from"], str):
                 raise ValueError("Start Date for Filtering Fax Messages needs to be a str (Example: '2014-03-30')")
-            validate_date(kwargs["from"])
-            parameters["from"] = kwargs.pop("from")
+            validate_date(kwargs["date_from"])
+            parameters["from"] = kwargs.pop("date_from")
 
-        if "to" in kwargs:
-            if not isinstance(kwargs["to"], str):
+        if "date_to" in kwargs:
+            if not isinstance(kwargs["date_to"], str):
                 raise ValueError("End Date for Filtering Fax Messages needs to be a str (Example: '2014-03-30')")
-            validate_date(kwargs["to"])
-            parameters["to"] = kwargs.pop("to")
+            validate_date(kwargs["date_to"])
+            parameters["to"] = kwargs.pop("date_to")
 
         if "folder" in kwargs:
             if not isinstance(kwargs["folder"], str):
