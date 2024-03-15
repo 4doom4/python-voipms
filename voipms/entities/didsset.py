@@ -99,8 +99,8 @@ class DidsSet(BaseApi):
         :param routing: [Required] Route the call follows when filter is triggered
         :type routing: :py:class:`str`
 
-        :param filter: ID for a specific Caller ID Filtering (Example: 18915 / Leave empty to create a new one)
-        :type filter: :py:class:`int`
+        :param filter_id: ID for a specific Caller ID Filtering (Example: 18915 / Leave empty to create a new one)
+        :type filter_id: :py:class:`int`
         :param failover_unreachable: Route the call follows when unreachable
         :type failover_unreachable: :py:class:`str`
         :param failover_busy: Route the call follows when busy
@@ -162,10 +162,10 @@ class DidsSet(BaseApi):
             "routing": routing,
         }
 
-        if "filter" in kwargs:
-            if not isinstance(kwargs["filter"], int):
+        if "filter_id" in kwargs:
+            if not isinstance(kwargs["filter_id"], int):
                 raise ValueError("ID for a specific Caller ID Filtering needs to be an int (Example: 18915 / Leave empty to create a new one)")
-            parameters["filter"] = kwargs.pop("filter")
+            parameters["filter"] = kwargs.pop("filter_id")
 
         if "failover_unreachable" in kwargs:
             if not isinstance(kwargs["failover_unreachable"], str):
@@ -192,6 +192,77 @@ class DidsSet(BaseApi):
             for key, value in kwargs.items():
                 not_allowed_parameters += key + " "
             raise ValueError("Parameters not allowed: {}".format(not_allowed_parameters))
+
+        return self._voipms_client._get(method, parameters)
+
+    def call_hunting(self, description, music, recording, language, order, members, ring_time, press, callhunting=None):
+        """
+        Updates a specific Call Hunting if a Call Hunting code is provided
+
+        - Adds a new Call Hunting if no Call Hunting code is provided
+
+        :param callhunting: ID for a specific Call Hunting (Example: 235 / Leave empty to create a new one)
+        :type callhunting: :py:class:`int`
+        :param description: [Required] Description for the Call Hunting
+        :type description: :py:class:`str`
+        :param music: [Required] Music on Hold Code (Values from getMusicOnHold)
+        :type music: :py:class:`int`
+        :param recording: [Required] Recording for the Call Hunting (values from getRecordings)
+        :type recording: :py:class:`int`
+        :param language: [Required] Language for the Call Hunting (values from getLanguages)
+        :type language: :py:class:`str`
+        :param order: [Required] The members will be called in follow or random order (values follow or random)
+        :type order: :py:class:`str`
+        :param members: [Required] The list of members assigned to the call hunting
+        :type members: :py:class:`list`
+        :param ring_time: [Required] The Maximum amount of time the call will ring the member
+        :type ring_time: :py:class:`int`
+        :param press: [Required] This option confirm if the member will take the call by pressing 1
+        :type press: :py:class:`int`
+
+        :returns: :py:class:`dict`
+        """
+        method = "setCallHunting"
+
+        if not isinstance(description, str):
+            raise ValueError("[Required] Description for the Call Hunting")
+
+        if not isinstance(music, int):
+            raise ValueError("[Required] Music on Hold Code (Values from getMusicOnHold)")
+
+        if not isinstance(recording, int):
+            raise ValueError("[Required] Recording for the Call Hunting (values from getRecordings)")
+
+        if not isinstance(language, int):
+            raise ValueError("[Required] Language for the Call Hunting (values from getLanguages)")
+
+        if not isinstance(order, str):
+            raise ValueError("[Required] The members will be called in follow or random order (values follow or random)")
+
+        if not isinstance(members, list):
+            raise ValueError("[Required] The list of members assigned to the call hunting")
+
+        if not isinstance(ring_time, int):
+            raise ValueError("[Required] The Maximum amount of time the call will ring the member")
+
+        if not isinstance(press, int):
+            raise ValueError("[Required] This option confirm if the member will take the call by pressing 1")
+
+        parameters = {
+            "description": description,
+            "music": music,
+            "recording": recording,
+            "language": language,
+            "order": order,
+            "members": members,
+            "ring_time": ring_time,
+            "press": press
+        }
+
+        if callhunting:
+            if not isinstance(description, str):
+                raise ValueError("ID for a specific Call Hunting (Example: 235 / Leave empty to create a new one)")
+            parameters["callhunting"] = callhunting
 
         return self._voipms_client._get(method, parameters)
 
@@ -635,6 +706,42 @@ class DidsSet(BaseApi):
             for key, value in kwargs.items():
                 not_allowed_parameters += key + " "
             raise ValueError("Parameters not allowed: {}".format(not_allowed_parameters))
+
+        return self._voipms_client._get(method, parameters)
+
+    def phonebook_group(self, name, number, **kwargs):
+        """
+        Updates a specific Phonebook group if a phonebook code is provided
+
+        - Adds a new Phonebook group if no phonebook group code is provided
+        - Assigns or modifies group members if a member list is provided
+
+        :param group: ID for a specific Phonebook group (Example: 32207 / Leave empty to create a new one)
+        :type group: :py:class:`int`
+        :param name: [Required] Name for the Phonebook group
+        :type name: :py:class:`str`
+        :param member: Phonebook entry codes associated to this group separated by a semicolon
+        :type member: :py:class:`str`
+        :returns: :py:class:`dict`
+        """
+        method = "setPhonebookGroup"
+
+        if not isinstance(name, str):
+            raise ValueError("[Required] Name for the Phonebook group")
+
+        parameters = {
+            "name": name,
+        }
+
+        if group:
+            if not isinstance(group, int):
+                raise ValueError("ID for a specific Phonebook group (Example: 32207 / Leave empty to create a new one)")
+            parameters["group"] = group
+
+        if member:
+            if not isinstance(member, str):
+                raise ValueError("Phonebook entry codes associated to this group separated by a semicolon")
+            parameters["member"] = member
 
         return self._voipms_client._get(method, parameters)
 

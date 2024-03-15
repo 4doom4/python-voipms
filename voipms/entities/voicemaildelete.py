@@ -18,6 +18,32 @@ class VoicemailDelete(BaseApi):
         super(VoicemailDelete, self).__init__(*args, **kwargs)
         self.endpoint = 'voicemail'
 
+    def member_from_conference(self, member, conference=None):
+        """
+        Removes a member profile from a specific Conference from your Account
+
+        :param member: [Required] ID for a specific Member (Example: 101)
+        :type member: :py:class:`int`
+        :param conference: ID for a specific Conference (Example: 3829)
+        :type conference: :py:class:`int`
+
+        :returns: :py:class:`dict`
+        """
+        method = "delMemberFromConference"
+
+        if not isinstance(member, int):
+            raise ValueError("[Required] ID for a specific Member (Example: 101)")
+        parameters = {
+            "member": member,
+        }
+
+        if conference:
+            if not isinstance(conference, int):
+                raise ValueError("ID for a specific Conference (Example: 3829)")
+                parameters["conference"] = conference
+
+        return self._voipms_client._get(method, parameters)
+
     def messages(self, mailbox, **kwargs):
         """
         Deletes all messages in all servers from a specific Voicemail from your Account

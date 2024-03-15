@@ -94,6 +94,58 @@ class AccountsGet(BaseApi):
             parameters["dtmf_mode"] = dtmf_mode
         return self._voipms_client._get(method, parameters)
 
+    def invoice(self, date_from=None, date_to=None, time_range=None, country_type=None):
+        """
+  	    Retrieves a URL to download the invoice in a PDF file. 
+
+        :param date_from: Start Date to generate invoice. (Example: '2020-11-25')
+        :type date_from: :py:class:`str`
+        :param date_to: End Date to generate invoice. (Example: '2020-12-25')
+        :type date_to: :py:class:`str`
+        :param time_range: Predefined ranges of dates to generate invoice:
+                              1 = Last Month: 1st day of previous month to last day of previous month
+                              2 = Last 2 Months: 1st day of the previous 2 months to last day of previous month.
+                              3 = Last 3 Months: 1st day of the previous 3 months to last day of the previous month.
+                              4 = Current Month: 1st day of this month until today
+                              5 = Last Week: Monday of last week to Sunday of last week.
+                              6 = Current Week: Monday of this week until today.
+        :type time_range: :py:class:`int`
+        :param country_type: Type of invoice to be generated, possible values: 0 = US, 1 = CAN
+        :type country_type: :py:class:`int`
+        :returns: :py:class:`dict`
+        """
+        method = "getInvoice"
+
+        parameters = {}
+
+        if date_from:
+            if not isinstance(date_from, str):
+                raise ValueError("Start Date to generate invoice. (Example: '2020-11-25')")
+            parameters["from"] = date_from
+
+        if date_to:
+            if not isinstance(date_to, str):
+                raise ValueError("End Date to generate invoice. (Example: '2020-12-25')")
+            parameters["to"] = date_to
+
+        if time_range:
+            if not isinstance(time_range, str):
+                raise ValueError("""Predefined ranges of dates to generate invoice:
+                              1 = Last Month: 1st day of previous month to last day of previous month
+                              2 = Last 2 Months: 1st day of the previous 2 months to last day of previous month.
+                              3 = Last 3 Months: 1st day of the previous 3 months to last day of the previous month.
+                              4 = Current Month: 1st day of this month until today
+                              5 = Last Week: Monday of last week to Sunday of last week.
+                              6 = Current Week: Monday of this week until today.""")
+            parameters["range"] = time_range
+
+        if country_type:
+            if not isinstance(country_type, str):
+                raise ValueError("Type of invoice to be generated, possible values: 0 = US, 1 = CAN")
+            parameters["type"] = country_type 
+
+        return self._voipms_client._get(method, parameters)
+
     def lock_international(self, lock_international=None):
         """
         Retrieves a list of Lock Modes if no additional parameter is provided

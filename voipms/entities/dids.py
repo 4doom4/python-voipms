@@ -11,6 +11,7 @@ from voipms.entities.didsconnect import DidsConnect
 from voipms.entities.didsdelete import DidsDelete
 from voipms.entities.didsget import DidsGet
 from voipms.entities.didsorder import DidsOrder
+from voipms.entities.didsremove import DidsRemove
 from voipms.entities.didssearch import DidsSearch
 from voipms.entities.didssend import DidsSend
 from voipms.entities.didsset import DidsSet
@@ -30,6 +31,7 @@ class Dids(BaseApi):
         self.delete = DidsDelete(self)
         self.get = DidsGet(self)
         self.order = DidsOrder(self)
+        self.remove = DidsRemove(self)
         self.search = DidsSearch(self)
         self.send = DidsSend(self)
         self.set = DidsSet(self)

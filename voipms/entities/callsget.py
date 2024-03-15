@@ -180,6 +180,106 @@ class CallsGet(BaseApi):
         return self._cdr(method, date_from, date_to, timezone,
                          answered, noanswer, busy, failed, **kwargs)
 
+    def parking(self, callparking):
+        """
+        Retrieves a list of Call Parking entries if no additional parameter is provided
+
+        - Retrieves a specific Call Parking entry if a Call Parking ID is provided
+
+        :param callparking: ID for a specific Call Parking (Example: 737)
+        :type callparking: :py:class:`int`
+        :returns: :py:class:`dict`
+        """
+        method = "getCallParking"
+
+        if not isinstance(callparking, int):
+            raise ValueError("ID for a specific Call Parking (Example: 737)")
+
+        parameters = {
+            "callparking": callparking,
+        }
+        return self._voipms_client._get(method, parameters)
+
+    def recording(self, account, callrecording):
+        """
+        Retrieves one especific call recording information, including the recording file on mp3 format
+
+        :param account: [Required] Main Account or Sub Account related to the call recording (Values from getCallRecordings)
+        :type account: :py:class:`int`
+        :param callrecording: Call Recording (Values from getCallRecordings)
+        :type callrecording: :py:class:`str`
+        :returns: :py:class:`dict`
+        """
+        method = "getCallRecording"
+
+        if not isinstance(account, int):
+            raise ValueError("[Required] Main Account or Sub Account related to the call recording (Values from getCallRecordings)")
+
+        if not isinstance(callrecording, str):
+            raise ValueError("Call Recording (Values from getCallRecordings)")
+
+        parameters = {
+            "account": account,
+            "callrecording": callrecording,
+        }
+        return self._voipms_client._get(method, parameters)
+
+    def recordings(self, account, date_from, date_to, **kwargs):
+        """
+        Retrieves all call recordings related to account
+
+        :param account: [Required] Filter Call Recordings by Account (Values from getCallAccounts)
+        :type account: :py:class:`int`
+        :param start: Number of records shown previously, used for pages
+        :type start: :py:class:`int`
+        :param length: Number of records to show
+        :type length: :py:class:`int`
+        :param date_from: [Required] Start Date for Filtering Call Recording (Example: '2018-11-01')
+        :type date_from: :py:class:`str`
+        :param date_to: [Required] End Date for Filtering Call Recording (Example: '2018-12-01')
+        :type date_to: :py:class:`str`
+        :param call_type: Call Type for Filtering Call Recording (Accepted values: 'all', 'incoming', and 'outgoing')
+        :type call_type: :py:class:`str`
+        :returns: :py:class:`dict`
+        """
+        method = "getCallRecordings"
+
+        parameters = {}
+
+        if not isinstance(account, int):
+            raise ValueError("[Required] Filter Call Recordings by Account (Values from getCallAccounts)")
+        parameters["account"] = account
+
+        if not isinstance(date_from, str):
+            raise ValueError("Start Date for Filtering CDR needs to be str (Example: '2010-11-30')")
+        parameters["date_from"] = date_from
+
+        if not isinstance(date_to, str):
+            raise ValueError("End Date for Filtering CDR needs to be str (Example: '2010-11-30')")
+        parameters["date_to"] = date_to
+
+        date_from_object = validate_date(date_from)
+        date_to_object = validate_date(date_to)
+        if date_from_object > date_to_object:
+            raise ValueError("The start date needs to be ealier or the same as the end date.")
+        if date_to_object > datetime.now():
+            raise ValueError("The end date can't be in the future.")
+
+        if "start" in kwargs:
+            if not isinstance(kwargs["start"], int):
+                raise ValueError("Number of records shown previously, used for pages")
+            parameters["start"] = kwargs.pop("start")
+
+        if "length" in kwargs:
+            if not isinstance(kwargs["length"], int):
+                raise ValueError("Number of records to show")
+            parameters["length"] = kwargs.pop("length")
+
+        if "call_type" in kwargs:
+            if not isinstance(kwargs["call_type"], str):
+                raise ValueError("Call Type for Filtering Call Recording (Accepted values: 'all', 'incoming', and 'outgoing')")
+            parameters["call_type"] = kwargs.pop("call_type")
+
     def rates(self, package, query):
         """
         Retrieves the Rates for a specific Package and a Search term

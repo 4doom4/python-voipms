@@ -61,6 +61,27 @@ class DidsGet(BaseApi):
 
         return self._voipms_client._get(method, parameters)
 
+    def call_huntings(self, callhunting=None):
+        """
+        Retrieves a list of Call Huntings if no additional parameter is provided
+
+        - Retrieves a specific Call Huntings if a Call Hunting code is provided
+
+        :param callhunting: ID for a specific Call Hunting (Example: 323)
+        :type callhunting: :py:class:`int`
+
+        :returns: :py:class:`dict`
+        """
+        method = "getCallHuntings"
+
+        parameters = {}
+        if callhunting:
+            if not isinstance(callhunting, int):
+                raise ValueError("ID for a specific Call Hunting (Example: 323)")
+            parameters["callhunting"] = callhunting
+
+        return self._voipms_client._get(method, parameters)
+
     def did_countries(self, international_type, country_id=None):
         """
         Retrieves a list of Countries for International DIDs if no country code is provided
@@ -87,6 +108,23 @@ class DidsGet(BaseApi):
             if not isinstance(country_id, int):
                 raise ValueError("ID for a specific country needs to be an int (Example: 205)")
             parameters["country_id"] = country_id
+
+        return self._voipms_client._get(method, parameters)
+
+    def did_vpri(self, vpri):
+        """
+        Retrieves a list of DIDs assigned to the VPRI
+
+        :param vpri: [Required] Id for specific Vpri
+        :type vpri: :py:class:`int`
+
+        :returns: :py:class:`dict`
+        """
+        method = "getDIDvPRI"
+
+        if not isinstance(vpri, int):
+            raise ValueError("[Required] Id for specific Vpri")
+        parameters["vpri"] = vpri
 
         return self._voipms_client._get(method, parameters)
 
@@ -366,6 +404,126 @@ class DidsGet(BaseApi):
 
         return self._voipms_client._get(method, parameters)
 
+    def media_mms(self, **kwargs):
+        """
+        Retrieves media files from the message.
+
+        :param mms: ID for a specific MMS (Example: 5853)
+        :type mms: :py:class:`int`
+        :param media_as_array: Return the list of media attachments as an Array if the value is 1 as a JSON Object if the value is 0 (Default: 0)
+        :type media_as_array: :py:class:`bool`
+
+        :returns: :py:class:`dict`
+        """
+        method = "getMediaMMS"
+
+        parameters = {}
+
+        if "mms" in kwargs:
+            if not isinstance(kwargs["mms"], int):
+                raise ValueError("ID for a specific MMS needs to be an int (Example: 5853)")
+            parameters["id"] = kwargs.pop("mms")
+
+        if "media_as_array" in kwargs:
+            if not isinstance(kwargs["media_as_array"], bool):
+                raise ValueError("Return the list of media attachments as an Array if the value is 1 as a JSON Object if the value is 0 (Default: 0)")
+            parameters["media_as_array"] = convert_bool(kwargs.pop("media_as_array"))
+
+        if len(kwargs) > 0:
+            not_allowed_parameters = ""
+            for key, value in kwargs.items():
+                not_allowed_parameters += key + " "
+            raise ValueError("Parameters not allowed: {}".format(not_allowed_parameters))
+
+        return self._voipms_client._get(method, parameters)
+
+    def mms(self, **kwargs):
+        """
+        Retrieves a list of MMS messages by: date range, mms type, DID number, and contact
+
+        :param mms: ID for a specific MMS (Example: 1918)
+        :type mms: :py:class:`int`
+        :param date_from: Start Date for Filtering SMSs (Example: '2014-03-30')
+                     - Default value: Today
+        :type date_from: :py:class:`str`
+        :param date_to: End Date for Filtering SMSs (Example: '2014-03-30')
+                     - Default value: Today
+        :type date_to: :py:class:`str`
+        :param mms_type: Filter SMSs by Type (Boolean: True = received / False = sent)
+        :type mms_type: :py:class:`bool`
+        :param did: DID number for Filtering SMSs (Example: 5551234567)
+        :type did: :py:class:`int`
+        :param contact: Contact number for Filtering SMSs (Example: 5551234567)
+        :type contact: :py:class:`int`
+        :param limit: Number of records to be displayed (Example: 20)
+                       - Default value: 50
+        :type limit: :py:class:`int`
+        :param timezone: Adjust time of SMSs according to Timezome (Numeric: -12 to 13)
+        :type timezone: :py:class:`int`
+        :param all_messages: Filter to recive all SMSs and MMSs, 1 recive all SMS and MMS, 0 if only need SMS, important: the sms ID must be 0
+        :type all_messages: :py:class:`bool`
+
+        :returns: :py:class:`dict`
+        """
+        method = "getMMS"
+
+        parameters = {}
+
+        if "mms" in kwargs:
+            if not isinstance(kwargs["mms"], int):
+                raise ValueError("ID for a specific MMS needs to be an int (Example: 1918)")
+            parameters["mms"] = kwargs.pop("mms")
+
+        if "date_from" in kwargs:
+            if not isinstance(kwargs["date_from"], str):
+                raise ValueError("Start Date for Filtering SMSs needs to be a str (Example: '2014-03-30')")
+            validate_date(kwargs["date_from"])
+            parameters["from"] = kwargs.pop("date_from")
+
+        if "date_to" in kwargs:
+            if not isinstance(kwargs["date_to"], str):
+                raise ValueError("End Date for Filtering SMSs needs to be a str (Example: '2014-03-30')")
+            validate_date(kwargs["date_to"])
+            parameters["to"] = kwargs.pop("date_to")
+
+        if "mms_type" in kwargs:
+            if not isinstance(kwargs["mms_type"], bool):
+                raise ValueError("Filter SMSs by Type needs to be a bool (Boolean: True = received / False = sent)")
+            parameters["type"] = convert_bool(kwargs.pop("mms_type"))
+
+        if "did" in kwargs:
+            if not isinstance(kwargs["did"], int):
+                raise ValueError("DID number for Filtering SMSs needs to be an int (Example: 5551234567)")
+            parameters["did"] = kwargs.pop("did")
+
+        if "contact" in kwargs:
+            if not isinstance(kwargs["contact"], int):
+                raise ValueError("Contact number for Filtering SMSs needs to be an int (Example: 5551234567)")
+            parameters["contact"] = kwargs.pop("contact")
+
+        if "limit" in kwargs:
+            if not isinstance(kwargs["limit"], int):
+                raise ValueError("Number of records to be displayed needs to be an int (Example: 20)")
+            parameters["limit"] = kwargs.pop("limit")
+
+        if "timezone" in kwargs:
+            if not isinstance(kwargs["timezone"], int):
+                raise ValueError("Adjust time of SMSs according to Timezome needs to be an int (Numeric: -12 to 13)")
+            parameters["timezone"] = kwargs.pop("timezone")
+
+        if "all_messages" in kwargs:
+            if not isinstance(kwargs["all_messages"], bool):
+                raise ValueError("Filter to recive all SMSs and MMSs, 1 recive all SMS and MMS, 0 if only need SMS, important: the sms ID must be 0")
+            parameters["all_messages"] = convert_bool(kwargs.pop("all_messages"))
+
+        if len(kwargs) > 0:
+            not_allowed_parameters = ""
+            for key, value in kwargs.items():
+                not_allowed_parameters += key + " "
+            raise ValueError("Parameters not allowed: {}".format(not_allowed_parameters))
+
+        return self._voipms_client._get(method, parameters)
+
     def phonebook(self, phonebook=None, name=None):
         """
         Retrieves a list of Phonebook entries if no additional parameter is provided
@@ -393,6 +551,38 @@ class DidsGet(BaseApi):
         if name:
             if not isinstance(name, str):
                 raise ValueError("Name to be searched in database needs to be a str (Example: 'jane')")
+            else:
+                parameters["name"] = name
+
+        return self._voipms_client._get(method, parameters)
+
+    def phonebook_groups(self, group=None, name=None):
+        """
+        Retrieves a list of Phonebook groups if no additional parameter is provided
+
+        - Retrieves a list of Phonebook groups if a name is provided.
+        - Retrieves a specific Phonebook group if a group ID is provided.
+
+        :param group: ID for a specific Phonebook group
+        :type group: :py:class:`int`
+        :param name: Group Name
+        :type name: :py:class:`str`
+
+        :returns: :py:class:`dict`
+        """
+        method = "getPhonebookGroups"
+
+        parameters = {}
+
+        if group:
+            if not isinstance(group, int):
+                raise ValueError("ID for a specific Phonebook group")
+            else:
+                parameters["group"] = group
+
+        if name:
+            if not isinstance(name, str):
+                raise ValueError("Group Name")
             else:
                 parameters["name"] = name
 
@@ -600,8 +790,8 @@ class DidsGet(BaseApi):
         :param date_to: End Date for Filtering SMSs (Example: '2014-03-30')
                      - Default value: Today
         :type date_to: :py:class:`str`
-        :param type: Filter SMSs by Type (Boolean: True = received / False = sent)
-        :type type: :py:class:`bool`
+        :param sms_type: Filter SMSs by Type (Boolean: True = received / False = sent)
+        :type sms_type: :py:class:`bool`
         :param did: DID number for Filtering SMSs (Example: 5551234567)
         :type did: :py:class:`int`
         :param contact: Contact number for Filtering SMSs (Example: 5551234567)
@@ -635,10 +825,10 @@ class DidsGet(BaseApi):
             validate_date(kwargs["date_to"])
             parameters["to"] = kwargs.pop("date_to")
 
-        if "type" in kwargs:
-            if not isinstance(kwargs["type"], bool):
+        if "sms_type" in kwargs:
+            if not isinstance(kwargs["sms_type"], bool):
                 raise ValueError("Filter SMSs by Type needs to be a bool (Boolean: True = received / False = sent)")
-            parameters["type"] = convert_bool(kwargs.pop("type"))
+            parameters["type"] = convert_bool(kwargs.pop("sms_type"))
 
         if "did" in kwargs:
             if not isinstance(kwargs["did"], int):
@@ -659,6 +849,11 @@ class DidsGet(BaseApi):
             if not isinstance(kwargs["timezone"], int):
                 raise ValueError("Adjust time of SMSs according to Timezome needs to be an int (Numeric: -12 to 13)")
             parameters["timezone"] = kwargs.pop("timezone")
+
+        if "all_messages" in kwargs:
+            if not isinstance(kwargs["all_messages"], bool):
+                raise ValueError("Filter to recive all SMSs and MMSs, 1 recive all SMS and MMS, 0 if only need SMS, important: the sms ID must be 0")
+            parameters["all_messages"] = convert_bool(kwargs.pop("all_messages"))
 
         if len(kwargs) > 0:
             not_allowed_parameters = ""

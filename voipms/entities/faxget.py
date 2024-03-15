@@ -19,6 +19,30 @@ class FaxGet(BaseApi):
         super(FaxGet, self).__init__(*args, **kwargs)
         self.endpoint = 'fax'
 
+    def backorders(self, backorder_id=None):
+        """
+        Retrieves a list of backorder DIDs if no additional parameter is provided
+
+        - Retrieves a specific backorder DID if a backorder DID code is provided
+
+        :param backorder_id: ID for a specific backorder DID
+        :type backorder_id: :py:class:`str`
+
+        :returns: :py:class:`dict`
+        """
+        method = "getBackOrders"
+
+        parameters = {
+        }
+
+        if backorder_id:
+            if not isinstance(backorder_id, str):
+                raise ValueError("ID for a specific backorder DID")
+            else:
+                parameters["backorder_id"] = backorder_id
+
+        return self._voipms_client._get(method, parameters)
+
     def fax_provinces(self, province=None):
         """
         Retrieves a list of Canadian Fax Provinces if no additional parameter is provided

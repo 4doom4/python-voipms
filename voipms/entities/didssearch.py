@@ -18,12 +18,12 @@ class DidsSearch(BaseApi):
         super(DidsSearch, self).__init__(*args, **kwargs)
         self.endpoint = 'dids'
 
-    def dids_can(self, type, query, province=None):
+    def dids_can(self, search_type, query, province=None):
         """
         Searches for Canadian DIDs by Province using a Search Criteria
 
-        :param type: [Required] Type of search (Values: 'starts', 'contains', 'ends')
-        :type type: :py:class:`str`
+        :param search_type: [Required] Type of search (Values: 'starts', 'contains', 'ends')
+        :type search_type: :py:class:`str`
         :param query: [Required] Query for searching (Examples: 'JOHN', '555', '123ABC')
         :type query: :py:class:`str`
 
@@ -34,14 +34,14 @@ class DidsSearch(BaseApi):
         """
         method = "searchDIDsCAN"
 
-        if not isinstance(type, str):
+        if not isinstance(search_type, str):
             raise ValueError("Type of search needs to be a str (Values: 'starts', 'contains', 'ends')")
 
         if not isinstance(query, str):
             raise ValueError("Query for searching needs to be a str (Examples: 'JOHN', '555', '123ABC')")
 
         parameters = {
-            "type": type,
+            "type": search_type,
             "query": query
         }
 
@@ -53,12 +53,12 @@ class DidsSearch(BaseApi):
 
         return self._voipms_client._get(method, parameters)
 
-    def dids_usa(self, type, query, state=None):
+    def dids_usa(self, search_type, query, state=None):
         """
         Searches for USA DIDs by State using a Search Criteria
 
-        :param type: [Required] Type of search (Values: 'starts', 'contains', 'ends')
-        :type type: :py:class:`str`
+        :param search_type: [Required] Type of search (Values: 'starts', 'contains', 'ends')
+        :type search_type: :py:class:`str`
         :param query: [Required] Query for searching (Examples: 'JOHN', '555', '123ABC')
         :type query: :py:class:`str`
 
@@ -69,14 +69,14 @@ class DidsSearch(BaseApi):
         """
         method = "searchDIDsUSA"
 
-        if not isinstance(type, str):
+        if not isinstance(search_type, str):
             raise ValueError("Type of search needs to be a str (Values: 'starts', 'contains', 'ends')")
 
         if not isinstance(query, str):
             raise ValueError("Query for searching needs to be a str (Examples: 'JOHN', '555', '123ABC')")
 
         parameters = {
-            "type": type,
+            "type": search_type,
             "query": query
         }
 
@@ -88,14 +88,14 @@ class DidsSearch(BaseApi):
 
         return self._voipms_client._get(method, parameters)
 
-    def toll_free_can_us(self, type=None, query=None):
+    def toll_free_can_us(self, search_type=None, query=None):
         """
         Searches for USA/Canada Toll Free Numbers using a Search Criteria
 
         - Shows all USA/Canada Toll Free Numbers available if no criteria is provided.
 
-        :param type: Type of search (Values: 'starts', 'contains', 'ends')
-        :type type: :py:class:`str`
+        :param search_type: Type of search (Values: 'starts', 'contains', 'ends')
+        :type search_type: :py:class:`str`
         :param query: Query for searching (Examples: 'JOHN', '555', '123ABC')
         :type query: :py:class:`str`
 
@@ -105,11 +105,11 @@ class DidsSearch(BaseApi):
 
         parameters = {}
 
-        if type:
-            if not isinstance(type, str):
+        if search_type:
+            if not isinstance(search_type, str):
                 raise ValueError("Type of search needs to be a str (Values: 'starts', 'contains', 'ends')")
             else:
-                parameters["type"] = type
+                parameters["type"] = search_type
 
         if query:
             if not isinstance(query, str):
@@ -119,14 +119,14 @@ class DidsSearch(BaseApi):
 
         return self._voipms_client._get(method, parameters)
 
-    def toll_free_usa(self, type=None, query=None):
+    def toll_free_usa(self, search_type=None, query=None):
         """
         Searches for USA Toll Free Numbers using a Search Criteria
 
         - Shows all USA Toll Free Numbers available if no criteria is provided.
 
-        :param type: Type of search (Values: 'starts', 'contains', 'ends')
-        :type type: :py:class:`str`
+        :param search_type: Type of search (Values: 'starts', 'contains', 'ends')
+        :type search_type: :py:class:`str`
         :param query: Query for searching (Examples: 'JOHN', '555', '123ABC')
         :type query: :py:class:`str`
 
@@ -136,11 +136,11 @@ class DidsSearch(BaseApi):
 
         parameters = {}
 
-        if type:
-            if not isinstance(type, str):
+        if search_type:
+            if not isinstance(search_type, str):
                 raise ValueError("Type of search needs to be a str (Values: 'starts', 'contains', 'ends')")
             else:
-                parameters["type"] = type
+                parameters["type"] = search_type
 
         if query:
             if not isinstance(query, str):
@@ -150,12 +150,12 @@ class DidsSearch(BaseApi):
 
         return self._voipms_client._get(method, parameters)
 
-    def vanity(self, type, query):
+    def vanity(self, search_type, query):
         """
         Searches for USA DIDs by State using a Search Criteria
 
-        :param type: [Required] Type of Vanity Number (Values: '8**', '800', '855', '866', '877', '888')
-        :type type: :py:class:`str`
+        :param search_type: [Required] Type of Vanity Number (Values: '8**', '800', '855', '866', '877', '888')
+        :type search_type: :py:class:`str`
         :param query: [Required] Query for searching : 7 Chars (Examples: '***JHON', '**555**', '**HELLO')
         :type query: :py:class:`str`
 
@@ -163,14 +163,14 @@ class DidsSearch(BaseApi):
         """
         method = "searchVanity"
 
-        if not isinstance(type, str):
+        if not isinstance(search_type, str):
             raise ValueError("Type of Vanity Number needs to be a str (Values: '8**', '800', '855', '866', '877', '888')")
 
         if not isinstance(query, str):
             raise ValueError("Query for searching : 7 Chars needs to be a str (Examples: '***JHON', '**555**', '**HELLO')")
 
         parameters = {
-            "type": type,
+            "type": search_type,
             "query": query
         }
 

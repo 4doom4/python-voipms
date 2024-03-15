@@ -154,8 +154,27 @@ class VoicemailGet(BaseApi):
         - Retrieves a list of Voicemail Messages in a Folder if a folder is provided
         - Retrieves a list of Voicemail Messages in a date range if a from and to are provided
 
-        :param mailbox: [Required] ID for a specific Mailbox (Example: 1001)
+        :param mailbox: [Required] ID for a specific vpri (Example: 1001)
         :type mailbox: :py:class:`int`
+        :returns: :py:class:`dict`
+        """
+        method = "getVPRIs"
+
+        if not isinstance(mailbox, int):
+            raise ValueError("")
+
+        parameters = {
+            "mailbox": mailbox,
+        }
+
+        return self._voipms_client._get(method, parameters)
+
+    def vpris(self, vpri):
+        """
+        Retrieves a list of vpri
+
+        :param vpri: [Required] ID for a specific Mailbox (Example: 1001)
+        :type vpri: :py:class:`int`
 
         :param folder: Name for specific Folder (Required if message id is passed, Example: 'INBOX', values from: voicemail.voicemail_folders)
         :type folder: :py:class:`str`
@@ -168,11 +187,11 @@ class VoicemailGet(BaseApi):
         """
         method = "getVoicemailMessages"
 
-        if not isinstance(mailbox, int):
+        if not isinstance(vpri, int):
             raise ValueError("ID for a specific Mailbox needs to be an int (Example: 1001)")
 
         parameters = {
-            "mailbox": mailbox,
+            "vpri": vpri,
         }
 
         if "folder" in kwargs:
