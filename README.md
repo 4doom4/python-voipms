@@ -1,5 +1,5 @@
 ![MIT license](https://img.shields.io/badge/licence-MIT-blue.svg)
-![Version](https://img.shields.io/badge/version-0.2.5-orange.svg)
+![Version](https://img.shields.io/badge/version-0.2.6-orange.svg)
 ![Unstable](https://img.shields.io/badge/status-unstable-red.svg)
 
 # python-voipms
