@@ -6,7 +6,7 @@ Documentation: https://voip.ms/m/apidocs.php
 """
 from voipms.baseapi import BaseApi
 import validators
-from validators import ValidationFailure
+from validators import ValidationError
 import base64
 
 def isBase64(s):
@@ -18,7 +18,7 @@ def isBase64(s):
 def valid_url(url_string: str) -> bool:
     result = validators.url(url_string)
 
-    if isinstance(result, ValidationFailure):
+    if isinstance(result, ValidationError):
         return False
 
     return result

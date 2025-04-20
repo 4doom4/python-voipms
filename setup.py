@@ -21,7 +21,10 @@ CLASSIFIERS = [
     'Programming Language :: Python :: 3.6',
     'Programming Language :: Python :: 3.7',
 ]
-INSTALL_REQUIRES = ['requests>=2.7.0']
+INSTALL_REQUIRES = [
+    'requests>=2.7.0',
+    'validators>=0.21.2',
+]
 
 ###################################################################
 
